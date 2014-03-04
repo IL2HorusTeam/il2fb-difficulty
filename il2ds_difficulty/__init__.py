@@ -17,6 +17,6 @@ def decompose_difficulty(difficulty, settings_map=DIFFICULTY_MAP):
     Retrieves parameters of the digital code.
     """
     return {
-        code:has_setting(difficulty, number)
+        code: has_setting(difficulty, number)
         for number, code in settings_map.iteritems()
     }
