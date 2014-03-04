@@ -2,21 +2,26 @@
 """
 Convert integer value of game difficulty into dictionary and vice versa.
 """
-from il2ds_difficulty.constants import DIFFICULTY_MAP
+from il2ds_difficulty.constants import NUMBERS_MAPS, DEFAULT_GAME_VERSION
 
 
-def has_setting(difficulty, setting_number):
+def decompose_difficulty(difficulty, game_version=DEFAULT_GAME_VERSION):
     """
-    Return the parameter value (True or False)
+    Retrieves difficulty settings from integer value.
     """
-    return ((1 << setting_number) & difficulty) > 0
+    if not isinstance(difficulty, int):
+        raise TypeError("Difficulty is not integer")
+    if difficulty < 0:
+        raise ValueError("Difficulty must be a positive number")
 
+    if not isinstance(game_version, basestring):
+        raise TypeError("Game version must be a string")
+    if not game_version in NUMBERS_MAPS:
+        raise ValueError("Unknown game version")
 
-def decompose_difficulty(difficulty, settings_map=DIFFICULTY_MAP):
-    """
-    Retrieves parameters of the digital code.
-    """
+    numbers_map = NUMBERS_MAPS[game_version]
+
     return {
-        code: has_setting(difficulty, number)
-        for number, code in settings_map.iteritems()
+        code_name: ((1 << number) & difficulty) > 0
+        for code_name, number in numbers_map.iteritems()
     }
