@@ -4,7 +4,7 @@ Difficulty constants.
 """
 
 # The list of the difficulty settings for version 4.12.2
-DifficultyParams = {
+DIFFICULTY_MAP = {
     0: 'WindTurbulence',
     1: 'FlutterEffect',
     2: 'StallSpins',

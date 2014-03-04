@@ -4,12 +4,13 @@
 """
 import unittest
 
-from il2ds_difficulty import get_difficulty_settings
-from il2ds_difficulty.constants import DifficultyParams
+from il2ds_difficulty import decompose_difficulty
+from il2ds_difficulty.constants import DIFFICULTY_MAP
 
 
-class DifficultyTest(unittest.TestCase):
+class DecomposeDifficultyTest(unittest.TestCase):
 
-    def test_difficulty_code(self):
-        code = 6704004351
-        get_difficulty_settings(DifficultyParams, code)
+    def test_all_false(self):
+        difficulty = 0
+        settings = decompose_difficulty(difficulty, DIFFICULTY_MAP)
+        self.assertFalse(any(settings.values()))
