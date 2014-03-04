@@ -4,8 +4,8 @@
 """
 import unittest
 
+from il2ds_difficulty import get_difficulty_settings
 from il2ds_difficulty.constants import DifficultyParams
-from il2ds_difficulty.difficulty import get_difficulty_settings
 
 
 class DifficultyTest(unittest.TestCase):

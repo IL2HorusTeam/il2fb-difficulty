@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
- Difficulty constants values
+Difficulty constants.
 """
 
 # The list of the difficulty settings for version 4.12.2
