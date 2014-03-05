@@ -3,7 +3,11 @@
 Difficulty constants.
 """
 try:
-    from django.utils.translation import ugettext as _
+    from django.conf import settings
+    if settings.configured:
+        from django.utils.translation import ugettext as _
+    else:
+        raise ImportError()
 except ImportError:
     def _(value):
         return value
