@@ -71,7 +71,7 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     STALL_SPINS: (
-        _("Tailspin"),
+        _("Stall spins"),
         _("Description"),
     ),
     BLACKOUTS_REDOUTS: (
@@ -95,23 +95,23 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     COCKPIT_ALWAYS_ON: (
-        _("View only from the cockpit"),
-        _("Description"),
+        _("Cockpit always on"),
+        _("Look from cockpit only"),
     ),
     NO_OUTSIDE_VIEWS: (
         _("No outside views"),
         _("Description"),
     ),
     HEAD_SHAKE: (
-        _("Moving head"),
+        _("Head shake"),
         _("Description"),
     ),
     NO_ICONS: (
-        _("Without icons players"),
-        _("Description"),
+        _("No icons"),
+        _("Do not display player icons on map"),
     ),
     REALISTIC_GUNNERY: (
-        _("Realistic shooting"),
+        _("Realistic gunnery"),
         _("Description"),
     ),
     LIMITED_AMMO: (
@@ -119,7 +119,7 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     LIMITED_FUEL: (
-        _("Limited supply of fuel"),
+        _("Limited fuel"),
         _("Description"),
     ),
     VULNERABILITY: (
@@ -127,7 +127,7 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     NO_PADLOCK: (
-        _("Disable glance fixation"),
+        _("No look fixation"),
         _("Description"),
     ),
     CLOUDS: (
@@ -135,52 +135,52 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     NO_MAP_ICONS: (
-        _("Disable the markers on the map"),
-        _("Description"),
+        _("No map icons"),
+        _("Disable markers on map"),
     ),
     SEPARATE_ENGINE_START: (
-        _("Separate engine starting"),
+        _("Separate engine start"),
         _("Description"),
     ),
     NO_INSTANT_SUCCESS: (
-        _("Complete the task"),
-        _("Description"),
+        _("No instant success"),
+        _("Complete tasks"),
     ),
     NO_MINIMAP_PATH: (
-        _("Without the route on the map"),
-        _("Description"),
+        _("No minimap path"),
+        _("Without a route on map"),
     ),
     NO_SPEED_BAR: (
+        _("No speed bar"),
         _("Without speed indicator"),
-        _("Description"),
     ),
     COMPLEX_ENGINE_MANAGEMENT: (
+        _("Complex engine management"),
         _("Full engine control"),
-        _("Description"),
     ),
     RELIABILITY: (
+        _("Reliability"),
         _("Real reliability of engines"),
-        _("Description"),
     ),
     OVERLOAD_LIMITS: (
-        _("Dynamic overload restriction"),
-        _("Description"),
+        _("Overload limits"),
+        _("Dynamic overload limits"),
     ),
     REALISTIC_PILOT_VULNERABILITY: (
-        _("Realistic vulnerability pilot"),
+        _("Realistic pilot vulnerability"),
         _("Description"),
     ),
     REALISTIC_NAVIGATION_INSTRUMENTS: (
-        _("Realistic navigation"),
+        _("Realistic navigation instruments"),
         _("Description"),
     ),
     NO_PLAYER_ICON: (
-        _("To disable a player on the map"),
-        _("Description"),
+        _("No player icon"),
+        _("Player icon is not shown on map"),
     ),
     NO_FOG_OF_WAR_ICONS: (
-        _("Disable icons intelligence on the map"),
-        _("Description"),
+        _("No fog of war icons"),
+        _("Disable intelligence icons on map"),
     ),
     BOMB_FUZES: (
         _("Bomb fuses"),
@@ -195,24 +195,24 @@ SETTINGS_NAMES_MAP = {
         _("Description"),
     ),
     NO_SELF_VIEW: (
-        _("Without your own review"),
-        _("Description"),
+        _("No self view"),
+        _("Without own view"),
     ),
     NO_FOE_VIEW: (
-        _("Without a review of the enemy"),
-        _("Description"),
+        _("No foe view"),
+        _("Without view of enemies"),
     ),
     NO_FRIENDLY_VIEW: (
-        _("Without friends"),
-        _("Description"),
+        _("No friendly view"),
+        _("Without view of friends"),
     ),
     NO_PLANES_VIEW: (
-        _("Without a review of the aircraft"),
-        _("Description"),
+        _("No planes view"),
+        _("Without view of aircraft"),
     ),
     NO_AIRCRAFT_CARRIER_VIEW: (
-        _("Without a review of aircraft carriers"),
-        _("Description"),
+        _("No aircraft carrier view"),
+        _("Without view of aircraft carriers"),
     ),
 }
 
@@ -294,8 +294,6 @@ NUMBERS_MAP_4_12 = {
     code: number for code, number
                  in itertools.chain(*dict(DIFFICULTY_4_12).values())
 }
-
-print NUMBERS_MAP_4_12
 
 # -----------------------------------------------------------------------------
 # General constants
