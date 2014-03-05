@@ -2,6 +2,8 @@
 """
 Difficulty constants.
 """
+import itertools
+
 try:
     from django.conf import settings
     if settings.configured:
@@ -240,107 +242,69 @@ TABS_NAMES_MAP = {
 # Settings set for 4.12
 # -----------------------------------------------------------------------------
 
-NUMBERS_MAP_4_12 = {
-    WIND_TURBULENCE: 0,
-    FLUTTER_EFFECT: 1,
-    STALL_SPINS: 2,
-    BLACKOUTS_REDOUTS: 3,
-    ENGINE_OVERHEAT: 4,
-    TORQUE_GYRO_EFFECTS: 5,
-    REALISTIC_LANDING: 6,
-    TAKEOFF_LANDING: 7,
-    COCKPIT_ALWAYS_ON: 8,
-    NO_OUTSIDE_VIEWS: 9,
-    HEAD_SHAKE: 10,
-    NO_ICONS: 11,
-    REALISTIC_GUNNERY: 12,
-    LIMITED_AMMO: 13,
-    LIMITED_FUEL: 14,
-    VULNERABILITY: 15,
-    NO_PADLOCK: 16,
-    CLOUDS: 17,
-    NO_MAP_ICONS: 18,
-    SEPARATE_ENGINE_START: 19,
-    NO_INSTANT_SUCCESS: 20,
-    NO_MINIMAP_PATH: 21,
-    NO_SPEED_BAR: 22,
-    COMPLEX_ENGINE_MANAGEMENT: 23,
-    RELIABILITY: 24,
-    OVERLOAD_LIMITS: 25,
-    REALISTIC_PILOT_VULNERABILITY: 26,
-    REALISTIC_NAVIGATION_INSTRUMENTS: 27,
-    NO_PLAYER_ICON: 28,
-    NO_FOG_OF_WAR_ICONS: 29,
-    BOMB_FUZES: 30,
-    REALISTIC_TORPEDOING: 31,
-    REALISTIC_MISSILES_VARIATION: 32,
-    NO_SELF_VIEW: 33,
-    NO_FOE_VIEW: 34,
-    NO_FRIENDLY_VIEW: 35,
-    NO_PLANES_VIEW: 36,
-    NO_AIRCRAFT_CARRIER_VIEW: 37,
-}
-
-
-TABS_4_12 = (
+DIFFICULTY_4_12 = (
     (TAB_FLIGHT_MODEL, (
-        WIND_TURBULENCE,
-        FLUTTER_EFFECT,
-        STALL_SPINS,
-        BLACKOUTS_REDOUTS,
-        ENGINE_OVERHEAT,
-        TORQUE_GYRO_EFFECTS,
-        REALISTIC_LANDING,
-        TAKEOFF_LANDING,
-        OVERLOAD_LIMITS,
+        (WIND_TURBULENCE, 0),
+        (FLUTTER_EFFECT, 1),
+        (STALL_SPINS, 2),
+        (BLACKOUTS_REDOUTS, 3),
+        (ENGINE_OVERHEAT, 4),
+        (TORQUE_GYRO_EFFECTS, 5),
+        (REALISTIC_LANDING, 6),
+        (TAKEOFF_LANDING, 7),
+        (OVERLOAD_LIMITS, 25),
     )),
     (TAB_VIEW, (
-        COCKPIT_ALWAYS_ON,
-        NO_OUTSIDE_VIEWS,
-        HEAD_SHAKE,
-        NO_PADLOCK,
-        NO_SELF_VIEW,
-        NO_FOE_VIEW,
-        NO_FRIENDLY_VIEW,
-        NO_PLANES_VIEW,
-        NO_AIRCRAFT_CARRIER_VIEW,
+        (COCKPIT_ALWAYS_ON, 8),
+        (NO_OUTSIDE_VIEWS, 9),
+        (HEAD_SHAKE, 10),
+        (NO_PADLOCK, 16),
+        (NO_SELF_VIEW, 33),
+        (NO_FOE_VIEW, 34),
+        (NO_FRIENDLY_VIEW, 35),
+        (NO_PLANES_VIEW, 36),
+        (NO_AIRCRAFT_CARRIER_VIEW, 37),
     )),
     (TAB_MISC, (
-        NO_ICONS,
-        REALISTIC_GUNNERY,
-        LIMITED_AMMO,
-        LIMITED_FUEL,
-        VULNERABILITY,
-        CLOUDS,
-        NO_MAP_ICONS,
-        NO_INSTANT_SUCCESS,
-        NO_MINIMAP_PATH,
-        NO_SPEED_BAR,
-        REALISTIC_PILOT_VULNERABILITY,
-        REALISTIC_NAVIGATION_INSTRUMENTS,
-        NO_PLAYER_ICON,
-        NO_FOG_OF_WAR_ICONS,
-        BOMB_FUZES,
-        REALISTIC_TORPEDOING,
-        REALISTIC_MISSILES_VARIATION,
-        ENGINE_OVERHEAT,
-        SEPARATE_ENGINE_START,
-        COMPLEX_ENGINE_MANAGEMENT,
-        RELIABILITY,
+        (NO_ICONS, 11),
+        (REALISTIC_GUNNERY, 12),
+        (LIMITED_AMMO, 13),
+        (LIMITED_FUEL, 14),
+        (VULNERABILITY, 15),
+        (CLOUDS, 17),
+        (NO_MAP_ICONS, 18),
+        (NO_INSTANT_SUCCESS, 20),
+        (NO_MINIMAP_PATH, 21),
+        (NO_SPEED_BAR, 22),
+        (REALISTIC_PILOT_VULNERABILITY, 26),
+        (REALISTIC_NAVIGATION_INSTRUMENTS, 27),
+        (NO_PLAYER_ICON, 28),
+        (NO_FOG_OF_WAR_ICONS, 29),
+        (BOMB_FUZES, 30),
+        (REALISTIC_TORPEDOING, 31),
+        (REALISTIC_MISSILES_VARIATION, 32),
+        (ENGINE_OVERHEAT, 4),
+        (SEPARATE_ENGINE_START, 19),
+        (COMPLEX_ENGINE_MANAGEMENT, 23),
+        (RELIABILITY, 24),
     )),
 )
 
+NUMBERS_MAP_4_12 = {
+    code: number for code, number
+                 in itertools.chain(*dict(DIFFICULTY_4_12).values())
+}
+
+print NUMBERS_MAP_4_12
 
 # -----------------------------------------------------------------------------
 # General constants
 # -----------------------------------------------------------------------------
-
 
 NUMBERS_MAPS = {
     '4.12': NUMBERS_MAP_4_12,
     '4.12.1': NUMBERS_MAP_4_12,
     '4.12.2': NUMBERS_MAP_4_12,
 }
-
 
 DEFAULT_GAME_VERSION = '4.12.2'
