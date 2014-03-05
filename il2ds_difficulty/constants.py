@@ -282,8 +282,8 @@ NUMBERS_MAP_4_12 = {
 }
 
 
-TABS_4_12 = {
-    TAB_FLIGHT_MODEL: (
+TABS_4_12 = (
+    (TAB_FLIGHT_MODEL, (
         WIND_TURBULENCE,
         FLUTTER_EFFECT,
         STALL_SPINS,
@@ -293,8 +293,8 @@ TABS_4_12 = {
         REALISTIC_LANDING,
         TAKEOFF_LANDING,
         OVERLOAD_LIMITS,
-    ),
-    TAB_VIEW: (
+    )),
+    (TAB_VIEW, (
         COCKPIT_ALWAYS_ON,
         NO_OUTSIDE_VIEWS,
         HEAD_SHAKE,
@@ -304,8 +304,8 @@ TABS_4_12 = {
         NO_FRIENDLY_VIEW,
         NO_PLANES_VIEW,
         NO_AIRCRAFT_CARRIER_VIEW,
-    ),
-    TAB_MISC: (
+    )),
+    (TAB_MISC, (
         NO_ICONS,
         REALISTIC_GUNNERY,
         LIMITED_AMMO,
@@ -323,14 +323,12 @@ TABS_4_12 = {
         BOMB_FUZES,
         REALISTIC_TORPEDOING,
         REALISTIC_MISSILES_VARIATION,
-    # ),
-    # _('Engine'): (
         ENGINE_OVERHEAT,
         SEPARATE_ENGINE_START,
         COMPLEX_ENGINE_MANAGEMENT,
         RELIABILITY,
-    ),
-}
+    )),
+)
 
 
 # -----------------------------------------------------------------------------
