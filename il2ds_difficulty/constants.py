@@ -3,16 +3,7 @@
 Difficulty constants.
 """
 import itertools
-
-try:
-    from django.conf import settings
-    if settings.configured:
-        from django.utils.translation import ugettext as _
-    else:
-        raise ImportError()
-except ImportError:
-    def _(value):
-        return value
+from il2ds_difficulty.helpers import _
 
 # -----------------------------------------------------------------------------
 # All settings codes
