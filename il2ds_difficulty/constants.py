@@ -60,43 +60,154 @@ SETTINGS_NAMES_MAP = {
         _("Wind and turbulence"),
         _("Description"),
     ),
-    FLUTTER_EFFECT: ("Flutter", "Description"),
-    STALL_SPINS: ("Tailspin", "Description"),
-    BLACKOUTS_REDOUTS: ("Overload", "Description"),
-    ENGINE_OVERHEAT: ("Engine overheating", "Description"),
-    TORQUE_GYRO_EFFECTS: ("Gyroscopic moment", "Description"),
-    REALISTIC_LANDING: ("Realistic landing", "Description"),
-    TAKEOFF_LANDING: ("Take-off and landing", "Description"),
-    COCKPIT_ALWAYS_ON: ("View only from the cockpit", "Description"),
-    NO_OUTSIDE_VIEWS: ("No outside views", "Description"),
-    HEAD_SHAKE: ("Moving head", "Description"),
-    NO_ICONS: ("Without icons players", "Description"),
-    REALISTIC_GUNNERY: ("Realistic shooting", "Description"),
-    LIMITED_AMMO: ("Limited ammunition", "Description"),
-    LIMITED_FUEL: ("Limited supply of fuel", "Description"),
-    VULNERABILITY: ("Vulnerability", "Description"),
-    NO_PADLOCK: ("Disable glance fixation", "Description"),
-    CLOUDS: ("Clouds", "Description"),
-    NO_MAP_ICONS: ("Disable the markers on the map", "Description"),
-    SEPARATE_ENGINE_START: ("Separate engine starting", "Description"),
-    NO_INSTANT_SUCCESS: ("Complete the task", "Description"),
-    NO_MINIMAP_PATH: ("Without the route on the map", "Description"),
-    NO_SPEED_BAR: ("Without speed indicator", "Description"),
-    COMPLEX_ENGINE_MANAGEMENT: ("Full engine control", "Description"),
-    RELIABILITY: ("Real reliability of engines", "Description"),
-    OVERLOAD_LIMITS: ("Dynamic overload restriction", "Description"),
-    REALISTIC_PILOT_VULNERABILITY: ("Realistic vulnerability pilot", "Description"),
-    REALISTIC_NAVIGATION_INSTRUMENTS: ("Realistic navigation", "Description"),
-    NO_PLAYER_ICON: ("To disable a player on the map", "Description"),
-    NO_FOG_OF_WAR_ICONS: ("Disable icons intelligence on the map", "Description"),
-    BOMB_FUZES: ("Bomb fuses", "Description"),
-    REALISTIC_TORPEDOING: ("Realistic torpedoing", "Description"),
-    REALISTIC_MISSILES_VARIATION: ("Realistic spread of missiles", "Description"),
-    NO_SELF_VIEW: ("Without your own review", "Description"),
-    NO_FOE_VIEW: ("Without a review of the enemy", "Description"),
-    NO_FRIENDLY_VIEW: ("Without friends", "Description"),
-    NO_PLANES_VIEW: ("Without a review of the aircraft", "Description"),
-    NO_AIRCRAFT_CARRIER_VIEW: ("Without a review of aircraft carriers", "Description"),
+    FLUTTER_EFFECT: (
+        _("Flutter"),
+        _("Description"),
+    ),
+    STALL_SPINS: (
+        _("Tailspin"),
+        _("Description"),
+    ),
+    BLACKOUTS_REDOUTS: (
+        _("Overload"),
+        _("Description"),
+    ),
+    ENGINE_OVERHEAT: (
+        _("Engine overheating"),
+        _("Description"),
+    ),
+    TORQUE_GYRO_EFFECTS: (
+        _("Gyroscopic moment"),
+        _("Description"),
+    ),
+    REALISTIC_LANDING: (
+        _("Realistic landing"),
+        _("Description"),
+    ),
+    TAKEOFF_LANDING: (
+        _("Take-off and landing"),
+        _("Description"),
+    ),
+    COCKPIT_ALWAYS_ON: (
+        _("View only from the cockpit"),
+        _("Description"),
+    ),
+    NO_OUTSIDE_VIEWS: (
+        _("No outside views"),
+        _("Description"),
+    ),
+    HEAD_SHAKE: (
+        _("Moving head"),
+        _("Description"),
+    ),
+    NO_ICONS: (
+        _("Without icons players"),
+        _("Description"),
+    ),
+    REALISTIC_GUNNERY: (
+        _("Realistic shooting"),
+        _("Description"),
+    ),
+    LIMITED_AMMO: (
+        _("Limited ammunition"),
+        _("Description"),
+    ),
+    LIMITED_FUEL: (
+        _("Limited supply of fuel"),
+        _("Description"),
+    ),
+    VULNERABILITY: (
+        _("Vulnerability"),
+        _("Description"),
+    ),
+    NO_PADLOCK: (
+        _("Disable glance fixation"),
+        _("Description"),
+    ),
+    CLOUDS: (
+        _("Clouds"),
+        _("Description"),
+    ),
+    NO_MAP_ICONS: (
+        _("Disable the markers on the map"),
+        _("Description"),
+    ),
+    SEPARATE_ENGINE_START: (
+        _("Separate engine starting"),
+        _("Description"),
+    ),
+    NO_INSTANT_SUCCESS: (
+        _("Complete the task"),
+        _("Description"),
+    ),
+    NO_MINIMAP_PATH: (
+        _("Without the route on the map"),
+        _("Description"),
+    ),
+    NO_SPEED_BAR: (
+        _("Without speed indicator"),
+        _("Description"),
+    ),
+    COMPLEX_ENGINE_MANAGEMENT: (
+        _("Full engine control"),
+        _("Description"),
+    ),
+    RELIABILITY: (
+        _("Real reliability of engines"),
+        _("Description"),
+    ),
+    OVERLOAD_LIMITS: (
+        _("Dynamic overload restriction"),
+        _("Description"),
+    ),
+    REALISTIC_PILOT_VULNERABILITY: (
+        _("Realistic vulnerability pilot"),
+        _("Description"),
+    ),
+    REALISTIC_NAVIGATION_INSTRUMENTS: (
+        _("Realistic navigation"),
+        _("Description"),
+    ),
+    NO_PLAYER_ICON: (
+        _("To disable a player on the map"),
+        _("Description"),
+    ),
+    NO_FOG_OF_WAR_ICONS: (
+        _("Disable icons intelligence on the map"),
+        _("Description"),
+    ),
+    BOMB_FUZES: (
+        _("Bomb fuses"),
+        _("Description"),
+    ),
+    REALISTIC_TORPEDOING: (
+        _("Realistic torpedoing"),
+        _("Description"),
+    ),
+    REALISTIC_MISSILES_VARIATION: (
+        _("Realistic spread of missiles"),
+        _("Description"),
+    ),
+    NO_SELF_VIEW: (
+        _("Without your own review"),
+        _("Description"),
+    ),
+    NO_FOE_VIEW: (
+        _("Without a review of the enemy"),
+        _("Description"),
+    ),
+    NO_FRIENDLY_VIEW: (
+        _("Without friends"),
+        _("Description"),
+    ),
+    NO_PLANES_VIEW: (
+        _("Without a review of the aircraft"),
+        _("Description"),
+    ),
+    NO_AIRCRAFT_CARRIER_VIEW: (
+        _("Without a review of aircraft carriers"),
+        _("Description"),
+    ),
 }
 
 # -----------------------------------------------------------------------------
