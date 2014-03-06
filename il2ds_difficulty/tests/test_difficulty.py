@@ -21,6 +21,7 @@ class DecomposeDifficultyTest(unittest.TestCase):
         Return value = 4202626
         Settings True: FlutterEffect, TakeoffLanding, LimitedAmmo and NoSpeedBar
         """
+        return_value = 4202626
         settings = {
             'NoSpeedBar': True,
             'BlackoutsRedouts': False,
@@ -62,3 +63,4 @@ class DecomposeDifficultyTest(unittest.TestCase):
             'LimitedFuel': False,
         }
         difficulty = callback_difficulty(settings, DEFAULT_GAME_VERSION)
+        self.assertEqual(return_value, difficulty)
