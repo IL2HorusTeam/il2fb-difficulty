@@ -26,3 +26,26 @@ def decompose_difficulty(difficulty, game_version=DEFAULT_GAME_VERSION):
         code_name: ((1 << number) & difficulty) > 0
         for code_name, number in numbers_map.iteritems()
     }
+
+
+def callback_difficulty(settings, game_version=DEFAULT_GAME_VERSION):
+    """
+    Return the integer value of difficulty settings.
+    """
+    if not settings:
+        raise ValueError(_("Data not found"))
+    if not isinstance(game_version, basestring):
+        raise TypeError(_("Game version must be a string"))
+    if not game_version in NUMBERS_MAPS:
+        raise ValueError(_("Unknown game version"))
+
+    numbers_map = NUMBERS_MAPS[game_version]
+
+    difficulty = 0
+
+    for setting_name, setting_value in settings.iteritems():
+        if setting_value:
+            setting_integer = (1 << numbers_map[setting_name])
+            difficulty += setting_integer
+
+    return difficulty
