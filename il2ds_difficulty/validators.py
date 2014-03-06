@@ -3,6 +3,7 @@
 Different validators.
 """
 from il2ds_difficulty.constants import NUMBERS_MAPS
+from il2ds_difficulty.helpers import _
 
 
 def validate_game_version(value):
