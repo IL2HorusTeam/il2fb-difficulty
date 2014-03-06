@@ -4,61 +4,64 @@
 """
 import unittest
 
-from il2ds_difficulty import decompose_difficulty, callback_difficulty
-from il2ds_difficulty.constants import DEFAULT_GAME_VERSION
+from il2ds_difficulty import decompose_difficulty, compose_difficulty
+from il2ds_difficulty.constants import (NUMBERS_MAPS, DEFAULT_GAME_VERSION,
+    FLUTTER_EFFECT, NO_SPEED_BAR, LIMITED_AMMO, TAKEOFF_LANDING, )
+
+
+def get_all_settings(value):
+    """
+    Get all settings for default game version with specified value.
+    """
+    numbers_map = NUMBERS_MAPS[DEFAULT_GAME_VERSION]
+    values = [value, ] * len(numbers_map)
+    return dict(zip(numbers_map.keys(), values))
+
+
+def get_all_enabled_settings():
+    """
+    Get all settings for default game version with `True` value.
+    """
+    return get_all_settings(True)
+
+
+def get_all_disabled_settings():
+    """
+    Get all settings for default game version with `False` value.
+    """
+    return get_all_settings(False)
 
 
 class DecomposeDifficultyTest(unittest.TestCase):
 
     def test_all_false(self):
+        """
+        Test decomposition of zero value.
+        """
         difficulty = 0
-        settings = decompose_difficulty(difficulty, DEFAULT_GAME_VERSION)
+        settings = decompose_difficulty(difficulty)
         self.assertFalse(any(settings.values()))
 
-    def test_callback_true(self):
+
+class ComposeDifficultyTest(unittest.TestCase):
+
+    def test_all_false(self):
         """
-        Test il2ds_difficulty.callback_difficulty
-        Return value = 4202626
-        Settings True: FlutterEffect, TakeoffLanding, LimitedAmmo and NoSpeedBar
+        Test composition of zero value.
         """
-        settings = {
-            'NoSpeedBar': True,
-            'BlackoutsRedouts': False,
-            'RealisticGunnery': False,
-            'SeparateEStart': False,
-            'NoSelfView': False,
-            'ComplexEManagement': False,
-            'StallSpins': False,
-            'RealisticMissilesVariation': False,
-            'RealisticNavigationInstruments': False,
-            'NoFriendlyView': False,
-            'FlutterEffect': True,
-            'NoOutSideViews': False,
-            'RealisticLanding': False,
-            'RealisticPilotVulnerability': False,
-            'HeadShake': False,
-            'GLimits': False,
-            'NoMinimapPath': False,
-            'NoMapIcons': False,
-            'NoIcons': False,
-            'WindTurbulence': False,
-            'NoPlayerIcon': False,
-            'CockpitAlwaysOn': False,
-            'TakeoffLanding': True,
-            'BombFuzes': False,
-            'NoFoeView': False,
-            'Clouds': False,
-            'LimitedAmmo': True,
-            'TorqueGyroEffects': False,
-            'NoFogOfWarIcons': False,
-            'EngineOverheat': False,
-            'NoPlanesView': False,
-            'RealisticTorpedoing': False,
-            'Vulnerability': False,
-            'NoACarrierView': False,
-            'Reliability': False,
-            'NoInstantSuccess': False,
-            'NoPadlock': False,
-            'LimitedFuel': False,
-        }
-        difficulty = callback_difficulty(settings, DEFAULT_GAME_VERSION)
+        settings = get_all_disabled_settings()
+        difficulty = compose_difficulty(settings)
+        self.assertEqual(difficulty, 0)
+
+    def test_some_true(self):
+        """
+        Test composition of difficulty when some settings are true.
+        """
+        settings = get_all_disabled_settings()
+        settings[FLUTTER_EFFECT] = True
+        settings[NO_SPEED_BAR] = True
+        settings[LIMITED_AMMO] = True
+        settings[TAKEOFF_LANDING] = True
+
+        difficulty = compose_difficulty(settings)
+        self.assertEqual(difficulty, 4202626)
