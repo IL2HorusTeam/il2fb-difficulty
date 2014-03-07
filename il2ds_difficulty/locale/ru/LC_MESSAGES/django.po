@@ -29,35 +29,35 @@ msgstr ""
 
 #: constants.py:61
 msgid "Flutter"
-msgstr ""
+msgstr "Флаттер"
 
 #: constants.py:65
 msgid "Stall spins"
-msgstr ""
+msgstr "Штопор"
 
 #: constants.py:69
 msgid "Blackouts and redouts"
-msgstr ""
+msgstr "Перегрузка"
 
 #: constants.py:73
 msgid "Engine overheat"
-msgstr ""
+msgstr "Перегрев двигателя"
 
 #: constants.py:77
 msgid "Gyroscopic moment"
-msgstr ""
+msgstr "Гироскопический момент"
 
 #: constants.py:81
 msgid "Realistic landing"
-msgstr ""
+msgstr "Реалистичная посадка"
 
 #: constants.py:85
 msgid "Take-off and landing"
-msgstr ""
+msgstr "Взлёт-посадка"
 
 #: constants.py:89
 msgid "Cockpit always on"
-msgstr ""
+msgstr "Вид только из кабины"
 
 #: constants.py:90
 msgid "Look from cockpit only"
@@ -65,15 +65,15 @@ msgstr ""
 
 #: constants.py:93
 msgid "No outside views"
-msgstr ""
+msgstr "Отключить внешние виды"
 
 #: constants.py:97
 msgid "Head shake"
-msgstr ""
+msgstr "Перемещения головы"
 
 #: constants.py:101
 msgid "No icons"
-msgstr ""
+msgstr "Отключить маркеры"
 
 #: constants.py:102
 msgid "Do not display player icons on map"
@@ -81,19 +81,19 @@ msgstr ""
 
 #: constants.py:105
 msgid "Realistic gunnery"
-msgstr ""
+msgstr "Реализм стрельбы"
 
 #: constants.py:109
 msgid "Limited ammunition"
-msgstr ""
+msgstr "Ограниченный боезапас"
 
 #: constants.py:113
 msgid "Limited fuel"
-msgstr ""
+msgstr "Ограниченный запас топлива"
 
 #: constants.py:117
 msgid "Vulnerability"
-msgstr ""
+msgstr "Уязвимость"
 
 #: constants.py:121
 msgid "No look fixation"
@@ -101,7 +101,7 @@ msgstr ""
 
 #: constants.py:125
 msgid "Clouds"
-msgstr ""
+msgstr "Облака"
 
 #: constants.py:129
 msgid "No map icons"
