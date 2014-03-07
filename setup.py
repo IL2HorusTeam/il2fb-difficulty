@@ -7,7 +7,7 @@ setup(
                 'informative dictionary.',
     license='BSD License',
     url='https://github.com/IL2HorusTeam/il2ds-difficulty/',
-    author='Alexander Oblovatniy',
+    author='Alexander Oblovatniy, Alexander Kamyhin',
     author_email='oblovatniy@gmail.com',
     packages=find_packages(),
     install_requires=[i.strip() for i in open("requirements.pip").readlines()],
