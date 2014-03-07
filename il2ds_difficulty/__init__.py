@@ -39,8 +39,8 @@ def decompose_difficulty_to_tabs(difficulty,
 
     Output example:
     {
-        'tab1': {
-            'tab1_name',
+        'tab1_code': {
+            'name': 'tab1_name',
             'settings': {
                 'setting1': {
                     'title': 'setting1_title',
