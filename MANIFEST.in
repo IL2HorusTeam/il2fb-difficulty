@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include requirements.pip
+recursive-include il2ds_difficulty/locale *
