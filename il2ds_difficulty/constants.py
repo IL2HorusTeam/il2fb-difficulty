@@ -55,35 +55,35 @@ NO_AIRCRAFT_CARRIER_VIEW = 'NoACarrierView'
 SETTINGS_NAMES_MAP = {
     WIND_TURBULENCE: (
         _("Wind and turbulence"),
-        _("Description"),
+        None,
     ),
     FLUTTER_EFFECT: (
         _("Flutter"),
-        _("Description"),
+        None,
     ),
     STALL_SPINS: (
         _("Stall spins"),
-        _("Description"),
+        None,
     ),
     BLACKOUTS_REDOUTS: (
-        _("Overload"),
-        _("Description"),
+        _("Blackouts and redouts"),
+        None,
     ),
     ENGINE_OVERHEAT: (
-        _("Engine overheating"),
-        _("Description"),
+        _("Engine overheat"),
+        None,
     ),
     TORQUE_GYRO_EFFECTS: (
         _("Gyroscopic moment"),
-        _("Description"),
+        None,
     ),
     REALISTIC_LANDING: (
         _("Realistic landing"),
-        _("Description"),
+        None,
     ),
     TAKEOFF_LANDING: (
         _("Take-off and landing"),
-        _("Description"),
+        None,
     ),
     COCKPIT_ALWAYS_ON: (
         _("Cockpit always on"),
@@ -91,11 +91,11 @@ SETTINGS_NAMES_MAP = {
     ),
     NO_OUTSIDE_VIEWS: (
         _("No outside views"),
-        _("Description"),
+        None,
     ),
     HEAD_SHAKE: (
         _("Head shake"),
-        _("Description"),
+        None,
     ),
     NO_ICONS: (
         _("No icons"),
@@ -103,27 +103,27 @@ SETTINGS_NAMES_MAP = {
     ),
     REALISTIC_GUNNERY: (
         _("Realistic gunnery"),
-        _("Description"),
+        None,
     ),
     LIMITED_AMMO: (
         _("Limited ammunition"),
-        _("Description"),
+        None,
     ),
     LIMITED_FUEL: (
         _("Limited fuel"),
-        _("Description"),
+        None,
     ),
     VULNERABILITY: (
         _("Vulnerability"),
-        _("Description"),
+        None,
     ),
     NO_PADLOCK: (
         _("No look fixation"),
-        _("Description"),
+        None,
     ),
     CLOUDS: (
         _("Clouds"),
-        _("Description"),
+        None,
     ),
     NO_MAP_ICONS: (
         _("No map icons"),
@@ -131,7 +131,7 @@ SETTINGS_NAMES_MAP = {
     ),
     SEPARATE_ENGINE_START: (
         _("Separate engine start"),
-        _("Description"),
+        None,
     ),
     NO_INSTANT_SUCCESS: (
         _("No instant success"),
@@ -159,11 +159,11 @@ SETTINGS_NAMES_MAP = {
     ),
     REALISTIC_PILOT_VULNERABILITY: (
         _("Realistic pilot vulnerability"),
-        _("Description"),
+        None,
     ),
     REALISTIC_NAVIGATION_INSTRUMENTS: (
         _("Realistic navigation instruments"),
-        _("Description"),
+        None,
     ),
     NO_PLAYER_ICON: (
         _("No player icon"),
@@ -175,15 +175,15 @@ SETTINGS_NAMES_MAP = {
     ),
     BOMB_FUZES: (
         _("Bomb fuses"),
-        _("Description"),
+        None,
     ),
     REALISTIC_TORPEDOING: (
         _("Realistic torpedoing"),
-        _("Description"),
+        None,
     ),
     REALISTIC_MISSILES_VARIATION: (
         _("Realistic spread of missiles"),
-        _("Description"),
+        None,
     ),
     NO_SELF_VIEW: (
         _("No self view"),
@@ -205,6 +205,13 @@ SETTINGS_NAMES_MAP = {
         _("No aircraft carrier view"),
         _("Without view of aircraft carriers"),
     ),
+}
+
+SETTINGS_NAMES_MAP = {
+    code: {
+        'title': title,
+        'description': description,
+    } for code, (title, description) in SETTINGS_NAMES_MAP.iteritems()
 }
 
 # -----------------------------------------------------------------------------
@@ -233,7 +240,7 @@ TABS_NAMES_MAP = {
 # Settings set for 4.12
 # -----------------------------------------------------------------------------
 
-DIFFICULTY_4_12 = OrderedDict([
+SETTINGS_4_12 = OrderedDict([
     (TAB_FLIGHT_MODEL, OrderedDict([
         (WIND_TURBULENCE, 0),
         (FLUTTER_EFFECT, 1),
@@ -281,11 +288,17 @@ DIFFICULTY_4_12 = OrderedDict([
     ])),
 ])
 
-NUMBERS_MAP_4_12 = reduce(lambda x, y: dict(x, **y), DIFFICULTY_4_12.values())
+NUMBERS_MAP_4_12 = reduce(lambda x, y: dict(x, **y), SETTINGS_4_12.values())
 
 # -----------------------------------------------------------------------------
 # General constants
 # -----------------------------------------------------------------------------
+
+SETTINGS = {
+    '4.12': SETTINGS_4_12,
+    '4.12.1': SETTINGS_4_12,
+    '4.12.2': SETTINGS_4_12,
+}
 
 NUMBERS_MAPS = {
     '4.12': NUMBERS_MAP_4_12,
