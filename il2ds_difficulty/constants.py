@@ -41,12 +41,20 @@ NO_PLAYER_ICON = 'NoPlayerIcon'
 NO_FOG_OF_WAR_ICONS = 'NoFogOfWarIcons'
 BOMB_FUZES = 'BombFuzes'
 REALISTIC_TORPEDOING = 'RealisticTorpedoing'
-REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation'
+REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation'  # delete in version ~ 4.11
 NO_SELF_VIEW = 'NoSelfView'
 NO_FOE_VIEW = 'NoFoeView'
 NO_FRIENDLY_VIEW = 'NoFriendlyView'
-NO_PLANES_VIEW = 'NoPlanesView'
-NO_AIRCRAFT_CARRIER_VIEW = 'NoACarrierView'
+NO_PLANES_VIEW = 'NoPlanesView'  # delete in version ~ 4.11
+NO_AIRCRAFT_CARRIER_VIEW = 'NoACarrierView'  # delete in version ~ 4.11
+NO_GROUND_PADLOCK = 'No_GroundPadlock '  # add in version 4.12
+SHARED_KILLS = 'SharedKills'  # add in version 4.12
+SHARED_KILLS_HISTORICAL = 'SharedKillsHistorical'  # add in version 4.12
+REALISTIC_ROCKETS_SPREAD = 'RealisticRocketSpread '  # add in version 4.12
+NO_SEA_UNIT_VIEWS = 'NoSeaUnitViews '  # add in version ~ 4.11
+NO_AIRCRAFT_VIEWS = 'NoAircraftViews '  # add in version ~ 4.11
+FRAGILE_TORPS = 'FragileTorps '  # add in version ~ 4.11
+NO_OWN_PLAYER_VIEWS = 'NoOwnPlayerViews'  # No in client IL-2 FB
 
 # -----------------------------------------------------------------------------
 # All settings names and descriptions
@@ -118,7 +126,7 @@ SETTINGS_NAMES_MAP = {
         None,
     ),
     NO_PADLOCK: (
-        _("No look fixation"),
+        _("No look fixation on air targets"),
         None,
     ),
     CLOUDS: (
@@ -205,6 +213,38 @@ SETTINGS_NAMES_MAP = {
         _("No aircraft carrier view"),
         _("Without view of aircraft carriers"),
     ),
+    NO_GROUND_PADLOCK: (
+        _("No look fixation on ground targets"),
+        None,
+    ),
+    SHARED_KILLS: (
+        _("Group win"),
+        None,
+    ),
+    SHARED_KILLS_HISTORICAL: (
+        _("Group win (historical limitation)"),
+        None,
+    ),
+    REALISTIC_ROCKETS_SPREAD: (
+        _("Realistic spread of missiles"),
+        None,
+    ),
+    NO_SEA_UNIT_VIEWS: (
+        _("No aircraft carrier view"),
+        _("Without view of aircraft carriers"),
+    ),
+    NO_AIRCRAFT_VIEWS: (
+        _("No planes view"),
+        _("Without view of aircraft"),
+    ),
+    FRAGILE_TORPS: (
+        _("Realistic torpedoing"),
+        None,
+    ),
+    NO_OWN_PLAYER_VIEWS: (
+        _("No own review"),
+        _("Watch at your own from outside the plane can only before takeoff"),
+    ),
 }
 
 SETTINGS_NAMES_MAP = {
@@ -242,49 +282,55 @@ TABS_NAMES_MAP = {
 
 SETTINGS_4_12 = OrderedDict([
     (TAB_FLIGHT_MODEL, OrderedDict([
-        (WIND_TURBULENCE, 0),
+        (SEPARATE_ENGINE_START, 19),
+        (COMPLEX_ENGINE_MANAGEMENT, 23),
+        (ENGINE_OVERHEAT, 4),
+        (TORQUE_GYRO_EFFECTS, 5),
         (FLUTTER_EFFECT, 1),
         (STALL_SPINS, 2),
         (BLACKOUTS_REDOUTS, 3),
-        (ENGINE_OVERHEAT, 4),
-        (TORQUE_GYRO_EFFECTS, 5),
-        (REALISTIC_LANDING, 6),
-        (TAKEOFF_LANDING, 7),
-        (OVERLOAD_LIMITS, 25),
+        (OVERLOAD_LIMITS, 26),
+        (RELIABILITY, 25),
     ])),
-    (TAB_VIEW, OrderedDict([
-        (COCKPIT_ALWAYS_ON, 8),
-        (NO_OUTSIDE_VIEWS, 9),
-        (HEAD_SHAKE, 10),
-        (NO_PADLOCK, 16),
-        (NO_SELF_VIEW, 33),
-        (NO_FOE_VIEW, 34),
-        (NO_FRIENDLY_VIEW, 35),
-        (NO_PLANES_VIEW, 36),
-        (NO_AIRCRAFT_CARRIER_VIEW, 37),
-    ])),
-    (TAB_MISC, OrderedDict([
-        (NO_ICONS, 11),
+    (TAB_WEAPONS, OrderedDict([
         (REALISTIC_GUNNERY, 12),
         (LIMITED_AMMO, 13),
         (LIMITED_FUEL, 14),
-        (VULNERABILITY, 15),
-        (CLOUDS, 17),
-        (NO_MAP_ICONS, 18),
-        (NO_INSTANT_SUCCESS, 20),
-        (NO_MINIMAP_PATH, 21),
+        (BOMB_FUZES, 31),
+        (FRAGILE_TORPS, 32),
+        (REALISTIC_ROCKETS_SPREAD, 38),
+    ])),
+    (TAB_VIEW, OrderedDict([
+        (NO_OUTSIDE_VIEWS, 9),
+        (NO_FOE_VIEW, 33),
+        (NO_FRIENDLY_VIEW, 34),
+        (NO_AIRCRAFT_VIEWS, 36),
+        (NO_SEA_UNIT_VIEWS, 35),
+        (COCKPIT_ALWAYS_ON, 8),
         (NO_SPEED_BAR, 22),
-        (REALISTIC_PILOT_VULNERABILITY, 26),
-        (REALISTIC_NAVIGATION_INSTRUMENTS, 27),
-        (NO_PLAYER_ICON, 28),
-        (NO_FOG_OF_WAR_ICONS, 29),
-        (BOMB_FUZES, 30),
-        (REALISTIC_TORPEDOING, 31),
-        (REALISTIC_MISSILES_VARIATION, 32),
-        (ENGINE_OVERHEAT, 4),
-        (SEPARATE_ENGINE_START, 19),
-        (COMPLEX_ENGINE_MANAGEMENT, 23),
-        (RELIABILITY, 24),
+        (NO_PADLOCK, 16),
+        (NO_GROUND_PADLOCK, 41),
+        (NO_OWN_PLAYER_VIEWS, 37),
+    ])),
+    (TAB_ICONS_N_MAP, OrderedDict([
+        (NO_MAP_ICONS, 18),
+        (NO_PLAYER_ICON, 29),
+        (NO_FOG_OF_WAR_ICONS, 30),
+        (NO_MINIMAP_PATH, 21),
+        (NO_ICONS, 11),
+    ])),
+    (TAB_MISC, OrderedDict([
+        (VULNERABILITY, 15),
+        (REALISTIC_PILOT_VULNERABILITY, 27),
+        (NO_INSTANT_SUCCESS, 20),
+        (TAKEOFF_LANDING, 7),
+        (REALISTIC_LANDING, 6),
+        (REALISTIC_NAVIGATION_INSTRUMENTS, 28),
+        (SHARED_KILLS, 39),
+        (SHARED_KILLS_HISTORICAL, 40),
+        (HEAD_SHAKE, 10),
+        (WIND_TURBULENCE, 0),
+        (CLOUDS, 17),
     ])),
 ])
 
