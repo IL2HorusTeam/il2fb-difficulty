@@ -25,7 +25,7 @@ msgstr ""
 
 #: constants.py:57
 msgid "Wind and turbulence"
-msgstr ""
+msgstr "Ветер и турбулентность"
 
 #: constants.py:61
 msgid "Flutter"
@@ -61,7 +61,7 @@ msgstr "Вид только из кабины"
 
 #: constants.py:90
 msgid "Look from cockpit only"
-msgstr ""
+msgstr "Вид только из кабины"
 
 #: constants.py:93
 msgid "No outside views"
@@ -77,7 +77,7 @@ msgstr "Отключить маркеры"
 
 #: constants.py:102
 msgid "Do not display player icons on map"
-msgstr ""
+msgstr "Информационные маркеры игрока не отображаются на экране"
 
 #: constants.py:105
 msgid "Realistic gunnery"
@@ -96,8 +96,8 @@ msgid "Vulnerability"
 msgstr "Уязвимость"
 
 #: constants.py:121
-msgid "No look fixation"
-msgstr ""
+msgid "No look fixation on air targets"
+msgstr "Отключение фиксации взгляда на воздушной цели"
 
 #: constants.py:125
 msgid "Clouds"
@@ -105,127 +105,127 @@ msgstr "Облака"
 
 #: constants.py:129
 msgid "No map icons"
-msgstr ""
+msgstr "Отключить маркеры на карте"
 
 #: constants.py:130
 msgid "Disable markers on map"
-msgstr ""
+msgstr "Отключить маркеры на карте"
 
 #: constants.py:133
 msgid "Separate engine start"
-msgstr ""
+msgstr "Раздельный запуск двигателей"
 
 #: constants.py:137
 msgid "No instant success"
-msgstr ""
+msgstr "Выполнение задания"
 
 #: constants.py:138
 msgid "Complete tasks"
-msgstr ""
+msgstr "Выполнение задания"
 
 #: constants.py:141
 msgid "No minimap path"
-msgstr ""
+msgstr "Без маршрута на карте"
 
 #: constants.py:142
 msgid "Without a route on map"
-msgstr ""
+msgstr "Без маршрута на карте"
 
 #: constants.py:145
 msgid "No speed bar"
-msgstr ""
+msgstr "Без индикатора скорости"
 
 #: constants.py:146
 msgid "Without speed indicator"
-msgstr ""
+msgstr "Без индикатора скорости"
 
 #: constants.py:149
 msgid "Complex engine management"
-msgstr ""
+msgstr "Полное управление двигателем"
 
 #: constants.py:150
 msgid "Full engine control"
-msgstr ""
+msgstr "Полное управление двигателем"
 
 #: constants.py:153
 msgid "Reliability"
-msgstr ""
+msgstr "Реальная надёжность двигателей"
 
 #: constants.py:154
 msgid "Real reliability of engines"
-msgstr ""
+msgstr "Реальная надёжность двигателей"
 
 #: constants.py:157
 msgid "Overload limits"
-msgstr ""
+msgstr "Динамическое ограничение перегрузки"
 
 #: constants.py:158
 msgid "Dynamic overload limits"
-msgstr ""
+msgstr "Динамическое ограничение перегрузки"
 
 #: constants.py:161
 msgid "Realistic pilot vulnerability"
-msgstr ""
+msgstr "Реалистичная уязвимость пилота"
 
 #: constants.py:165
 msgid "Realistic navigation instruments"
-msgstr ""
+msgstr "Реалистичная навигация"
 
 #: constants.py:169
 msgid "No player icon"
-msgstr ""
+msgstr "Отключить маркер игрока на карте"
 
 #: constants.py:170
 msgid "Player icon is not shown on map"
-msgstr ""
+msgstr "Маркер, указывающий местоположение игрока не отображается на карте"
 
 #: constants.py:173
 msgid "No fog of war icons"
-msgstr ""
+msgstr "Отключить маркеры разведки на карте"
 
 #: constants.py:174
 msgid "Disable intelligence icons on map"
-msgstr ""
+msgstr "Маркер, указывающий местоположение целей не отображается на карте"
 
 #: constants.py:177
 msgid "Bomb fuses"
-msgstr ""
+msgstr "Бомбовые взрыватели"
 
 #: constants.py:181
 msgid "Realistic torpedoing"
-msgstr ""
+msgstr "Реалистичное торпедирование"
 
 #: constants.py:185
 msgid "Realistic spread of missiles"
-msgstr ""
+msgstr "Реалистичный разброс ракет"
 
 #: constants.py:189
 msgid "No self view"
-msgstr ""
+msgstr "Без собственного обзора"
 
 #: constants.py:190
 msgid "Without own view"
-msgstr ""
+msgstr "Без собственного обзора"
 
 #: constants.py:193
 msgid "No foe view"
-msgstr ""
+msgstr "Без обзора противника"
 
 #: constants.py:194
 msgid "Without view of enemies"
-msgstr ""
+msgstr "Отключение возможности переключения камеры на самолет противника"
 
 #: constants.py:197
 msgid "No friendly view"
-msgstr ""
+msgstr "Без обзора союзника"
 
 #: constants.py:198
 msgid "Without view of friends"
-msgstr ""
+msgstr "Отключение возможности переключения камеры на самолет союзника"
 
 #: constants.py:201
 msgid "No planes view"
-msgstr ""
+msgstr "Без обзора самолетов"
 
 #: constants.py:202
 msgid "Without view of aircraft"
@@ -233,31 +233,31 @@ msgstr ""
 
 #: constants.py:205
 msgid "No aircraft carrier view"
-msgstr ""
+msgstr "Отключение возможности переключения камеры на любой самолет"
 
 #: constants.py:206
 msgid "Without view of aircraft carriers"
-msgstr ""
+msgstr "Отключение возможности переключения камеры на любой авианосец или ВПП"
 
 #: constants.py:232
 msgid "Flight model"
-msgstr ""
+msgstr "Летная модель"
 
 #: constants.py:233
 msgid "Weapons"
-msgstr ""
+msgstr "Вооружение"
 
 #: constants.py:234
 msgid "View"
-msgstr ""
+msgstr "Обзор"
 
 #: constants.py:235
 msgid "Icons and map"
-msgstr ""
+msgstr "Иконки и карта"
 
 #: constants.py:236
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Разное"
 
 #: validators.py:11
 msgid "Difficulty is not an integer"
