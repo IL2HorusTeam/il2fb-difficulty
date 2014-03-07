@@ -2,7 +2,7 @@
 """
 Difficulty constants.
 """
-import itertools
+from collections import OrderedDict
 from il2ds_difficulty.helpers import _
 
 # -----------------------------------------------------------------------------
@@ -233,8 +233,8 @@ TABS_NAMES_MAP = {
 # Settings set for 4.12
 # -----------------------------------------------------------------------------
 
-DIFFICULTY_4_12 = (
-    (TAB_FLIGHT_MODEL, (
+DIFFICULTY_4_12 = OrderedDict([
+    (TAB_FLIGHT_MODEL, OrderedDict([
         (WIND_TURBULENCE, 0),
         (FLUTTER_EFFECT, 1),
         (STALL_SPINS, 2),
@@ -244,8 +244,8 @@ DIFFICULTY_4_12 = (
         (REALISTIC_LANDING, 6),
         (TAKEOFF_LANDING, 7),
         (OVERLOAD_LIMITS, 25),
-    )),
-    (TAB_VIEW, (
+    ])),
+    (TAB_VIEW, OrderedDict([
         (COCKPIT_ALWAYS_ON, 8),
         (NO_OUTSIDE_VIEWS, 9),
         (HEAD_SHAKE, 10),
@@ -255,8 +255,8 @@ DIFFICULTY_4_12 = (
         (NO_FRIENDLY_VIEW, 35),
         (NO_PLANES_VIEW, 36),
         (NO_AIRCRAFT_CARRIER_VIEW, 37),
-    )),
-    (TAB_MISC, (
+    ])),
+    (TAB_MISC, OrderedDict([
         (NO_ICONS, 11),
         (REALISTIC_GUNNERY, 12),
         (LIMITED_AMMO, 13),
@@ -278,13 +278,10 @@ DIFFICULTY_4_12 = (
         (SEPARATE_ENGINE_START, 19),
         (COMPLEX_ENGINE_MANAGEMENT, 23),
         (RELIABILITY, 24),
-    )),
-)
+    ])),
+])
 
-NUMBERS_MAP_4_12 = {
-    code: number for code, number
-                 in itertools.chain(*dict(DIFFICULTY_4_12).values())
-}
+NUMBERS_MAP_4_12 = reduce(lambda x, y: dict(x, **y), DIFFICULTY_4_12.values())
 
 # -----------------------------------------------------------------------------
 # General constants
