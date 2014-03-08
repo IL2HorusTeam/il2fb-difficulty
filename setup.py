@@ -10,6 +10,7 @@ setup(
     author='Alexander Oblovatniy, Alexander Kamyhin',
     author_email='oblovatniy@gmail.com, kamyhin@gmail.com',
     packages=find_packages(),
+    include_package_data=True,
     install_requires=[i.strip() for i in open("requirements.pip").readlines()],
     classifiers = [
         'Development Status :: 5 - Production/Stable',
