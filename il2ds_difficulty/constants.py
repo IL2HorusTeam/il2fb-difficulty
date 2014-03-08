@@ -95,7 +95,7 @@ SETTINGS_NAMES_MAP = {
     ),
     COCKPIT_ALWAYS_ON: (
         _("Cockpit always on"),
-        _("Look from cockpit only"),
+        None,
     ),
     NO_OUTSIDE_VIEWS: (
         _("No outside views"),
@@ -135,7 +135,7 @@ SETTINGS_NAMES_MAP = {
     ),
     NO_MAP_ICONS: (
         _("No map icons"),
-        _("Disable markers on map"),
+        None,
     ),
     SEPARATE_ENGINE_START: (
         _("Separate engine start"),
@@ -143,27 +143,27 @@ SETTINGS_NAMES_MAP = {
     ),
     NO_INSTANT_SUCCESS: (
         _("No instant success"),
-        _("Complete tasks"),
+        None,
     ),
     NO_MINIMAP_PATH: (
         _("No minimap path"),
-        _("Without a route on map"),
+        None,
     ),
     NO_SPEED_BAR: (
         _("No speed bar"),
-        _("Without speed indicator"),
+        None,
     ),
     COMPLEX_ENGINE_MANAGEMENT: (
         _("Complex engine management"),
-        _("Full engine control"),
+        None,
     ),
     RELIABILITY: (
         _("Reliability"),
-        _("Real reliability of engines"),
+        None,
     ),
     OVERLOAD_LIMITS: (
         _("Overload limits"),
-        _("Dynamic overload limits"),
+        None,
     ),
     REALISTIC_PILOT_VULNERABILITY: (
         _("Realistic pilot vulnerability"),
@@ -195,7 +195,7 @@ SETTINGS_NAMES_MAP = {
     ),
     NO_SELF_VIEW: (
         _("No self view"),
-        _("Without own view"),
+        None,
     ),
     NO_FOE_VIEW: (
         _("No foe view"),
@@ -207,7 +207,7 @@ SETTINGS_NAMES_MAP = {
     ),
     NO_PLANES_VIEW: (
         _("No planes view"),
-        _("Without view of aircraft"),
+        None,
     ),
     NO_AIRCRAFT_CARRIER_VIEW: (
         _("No aircraft carrier view"),
@@ -242,8 +242,8 @@ SETTINGS_NAMES_MAP = {
         None,
     ),
     NO_OWN_PLAYER_VIEWS: (
-        _("No own review"),
-        _("Watch at your own from outside the plane can only before takeoff"),
+        _("No own view"),
+        _("You can look at your own plane from outside only before takeoff"),
     ),
 }
 
