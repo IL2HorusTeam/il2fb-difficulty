@@ -7,7 +7,7 @@ from il2ds_difficulty.helpers import _
 
 
 def validate_difficulty(value):
-    if not isinstance(value, int):
+    if not isinstance(value, (int, long)):
         raise TypeError(_("Difficulty is not an integer"))
     if value < 0:
         raise ValueError(_("Difficulty must be a positive number"))
