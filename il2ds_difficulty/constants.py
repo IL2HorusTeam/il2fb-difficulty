@@ -41,20 +41,20 @@ NO_PLAYER_ICON = 'NoPlayerIcon'
 NO_FOG_OF_WAR_ICONS = 'NoFogOfWarIcons'
 BOMB_FUZES = 'BombFuzes'
 REALISTIC_TORPEDOING = 'RealisticTorpedoing'
-REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation'  # delete in version ~ 4.11
+REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation' # Removed approximately since v4.11
 NO_SELF_VIEW = 'NoSelfView'
 NO_FOE_VIEW = 'NoFoeView'
 NO_FRIENDLY_VIEW = 'NoFriendlyView'
-NO_PLANES_VIEW = 'NoPlanesView'  # delete in version ~ 4.11
-NO_AIRCRAFT_CARRIER_VIEW = 'NoACarrierView'  # delete in version ~ 4.11
-NO_GROUND_PADLOCK = 'No_GroundPadlock '  # add in version 4.12
-SHARED_KILLS = 'SharedKills'  # add in version 4.12
-SHARED_KILLS_HISTORICAL = 'SharedKillsHistorical'  # add in version 4.12
-REALISTIC_ROCKETS_SPREAD = 'RealisticRocketSpread '  # add in version 4.12
-NO_SEA_UNIT_VIEWS = 'NoSeaUnitViews '  # add in version ~ 4.11
-NO_AIRCRAFT_VIEWS = 'NoAircraftViews '  # add in version ~ 4.11
-FRAGILE_TORPS = 'FragileTorps '  # add in version ~ 4.11
-NO_OWN_PLAYER_VIEWS = 'NoOwnPlayerViews'  # No in client IL-2 FB
+NO_PLANES_VIEW = 'NoPlanesView'  # Removed approximately since v4.11
+NO_AIRCRAFT_CARRIER_VIEW = 'NoACarrierView'  # Removed approximately since v4.11
+NO_GROUND_PADLOCK = 'No_GroundPadlock '  # Introduced in v4.12
+SHARED_KILLS = 'SharedKills'  # Introduced in v4.12
+SHARED_KILLS_HISTORICAL = 'SharedKillsHistorical'  # Introduced in v4.12
+REALISTIC_ROCKETS_SPREAD = 'RealisticRocketSpread '  # Introduced in v4.12
+NO_SEA_UNIT_VIEWS = 'NoSeaUnitViews '  # Introduced approximately in v4.11
+NO_AIRCRAFT_VIEWS = 'NoAircraftViews '  # Introduced approximately in v4.11
+FRAGILE_TORPS = 'FragileTorps '  # Introduced approximately in v4.11
+NO_OWN_PLAYER_VIEWS = 'NoOwnPlayerViews'  # Not present in IL-2 client
 
 # -----------------------------------------------------------------------------
 # All settings names and descriptions

@@ -2,17 +2,14 @@
 """
 Different helpers.
 """
-
 try:
     from django.conf import settings
     if settings.configured:
-        from django.utils.translation import ugettext_lazy
-        _ = ugettext_lazy
+        from django.utils.translation import ugettext_lazy as _
     else:
         raise ImportError()
 except ImportError:
-    def _(value):
-        return value
+    from gettext import gettext as _
 
 
 def evaluate_string(value):
