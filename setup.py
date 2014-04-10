@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='il2ds-difficulty',
-    version='1.0.0',
+    version='1.0.1',
     description='Convert integer value of IL-2 DS difficulty into ' \
                 'informative dictionary.',
     license='BSD License',
