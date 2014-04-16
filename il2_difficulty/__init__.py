@@ -2,10 +2,10 @@
 """
 Convert integer value of game difficulty into dictionary and vice versa.
 """
-from il2ds_difficulty.constants import (DEFAULT_GAME_VERSION, SETTINGS,
+from il2_difficulty.constants import (DEFAULT_GAME_VERSION, SETTINGS,
     NUMBERS_MAPS, SETTINGS_NAMES_MAP, TABS_NAMES_MAP, )
-from il2ds_difficulty.helpers import _, evaluate_string
-from il2ds_difficulty.validators import (validate_difficulty,
+from il2_difficulty.helpers import _, evaluate_string
+from il2_difficulty.validators import (validate_difficulty,
     validate_game_version, )
 
 

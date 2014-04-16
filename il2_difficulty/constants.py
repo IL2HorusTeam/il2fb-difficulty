@@ -3,7 +3,7 @@
 Difficulty constants.
 """
 from collections import OrderedDict
-from il2ds_difficulty.helpers import _
+from il2_difficulty.helpers import _
 
 # -----------------------------------------------------------------------------
 # All settings codes

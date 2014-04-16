@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
- Testing the application il2ds_difficulty
+ Testing the application il2_difficulty
 """
 import unittest
 
-from il2ds_difficulty import decompose_difficulty, compose_difficulty
-from il2ds_difficulty.constants import (NUMBERS_MAPS, DEFAULT_GAME_VERSION,
+from il2_difficulty import decompose_difficulty, compose_difficulty
+from il2_difficulty.constants import (NUMBERS_MAPS, DEFAULT_GAME_VERSION,
     FLUTTER_EFFECT, NO_SPEED_BAR, LIMITED_AMMO, TAKEOFF_LANDING, )
 
 

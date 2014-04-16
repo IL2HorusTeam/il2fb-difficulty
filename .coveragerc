@@ -1,0 +1,9 @@
+[run]
+source = il2_difficulty
+omit = */tests/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    raise NotImplementedError
+    pass
