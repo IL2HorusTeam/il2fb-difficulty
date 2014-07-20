@@ -2,8 +2,8 @@
 """
 Different validators.
 """
-from il2ds_difficulty.constants import SETTINGS
-from il2ds_difficulty.helpers import _
+from il2fb.difficulty.constants import SETTINGS
+from il2fb.difficulty.helpers import _
 
 
 def validate_difficulty(value):

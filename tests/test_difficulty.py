@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-"""
- Testing the application il2ds_difficulty
-"""
 import unittest
 
-from il2ds_difficulty import decompose_difficulty, compose_difficulty
-from il2ds_difficulty.constants import (NUMBERS_MAPS, DEFAULT_GAME_VERSION,
-    FLUTTER_EFFECT, NO_SPEED_BAR, LIMITED_AMMO, TAKEOFF_LANDING, )
+from il2fb.difficulty import decompose_difficulty, compose_difficulty
+from il2fb.difficulty.constants import (
+    NUMBERS_MAPS, DEFAULT_GAME_VERSION, FLUTTER_EFFECT, NO_SPEED_BAR,
+    LIMITED_AMMO, TAKEOFF_LANDING,
+)
 
 
 def get_all_settings(value):

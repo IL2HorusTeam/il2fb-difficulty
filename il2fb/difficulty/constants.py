@@ -3,7 +3,7 @@
 Difficulty constants.
 """
 from collections import OrderedDict
-from il2ds_difficulty.helpers import _
+from il2fb.difficulty.helpers import _
 
 # -----------------------------------------------------------------------------
 # All settings codes
@@ -41,7 +41,7 @@ NO_PLAYER_ICON = 'NoPlayerIcon'
 NO_FOG_OF_WAR_ICONS = 'NoFogOfWarIcons'
 BOMB_FUZES = 'BombFuzes'
 REALISTIC_TORPEDOING = 'RealisticTorpedoing'
-REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation' # Removed approximately since v4.11
+REALISTIC_MISSILES_VARIATION = 'RealisticMissilesVariation'  # Removed approximately since v4.11
 NO_SELF_VIEW = 'NoSelfView'
 NO_FOE_VIEW = 'NoFoeView'
 NO_FRIENDLY_VIEW = 'NoFriendlyView'

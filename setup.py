@@ -1,28 +1,43 @@
-from setuptools import setup, find_packages
+# -*- coding: utf-8 -*-
+import os
+
+from setuptools import setup
+
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+README = open(os.path.join(here, 'README.rst')).read()
+REQUIREMENTS = [i.strip() for i in open("requirements.txt").readlines()]
 
 setup(
-    name='il2ds-difficulty',
-    version='1.0.1',
-    description='Convert integer value of IL-2 DS difficulty into ' \
-                'informative dictionary.',
-    license='BSD License',
-    url='https://github.com/IL2HorusTeam/il2ds-difficulty/',
+    name='il2fb-difficulty',
+    version='1.1.0',
+    description="Parser and emitter of difficulty settings for IL-2 FB",
+    long_description=README,
+    license='LGPLv3',
+    url='https://github.com/IL2HorusTeam/il2fb-difficulty/',
     author='Alexander Oblovatniy, Alexander Kamyhin',
     author_email='oblovatniy@gmail.com, kamyhin@gmail.com',
-    packages=find_packages(),
+    packages=[
+        'il2fb.difficulty',
+    ],
+    namespace_packages=[
+        'il2fb',
+    ],
     include_package_data=True,
-    install_requires=[i.strip() for i in open("requirements.pip").readlines()],
-    classifiers = [
+    install_requires=REQUIREMENTS,
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
-        'Environment :: Web Environment',
-        'Environment :: Console',
-        'License :: Free for non-commercial use',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
         'Topic :: Software Development :: Libraries',
-        'Framework :: Django',
+    ],
+    platforms=[
+        'any',
     ],
 )
