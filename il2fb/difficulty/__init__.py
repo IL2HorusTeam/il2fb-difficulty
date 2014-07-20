@@ -30,7 +30,7 @@ def decompose(difficulty, game_version=DEFAULT_GAME_VERSION):
     settings = get_flat_settings(game_version)
     return {
         code_name: is_parameter_set(difficulty, number)
-        for code_name, number in settings.iteritems()
+        for code_name, number in settings.items()
     }
 
 
