@@ -4,4 +4,8 @@
 #
 #     pip install -r requirements.txt
 
-nose==1.3.0
+candv>=1.1.0
+il2fb-commons>=0.9.0
+six>=1.6.1
+stringlike>=0.3.3
+verboselib>=0.1.0

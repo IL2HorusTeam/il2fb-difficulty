@@ -2,94 +2,71 @@
 """
 Convert integer value of game difficulty into dictionary and vice versa.
 """
-from il2fb.difficulty.constants import (
-    DEFAULT_GAME_VERSION, SETTINGS, NUMBERS_MAPS, SETTINGS_NAMES_MAP,
-    TABS_NAMES_MAP,
+from collections import OrderedDict
+
+from .settings import (
+    DEFAULT_GAME_VERSION, get_settings, get_flat_settings,
+    normalize_game_version,
 )
-from il2fb.difficulty.helpers import _, evaluate_string
-from il2fb.difficulty.validators import (
-    validate_difficulty, validate_game_version,
-)
+from .utils import flatten_settings
+from .validators import validate_difficulty, validate_settings
 
 
-def get_setting_value(difficulty, setting_number):
+def is_parameter_set(difficulty, position):
     """
-    Check if difficulty setting is present in difficulty integer value.
+    Check if difficulty parameter is present in difficulty integer value.
+
+    Difficulty value = 2^position, e.g. 1024 = 2^10.
     """
-    return ((1 << setting_number) & difficulty) > 0
+    return ((1 << position) & difficulty) > 0
 
 
-def decompose_difficulty(difficulty, game_version=DEFAULT_GAME_VERSION):
+def decompose(difficulty, game_version=DEFAULT_GAME_VERSION):
     """
-    Convert an integer value into difficulty settings dictionary.
+    Convert an integer value into dictionary of difficulty settings.
     """
     validate_difficulty(difficulty)
-    validate_game_version(game_version)
-
-    numbers_map = NUMBERS_MAPS[game_version]
+    settings = get_flat_settings(game_version)
     return {
-        code_name: get_setting_value(difficulty, number)
-        for code_name, number in numbers_map.iteritems()
+        code_name: is_parameter_set(difficulty, number)
+        for code_name, number in settings.iteritems()
     }
 
 
-def decompose_difficulty_to_tabs(difficulty,
-                                 game_version=DEFAULT_GAME_VERSION):
+def decompose_to_tabs(difficulty, game_version=DEFAULT_GAME_VERSION):
     """
-    Convert an integer value into ordered difficulty settings groups.
-
-    Output example:
-    (
-        {
-            'code': 'tab1_code',
-            'name': 'tab1_name',
-            'settings': (
-                {
-                    'code': 'setting1_code',
-                    'title': 'setting1_title',
-                    'description': 'setting1_description',
-                    'value': 'setting1_value',
-                },
-            ),
-        },
-    )
+    Convert an integer value into ordered groups of difficulty settings .
     """
     validate_difficulty(difficulty)
-    validate_game_version(game_version)
-
-    settings = SETTINGS[game_version]
-    return tuple(
-        {
-            'code': tab_code,
-            'title': evaluate_string(TABS_NAMES_MAP[tab_code]),
-            'settings': tuple(
-                {
-                    'code': setting_code,
-                    'title': evaluate_string(
-                        SETTINGS_NAMES_MAP[setting_code]['title']),
-                    'description': evaluate_string(
-                        SETTINGS_NAMES_MAP[setting_code]['description']),
-                    'value': get_setting_value(difficulty, setting_number),
-                } for setting_code, setting_number in tab_settings.items()
-            )
-        } for tab_code, tab_settings in settings.items()
-    )
+    settings = get_settings(game_version)
+    return OrderedDict([
+        (tab, OrderedDict([
+            (parameter, is_parameter_set(difficulty, position))
+            for parameter, position in parameters.items()
+        ]))
+        for tab, parameters in settings.items()
+    ])
 
 
-def compose_difficulty(settings, game_version=DEFAULT_GAME_VERSION):
+def _compose(flat_settings, game_version):
+    game_version = normalize_game_version(game_version)
+    parameters = get_flat_settings(game_version)
+    return reduce(lambda x, y: x + y,
+                  [1 << parameters[k] for k, v in flat_settings.items() if v])
+
+
+def compose(settings, game_version=DEFAULT_GAME_VERSION):
     """
-    Convert a difficulty settings dictionary into integer.
+    Convert a dictionary of flat difficulty settings into an integer value.
     """
-    if not isinstance(settings, dict):
-        raise TypeError(_("Settings is not a dictionary"))
-    validate_game_version(game_version)
+    validate_settings(settings)
+    return _compose(settings, game_version)
 
-    numbers_map = NUMBERS_MAPS[game_version]
-    difficulty = 0
 
-    for setting_code, setting_value in settings.iteritems():
-        if setting_value:
-            setting_integer = (1 << numbers_map[setting_code])
-            difficulty += setting_integer
-
-    return difficulty
+def compose_from_tabs(settings, game_version=DEFAULT_GAME_VERSION):
+    """
+    Convert a dictionary of difficulty settings groupped by tabs into an integer
+    value.
+    """
+    validate_settings(settings)
+    return _compose(flatten_settings(settings), game_version)
