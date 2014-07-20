@@ -20,6 +20,7 @@ setup(
     author_email='oblovatniy@gmail.com, kamyhin@gmail.com',
     packages=[
         'il2fb.difficulty',
+        'il2fb.difficulty.settings',
     ],
     namespace_packages=[
         'il2fb',
