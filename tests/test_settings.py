@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from il2fb.commons import GAME_VERSIONS, SKILLS
+from il2fb.commons import GameVersions, Skills
 from il2fb.difficulty.constants import PARAMETERS
 from il2fb.difficulty.settings import (
     get_settings, get_flat_settings, normalize_game_version, SETTINGS,
@@ -12,19 +12,19 @@ class SettingsTestCase(unittest.TestCase):
 
     def test_normalize_game_version(self):
         self.assertEqual(normalize_game_version('4.12.2'),
-                         GAME_VERSIONS.v4_12_2)
-        self.assertEqual(normalize_game_version(GAME_VERSIONS.v4_12_2),
-                         GAME_VERSIONS.v4_12_2)
+                         GameVersions.v4_12_2)
+        self.assertEqual(normalize_game_version(GameVersions.v4_12_2),
+                         GameVersions.v4_12_2)
 
         self.assertRaises(TypeError, normalize_game_version, 412)
-        self.assertRaises(ValueError, normalize_game_version, SKILLS.rookie)
+        self.assertRaises(ValueError, normalize_game_version, Skills.rookie)
         self.assertRaises(ValueError, normalize_game_version, '4.12.99')
 
     def test_get_settings(self):
-        self.assertEqual(get_settings(GAME_VERSIONS.v4_12),
-                         SETTINGS[GAME_VERSIONS.v4_12])
+        self.assertEqual(get_settings(GameVersions.v4_12),
+                         SETTINGS[GameVersions.v4_12])
         self.assertEqual(get_settings('4.12.2'),
-                         SETTINGS[GAME_VERSIONS.v4_12_2])
+                         SETTINGS[GameVersions.v4_12_2])
 
     def test_get_flat_settings(self):
 
@@ -72,5 +72,5 @@ class SettingsTestCase(unittest.TestCase):
             PARAMETERS.WIND_TURBULENCE: 0,
         }
 
-        self.assertEqual(get_flat_settings(GAME_VERSIONS.v4_12), flat)
+        self.assertEqual(get_flat_settings(GameVersions.v4_12), flat)
         self.assertEqual(get_flat_settings('4.12.2'), flat)
