@@ -18,6 +18,10 @@ setup(
     version='1.1.1',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
+    keywords=[
+        'il2', 'il-2', 'fb', 'forgotten battles', 'difficulty', 'parser',
+        'emitter',
+    ],
     license='LGPLv3',
     url='https://github.com/IL2HorusTeam/il2fb-difficulty/',
     author='Alexander Oblovatniy, Alexander Kamyhin',
