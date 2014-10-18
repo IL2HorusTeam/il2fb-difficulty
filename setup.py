@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
+
 import os
 
 from setuptools import setup
 
 
-here = os.path.abspath(os.path.dirname(__file__))
+__here__ = os.path.abspath(os.path.dirname(__file__))
 
-README = open(os.path.join(here, 'README.rst')).read()
-REQUIREMENTS = [i.strip() for i in open("requirements.txt").readlines()]
+README = open(os.path.join(__here__, 'README.rst')).read()
+REQUIREMENTS = [
+    i.strip()
+    for i in open(os.path.join(__here__, 'requirements.txt')).readlines()
+]
 
 setup(
     name='il2fb-difficulty',
-    version='1.1.0',
+    version='1.1.1',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     license='LGPLv3',

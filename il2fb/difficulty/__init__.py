@@ -2,6 +2,7 @@
 """
 Convert integer value of game difficulty into dictionary and vice versa.
 """
+
 from collections import OrderedDict
 from functools import reduce
 

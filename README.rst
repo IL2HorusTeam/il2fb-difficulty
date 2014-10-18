@@ -1,7 +1,7 @@
 IL-2 FB Difficulty
 ==================
 
-|Build Status| |Coverage Status| |PyPi package| |PyPi downloads|
+|Build Status| |Coverage Status| |PyPi package| |PyPi downloads| |License|
 
 Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
 
@@ -14,3 +14,5 @@ Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
    :target: http://badge.fury.io/py/il2fb-difficulty/
 .. |PyPi downloads| image::  http://img.shields.io/pypi/dm/il2fb-difficulty.svg?style=flat
    :target: https://crate.io/packages/il2fb-difficulty/
+.. |License| image:: https://img.shields.io/badge/license-LGPLv3-brightgreen.svg?style=flat
+   :target: http://badge.fury.io/py/il2fb-difficulty/

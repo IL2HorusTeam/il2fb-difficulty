@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+
 from candv import ValueConstant
 from il2fb.commons import GameVersions
 from six import string_types
 
 from il2fb.difficulty.utils import translations, flatten_settings
+
 from .v4_12 import SETTINGS as SETTINGS_4_12
 
 
@@ -31,7 +33,7 @@ def normalize_game_version(value):
                          .format(', '.join(supported_versions)))
 
     if isinstance(value, ValueConstant):
-        if GameVersions.contains(value.name):
+        if value.name in GameVersions:
             version = value
         else:
             _on_invalid_version()

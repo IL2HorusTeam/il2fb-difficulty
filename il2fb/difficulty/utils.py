@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+
 import os
 
 from verboselib.factory import TranslationsFactory
 
 
-_here = os.path.abspath(os.path.dirname(__file__))
+__here__ = os.path.abspath(os.path.dirname(__file__))
 
-translations = TranslationsFactory("il2fb-difficulty",
-                                   os.path.join(_here, "locale"))
+locale_dir = os.path.join(__here__, "locale")
+translations = TranslationsFactory("il2fb-difficulty", locale_dir)
 
 
 def inverse_dict(source):

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+
 from six import integer_types
 
 from .utils import translations
+
 
 _ = translations.ugettext
 
