@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-20 16:51+0300\n"
+"POT-Creation-Date: 2014-11-11 22:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,238 +17,250 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: constants.py:13
+#: constants.py:14
 msgid "Wind and turbulence"
 msgstr ""
 
-#: constants.py:17
+#: constants.py:18
 msgid "Flutter"
 msgstr ""
 
-#: constants.py:21
+#: constants.py:22
 msgid "Stall spins"
 msgstr ""
 
-#: constants.py:25
+#: constants.py:26
 msgid "Blackouts and redouts"
 msgstr ""
 
-#: constants.py:29
+#: constants.py:30
 msgid "Engine overheat"
 msgstr ""
 
-#: constants.py:33
+#: constants.py:34
 msgid "Gyroscopic moment"
 msgstr ""
 
-#: constants.py:37
+#: constants.py:38
 msgid "Realistic landing"
 msgstr ""
 
-#: constants.py:41
+#: constants.py:42
 msgid "Take-off and landing"
 msgstr ""
 
-#: constants.py:45
+#: constants.py:46
 msgid "Cockpit always on"
 msgstr ""
 
-#: constants.py:49
+#: constants.py:50
 msgid "No outside views"
 msgstr ""
 
-#: constants.py:53
+#: constants.py:54
 msgid "Head shake"
 msgstr ""
 
-#: constants.py:57
+#: constants.py:58
 msgid "No icons"
 msgstr ""
 
-#: constants.py:58
+#: constants.py:59
 msgid "Do not display player icons on map"
 msgstr ""
 
-#: constants.py:62
+#: constants.py:63
 msgid "Realistic gunnery"
 msgstr ""
 
-#: constants.py:66
+#: constants.py:67
 msgid "Limited ammunition"
 msgstr ""
 
-#: constants.py:70
+#: constants.py:71
 msgid "Limited fuel"
 msgstr ""
 
-#: constants.py:74
+#: constants.py:75
 msgid "Vulnerability"
 msgstr ""
 
-#: constants.py:78
+#: constants.py:79
 msgid "No look fixation on air targets"
 msgstr ""
 
-#: constants.py:82
+#: constants.py:83
 msgid "Clouds"
 msgstr ""
 
-#: constants.py:86
+#: constants.py:87
 msgid "No map icons"
 msgstr ""
 
-#: constants.py:90
+#: constants.py:91
 msgid "Separate start of engines"
 msgstr ""
 
-#: constants.py:94
+#: constants.py:95
 msgid "No instant success"
 msgstr ""
 
-#: constants.py:98
+#: constants.py:99
 msgid "No minimap path"
 msgstr ""
 
-#: constants.py:102
+#: constants.py:103
 msgid "No speed bar"
 msgstr ""
 
-#: constants.py:106
+#: constants.py:107
 msgid "Complex engine management"
 msgstr ""
 
-#: constants.py:110
+#: constants.py:111
 msgid "Reliability"
 msgstr ""
 
-#: constants.py:114
+#: constants.py:115
 msgid "Overload limits"
 msgstr ""
 
-#: constants.py:118
+#: constants.py:119
 msgid "Realistic pilot vulnerability"
 msgstr ""
 
-#: constants.py:122
+#: constants.py:123
 msgid "Realistic navigation instruments"
 msgstr ""
 
-#: constants.py:126
+#: constants.py:127
 msgid "No player icon"
 msgstr ""
 
-#: constants.py:127
+#: constants.py:128
 msgid "Player icon is not shown on map"
 msgstr ""
 
-#: constants.py:131
+#: constants.py:132
 msgid "No fog of war icons"
 msgstr ""
 
-#: constants.py:132
+#: constants.py:133
 msgid "Disable intelligence icons on map"
 msgstr ""
 
-#: constants.py:136
+#: constants.py:137
 msgid "Bomb fuses"
 msgstr ""
 
-#: constants.py:140 constants.py:207
+#: constants.py:141 constants.py:208
 msgid "Realistic torpedoing"
 msgstr ""
 
-#: constants.py:145 constants.py:190
+#: constants.py:146 constants.py:191
 msgid "Realistic spread of missiles"
 msgstr ""
 
-#: constants.py:149
+#: constants.py:150
 msgid "No self view"
 msgstr ""
 
-#: constants.py:153
+#: constants.py:154
 msgid "No foe view"
 msgstr ""
 
-#: constants.py:154
+#: constants.py:155
 msgid "Without view of enemies"
 msgstr ""
 
-#: constants.py:158
+#: constants.py:159
 msgid "No friendly view"
 msgstr ""
 
-#: constants.py:159
+#: constants.py:160
 msgid "Without view of friends"
 msgstr ""
 
-#: constants.py:164 constants.py:201
+#: constants.py:165 constants.py:202
 msgid "No planes view"
 msgstr ""
 
-#: constants.py:169 constants.py:195
+#: constants.py:170 constants.py:196
 msgid "No aircraft carrier view"
 msgstr ""
 
-#: constants.py:170 constants.py:196
+#: constants.py:171 constants.py:197
 msgid "Without view of aircraft carriers"
 msgstr ""
 
-#: constants.py:175
+#: constants.py:176
 msgid "No look fixation on ground targets"
 msgstr ""
 
-#: constants.py:180
+#: constants.py:181
 msgid "Group win"
 msgstr ""
 
-#: constants.py:185
+#: constants.py:186
 msgid "Historical limitation for group win"
 msgstr ""
 
-#: constants.py:202
+#: constants.py:203
 msgid "Without view of aircraft"
 msgstr ""
 
-#: constants.py:212
+#: constants.py:213
 msgid "No self view after takeoff"
 msgstr ""
 
-#: constants.py:213
+#: constants.py:214
 msgid "You can look at your own plane from outside only before takeoff"
 msgstr ""
 
-#: constants.py:219 constants.py:220
+#: constants.py:220 constants.py:221
 msgid "Flight model"
 msgstr ""
 
-#: constants.py:221
+#: constants.py:222
 msgid "View"
 msgstr ""
 
-#: constants.py:222
+#: constants.py:223
 msgid "Icons and map"
 msgstr ""
 
-#: constants.py:223
+#: constants.py:224
 msgid "Miscellaneous"
 msgstr ""
 
-#: validators.py:9
+#: constants.py:228
+msgid "Easy"
+msgstr ""
+
+#: constants.py:229
+msgid "Normal"
+msgstr ""
+
+#: constants.py:230
+msgid "Full real"
+msgstr ""
+
+#: validators.py:15
 msgid "Difficulty is not an integer"
 msgstr ""
 
-#: validators.py:11
+#: validators.py:17
 msgid "Difficulty must be a positive integer"
 msgstr ""
 
-#: validators.py:16
+#: validators.py:22
 msgid "Settings must be a dictionary"
 msgstr ""
 
-#: settings/__init__.py:29
-msgid "Unknown game version. Supported versions: {:}"
+#: validators.py:28
+msgid "Type \"{:}\" is invalid for game version. \"{:}\" was expected."
 msgstr ""
 
-#: settings/__init__.py:39
-msgid "Game version is not a string"
+#: validators.py:34
+msgid "Unknown game version \"{:}\". Supported versions: {:}."
 msgstr ""
