@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from candv import ValueConstant
 from six import integer_types
 
+from .settings import SETTINGS
 from .utils import translations
 
 
@@ -18,3 +20,16 @@ def validate_difficulty(value):
 def validate_settings(value):
     if not isinstance(value, dict):
         raise TypeError(_("Settings must be a dictionary"))
+
+
+def validate_game_version(value):
+    if not isinstance(value, ValueConstant):
+        raise TypeError(
+            _('Type "{:}" is invalid for game version. "{:}" was expected.')
+            .format(type(value), ValueConstant))
+
+    if value not in SETTINGS:
+        supported_versions = ', '.join([str(x.value) for x in SETTINGS.keys()])
+        raise ValueError(
+            _('Unknown game version "{:}". Supported versions: {:}.')
+            .format(value, supported_versions))
