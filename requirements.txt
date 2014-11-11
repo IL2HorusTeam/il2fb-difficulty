@@ -5,7 +5,7 @@
 #     pip install -r requirements.txt
 
 candv>=1.2.0
-il2fb-commons>=0.9.6
+il2fb-commons>=0.9.8
 six>=1.6.1
 stringlike>=0.3.3
 verboselib>=0.1.0
