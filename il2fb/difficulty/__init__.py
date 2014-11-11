@@ -8,7 +8,7 @@ from collections import OrderedDict
 from .settings import (
     get_settings, get_flat_settings, get_presets, normalize_game_version,
 )
-from .utils import flatten_settings
+from .utils import flatten_dict
 from .validators import validate_difficulty, validate_settings
 
 
@@ -62,7 +62,7 @@ def compose_from_tabs(settings, game_version=None):
     value.
     """
     validate_settings(settings)
-    return _compose(flatten_settings(settings), game_version)
+    return _compose(flatten_dict(settings), game_version)
 
 
 def _compose(flat_settings, game_version):

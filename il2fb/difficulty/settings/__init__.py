@@ -5,7 +5,7 @@ from collections import OrderedDict
 from il2fb.commons import GameVersions
 from six import string_types
 
-from il2fb.difficulty.utils import translations, flatten_settings
+from il2fb.difficulty.utils import translations, flatten_dict
 
 from .v4_12 import SETTINGS as SETTINGS_4_12, PRESETS as PRESETS_4_12
 
@@ -31,7 +31,7 @@ def get_settings(game_version=None):
 
 
 def get_flat_settings(game_version=None):
-    return flatten_settings(get_settings(game_version))
+    return flatten_dict(get_settings(game_version))
 
 
 def get_presets(game_version=None):
