@@ -6,9 +6,9 @@ from il2fb.commons import GameVersions
 
 from il2fb.difficulty import (
     is_parameter_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
-    get_settings, get_flat_settings, get_presets
+    get_settings, get_flat_settings, get_presets, get_preset_value,
 )
-from il2fb.difficulty.constants import TABS, PARAMETERS
+from il2fb.difficulty.constants import TABS, PARAMETERS, PRESETS as ALL_PRESETS
 from il2fb.difficulty.settings import SETTINGS, PRESETS
 
 
@@ -255,3 +255,7 @@ class PackageTestCase(unittest.TestCase):
             get_presets(GameVersions.v4_12),
             PRESETS[GameVersions.v4_12]
         )
+
+    def test_get_preset_value(self):
+        value = get_preset_value(ALL_PRESETS.EASY, GameVersions.v4_12)
+        self.assertEqual(value, 1090682880)

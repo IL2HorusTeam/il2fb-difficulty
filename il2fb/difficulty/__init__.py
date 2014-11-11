@@ -80,16 +80,32 @@ def _compose(flat_settings, game_version):
 
 
 def get_settings(game_version=None):
+    """
+    Get all settings for game version groupped by tabs.
+    """
     game_version = game_version or GameVersions.get_default()
     validate_game_version(game_version)
     return SETTINGS[game_version]
 
 
 def get_flat_settings(game_version=None):
+    """
+    Get all settings for game version without groupping.
+    """
     return flatten_dict(get_settings(game_version))
 
 
 def get_presets(game_version=None):
+    """
+    Get all presets for game version.
+    """
     game_version = game_version or GameVersions.get_default()
     validate_game_version(game_version)
     return PRESETS[game_version]
+
+
+def get_preset_value(preset, game_version=None):
+    """
+    Get preset value for particular game version.
+    """
+    return get_presets(game_version).get(preset)
