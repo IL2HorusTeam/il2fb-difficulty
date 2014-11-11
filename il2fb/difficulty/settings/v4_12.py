@@ -2,7 +2,9 @@
 
 from collections import OrderedDict
 
-from il2fb.difficulty.constants import PARAMETERS, TABS
+from il2fb.difficulty.constants import (
+    PARAMETERS, TABS, PRESETS as ALL_PRESETS,
+)
 
 
 SETTINGS = OrderedDict([
@@ -57,4 +59,10 @@ SETTINGS = OrderedDict([
         (PARAMETERS.WIND_TURBULENCE, 0),
         (PARAMETERS.CLOUDS, 17),
     ])),
+])
+
+PRESETS = OrderedDict([
+    (ALL_PRESETS.EASY, 1090682880),
+    (ALL_PRESETS.NORMAL, 6704004351),
+    (ALL_PRESETS.FULL_REAL, 4398046511103),
 ])

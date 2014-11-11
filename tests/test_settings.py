@@ -4,7 +4,8 @@ import unittest
 from il2fb.commons import GameVersions, Skills
 from il2fb.difficulty.constants import PARAMETERS
 from il2fb.difficulty.settings import (
-    get_settings, get_flat_settings, normalize_game_version, SETTINGS,
+    get_settings, get_flat_settings, get_presets, normalize_game_version,
+    SETTINGS, PRESETS,
 )
 
 
@@ -27,7 +28,6 @@ class SettingsTestCase(unittest.TestCase):
                          SETTINGS[GameVersions.v4_12_2])
 
     def test_get_flat_settings(self):
-
         flat = {
             PARAMETERS.BLACKOUTS_REDOUTS: 3,
             PARAMETERS.BOMB_FUZES: 31,
@@ -74,3 +74,9 @@ class SettingsTestCase(unittest.TestCase):
 
         self.assertEqual(get_flat_settings(GameVersions.v4_12), flat)
         self.assertEqual(get_flat_settings('4.12.2'), flat)
+
+    def test_get_presets(self):
+        self.assertEqual(get_presets(GameVersions.v4_12),
+                         PRESETS[GameVersions.v4_12])
+        self.assertEqual(get_presets('4.12.2'),
+                         PRESETS[GameVersions.v4_12_2])

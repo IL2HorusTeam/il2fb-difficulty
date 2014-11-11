@@ -222,3 +222,9 @@ class TABS(Constants):
     VIEW = VerboseConstant(_("View"))
     ICONS_N_MAP = VerboseConstant(_("Icons and map"))
     MISC = VerboseConstant(_("Miscellaneous"))
+
+
+class PRESETS(Constants):
+    EASY = VerboseConstant(_("Easy"))
+    NORMAL = VerboseConstant(_("Normal"))
+    FULL_REAL = VerboseConstant(_("Full real"))
