@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-11 22:02+0200\n"
+"POT-Creation-Date: 2014-11-12 20:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -219,9 +219,13 @@ msgstr "Без собственного обзора после взлёта"
 msgid "You can look at your own plane from outside only before takeoff"
 msgstr "Вы можете смотреть на свой самолет из внешнего вида только до взлёта"
 
-#: constants.py:220 constants.py:221
+#: constants.py:220
 msgid "Flight model"
 msgstr "Лётная модель"
+
+#: constants.py:221
+msgid "Weapons"
+msgstr "Вооружение"
 
 #: constants.py:222
 msgid "View"

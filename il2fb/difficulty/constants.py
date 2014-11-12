@@ -218,7 +218,7 @@ class PARAMETERS(Values):
 
 class TABS(Constants):
     FLIGHT_MODEL = VerboseConstant(_("Flight model"))
-    WEAPONS = VerboseConstant(_("Flight model"))
+    WEAPONS = VerboseConstant(_("Weapons"))
     VIEW = VerboseConstant(_("View"))
     ICONS_N_MAP = VerboseConstant(_("Icons and map"))
     MISC = VerboseConstant(_("Miscellaneous"))
