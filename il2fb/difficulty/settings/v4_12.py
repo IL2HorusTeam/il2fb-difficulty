@@ -29,6 +29,7 @@ SETTINGS = OrderedDict([
     ])),
     (TABS.VIEW, OrderedDict([
         (PARAMETERS.NO_OUTSIDE_VIEWS, 9),
+        (PARAMETERS.NO_OWN_PLAYER_VIEWS, 37),
         (PARAMETERS.NO_FOE_VIEW, 33),
         (PARAMETERS.NO_FRIENDLY_VIEW, 34),
         (PARAMETERS.NO_AIRCRAFT_VIEWS, 36),
@@ -37,7 +38,6 @@ SETTINGS = OrderedDict([
         (PARAMETERS.NO_SPEED_BAR, 22),
         (PARAMETERS.NO_PADLOCK, 16),
         (PARAMETERS.NO_GROUND_PADLOCK, 41),
-        (PARAMETERS.NO_OWN_PLAYER_VIEWS, 37),
     ])),
     (TABS.ICONS_N_MAP, OrderedDict([
         (PARAMETERS.NO_MAP_ICONS, 18),
@@ -60,6 +60,66 @@ SETTINGS = OrderedDict([
         (PARAMETERS.CLOUDS, 17),
     ])),
 ])
+
+RULES = {
+    PARAMETERS.NO_OUTSIDE_VIEWS: {
+        True: {
+            'turns_on': [
+                PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                PARAMETERS.NO_FOE_VIEW,
+                PARAMETERS.NO_FRIENDLY_VIEW,
+                PARAMETERS.NO_AIRCRAFT_VIEWS,
+                PARAMETERS.NO_SEA_UNIT_VIEWS,
+            ],
+            'locks': [
+                PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                PARAMETERS.NO_FOE_VIEW,
+                PARAMETERS.NO_FRIENDLY_VIEW,
+                PARAMETERS.NO_AIRCRAFT_VIEWS,
+                PARAMETERS.NO_SEA_UNIT_VIEWS,
+            ],
+        },
+        False: {
+            'unlocks': [
+                PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                PARAMETERS.NO_FOE_VIEW,
+                PARAMETERS.NO_FRIENDLY_VIEW,
+                PARAMETERS.NO_AIRCRAFT_VIEWS,
+                PARAMETERS.NO_SEA_UNIT_VIEWS,
+            ],
+        },
+    },
+    PARAMETERS.NO_MAP_ICONS: {
+        True: {
+            'unlocks': [
+                PARAMETERS.NO_FOG_OF_WAR_ICONS,
+            ],
+        },
+        False: {
+            'turns_on': [
+                PARAMETERS.NO_FOG_OF_WAR_ICONS,
+            ],
+            'locks': [
+                PARAMETERS.NO_FOG_OF_WAR_ICONS,
+            ],
+        }
+    },
+    PARAMETERS.SHARED_KILLS: {
+        True: {
+            'unlocks': [
+                PARAMETERS.SHARED_KILLS_HISTORICAL,
+            ],
+        },
+        False: {
+            'turns_off': [
+                PARAMETERS.SHARED_KILLS_HISTORICAL,
+            ],
+            'locks': [
+                PARAMETERS.SHARED_KILLS_HISTORICAL,
+            ],
+        }
+    },
+}
 
 PRESETS = OrderedDict([
     (ALL_PRESETS.EASY, 1090682880),

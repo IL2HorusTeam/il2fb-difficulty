@@ -80,6 +80,7 @@ class PackageTestCase(unittest.TestCase):
             ])),
             (TABS.VIEW, OrderedDict([
                 (PARAMETERS.NO_OUTSIDE_VIEWS, False),
+                (PARAMETERS.NO_OWN_PLAYER_VIEWS, False),
                 (PARAMETERS.NO_FOE_VIEW, False),
                 (PARAMETERS.NO_FRIENDLY_VIEW, False),
                 (PARAMETERS.NO_AIRCRAFT_VIEWS, False),
@@ -91,7 +92,6 @@ class PackageTestCase(unittest.TestCase):
 
                 (PARAMETERS.NO_PADLOCK, False),
                 (PARAMETERS.NO_GROUND_PADLOCK, False),
-                (PARAMETERS.NO_OWN_PLAYER_VIEWS, False),
             ])),
             (TABS.ICONS_N_MAP, OrderedDict([
                 (PARAMETERS.NO_MAP_ICONS, False),
