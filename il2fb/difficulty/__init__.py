@@ -114,6 +114,23 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
         raise LockedParameterException(parameter, lockers, game_version)
 
     settings = get_flat_settings(game_version)
+    difficulty = _toggle_parameter(difficulty, parameter, value, settings)
+
+    rules = get_rules(game_version)
+    side_effects = rules[parameter][value] if parameter in rules else {}
+
+    if RULE_TYPES.TURNS_ON in side_effects:
+        for target in side_effects[RULE_TYPES.TURNS_ON]:
+            difficulty = _toggle_parameter(difficulty, target, True, settings)
+
+    if RULE_TYPES.TURNS_OFF in side_effects:
+        for target in side_effects[RULE_TYPES.TURNS_OFF]:
+            difficulty = _toggle_parameter(difficulty, target, False, settings)
+
+    return difficulty, side_effects
+
+
+def _toggle_parameter(difficulty, parameter, value, settings):
     position = settings[parameter]
     mask = 1 << position
 

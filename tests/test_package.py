@@ -290,6 +290,98 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
         game_version = GameVersions.v4_12
         self.assertEqual(get_rules(game_version), RULES[game_version])
 
+    def test_toggle_parameter(self):
+        difficulty = 0
+        game_version = GameVersions.v4_12
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.WIND_TURBULENCE, True, game_version)
+        self.assertEqual(difficulty, 1)
+        self.assertFalse(side_effects)
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.WIND_TURBULENCE, False, game_version)
+        self.assertEqual(difficulty, 0)
+        self.assertFalse(side_effects)
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, True, game_version)
+
+        self.assertEqual(
+            difficulty,
+            sum([1 << 9, 1 << 37, 1 << 33, 1 << 34, 1 << 36, 1 << 35, ]),
+        )
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.TURNS_ON: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+                RULE_TYPES.LOCKS: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+            }
+        )
+
+        self.assertRaisesWithMessage(
+            LockedParameterException,
+            "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' "
+            "accordingly to the rules of game version 4.12.",
+            toggle_parameter,
+            difficulty,
+            PARAMETERS.NO_OWN_PLAYER_VIEWS,
+            True,
+            game_version)
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, False, game_version)
+        self.assertEqual(
+            difficulty,
+            sum([1 << 37, 1 << 33, 1 << 34, 1 << 36, 1 << 35, ]),
+        )
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.UNLOCKS: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+            }
+        )
+
+        difficulty = 0
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.SHARED_KILLS, True, game_version)
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.SHARED_KILLS_HISTORICAL, True, game_version)
+
+        difficulty, side_effects = toggle_parameter(
+            difficulty, PARAMETERS.SHARED_KILLS, False, game_version)
+        self.assertEqual(difficulty, 0)
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.TURNS_OFF: [
+                    PARAMETERS.SHARED_KILLS_HISTORICAL,
+                ],
+                RULE_TYPES.LOCKS: [
+                    PARAMETERS.SHARED_KILLS_HISTORICAL,
+                ],
+            }
+        )
+
     def test_get_actual_rules(self):
         difficulty = 0
         game_version = GameVersions.v4_12
@@ -330,7 +422,7 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             PARAMETERS.SHARED_KILLS,
         ]
         for parameter in parameters:
-            difficulty = toggle_parameter(difficulty, parameter, True, game_version)
+            difficulty, __ = toggle_parameter(difficulty, parameter, True, game_version)
 
         self.assertEqual(
             get_actual_rules(difficulty, game_version),
@@ -376,36 +468,9 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             []
         )
 
-        difficulty = toggle_parameter(difficulty, locker, True, game_version)
+        difficulty, __ = toggle_parameter(difficulty, locker, True, game_version)
 
         self.assertSequenceEqual(
             get_parameter_lockers(difficulty, parameter, game_version),
             [locker, ]
         )
-
-    def test_toggle_parameter(self):
-        difficulty = 0
-        game_version = GameVersions.v4_12
-
-        difficulty = toggle_parameter(
-            difficulty, PARAMETERS.WIND_TURBULENCE, True, game_version)
-        self.assertEqual(difficulty, 1)
-
-        difficulty = toggle_parameter(
-            difficulty, PARAMETERS.WIND_TURBULENCE, False, game_version)
-        self.assertEqual(difficulty, 0)
-
-        difficulty = toggle_parameter(
-            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, True, game_version)
-
-        # TODO: check returned rules
-
-        self.assertRaisesWithMessage(
-            LockedParameterException,
-            "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' "
-            "accordingly to the rules of game version 4.12.",
-            toggle_parameter,
-            difficulty,
-            PARAMETERS.NO_OWN_PLAYER_VIEWS,
-            True,
-            game_version)
