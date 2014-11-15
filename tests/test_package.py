@@ -8,7 +8,7 @@ from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     get_parameter_position, is_parameter_set, get_rules, get_actual_rules,
-    get_parameter_lockers, toggle_parameter,
+    get_parameter_lockers, toggle_parameter, toggle_parameter_raw,
 )
 from il2fb.difficulty.constants import (
     TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
@@ -392,6 +392,15 @@ class PackageTestCase(BaseTestCase):
                                   self.game_version),
             [locker, ]
         )
+
+    def test_toggle_parameter_raw(self):
+        settings = get_flat_settings(self.game_version)
+        self.assertEqual(
+            toggle_parameter_raw(0, PARAMETERS.WIND_TURBULENCE, True, settings),
+            1)
+        self.assertEqual(
+            toggle_parameter_raw(1, PARAMETERS.WIND_TURBULENCE, False, settings),
+            0)
 
 
 class ParameterTogglerTestCase(BaseTestCase):
