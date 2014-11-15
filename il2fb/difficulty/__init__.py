@@ -75,6 +75,7 @@ def compose_from_tabs(settings, game_version=None):
 
 
 def _compose(flat_settings, game_version):
+    # TODO: check rules
     parameters = get_flat_settings(game_version)
     return sum([1 << parameters[k] for k, v in flat_settings.items() if v])
 
@@ -112,6 +113,7 @@ def get_preset_value(preset, game_version=None):
 
 
 def toggle_parameter(difficulty, parameter, value, game_version=None):
+    # TODO: check rules
     settings = get_flat_settings(game_version)
     position = settings[parameter]
     mask = 1 << position
@@ -122,3 +124,7 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
         difficulty &= ~mask
 
     return difficulty
+
+
+def get_parameter_position(parameter, game_version=None):
+    return get_flat_settings(game_version)[parameter]
