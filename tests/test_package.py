@@ -9,6 +9,7 @@ from il2fb.difficulty import (
     get_settings, get_flat_settings, get_presets, get_preset_value,
     get_parameter_position, is_parameter_set, get_rules, get_actual_rules,
     get_parameter_lockers, toggle_parameter, toggle_parameter_raw,
+    autocorrect_difficulty,
 )
 from il2fb.difficulty.constants import (
     TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
@@ -401,6 +402,43 @@ class PackageTestCase(BaseTestCase):
         self.assertEqual(
             toggle_parameter_raw(1, PARAMETERS.WIND_TURBULENCE, False, settings),
             0)
+
+    def test_autocorrect_difficulty(self):
+        settings = get_flat_settings(self.game_version)
+        difficulty = toggle_parameter_raw(0,
+                                          PARAMETERS.NO_OUTSIDE_VIEWS,
+                                          True,
+                                          settings)
+
+        difficulty, affected_parameters = autocorrect_difficulty(difficulty,
+                                                                 self.game_version)
+        self.assertEqual(
+            difficulty,
+            sum([1 << get_parameter_position(x, self.game_version)
+                for x in [
+                    PARAMETERS.NO_OUTSIDE_VIEWS,
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+
+                    PARAMETERS.NO_FOG_OF_WAR_ICONS,
+                ]
+            ])
+        )
+        self.assertEqual(
+            affected_parameters,
+            {
+                PARAMETERS.NO_OWN_PLAYER_VIEWS: PARAMETERS.NO_OUTSIDE_VIEWS,
+                PARAMETERS.NO_FOE_VIEW: PARAMETERS.NO_OUTSIDE_VIEWS,
+                PARAMETERS.NO_FRIENDLY_VIEW: PARAMETERS.NO_OUTSIDE_VIEWS,
+                PARAMETERS.NO_AIRCRAFT_VIEWS: PARAMETERS.NO_OUTSIDE_VIEWS,
+                PARAMETERS.NO_SEA_UNIT_VIEWS: PARAMETERS.NO_OUTSIDE_VIEWS,
+
+                PARAMETERS.NO_FOG_OF_WAR_ICONS: PARAMETERS.NO_MAP_ICONS,
+            }
+        )
 
 
 class ParameterTogglerTestCase(BaseTestCase):

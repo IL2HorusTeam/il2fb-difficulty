@@ -57,6 +57,7 @@ def get_rules(game_version=None):
 
 
 def get_actual_rules(difficulty, game_version=None):
+    validate_difficulty(difficulty)
     all_rules = get_rules(game_version)
     result = {}
 
@@ -122,6 +123,43 @@ def compose_from_tabs(settings, game_version=None):
 def _compose(flat_settings, game_version):
     parameters = get_flat_settings(game_version)
     return sum([1 << parameters[k] for k, v in flat_settings.items() if v])
+
+
+def autocorrect_difficulty(difficulty, game_version=None):
+    validate_difficulty(difficulty)
+
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+
+    affected_parameters = {}
+
+    actual_rules = get_actual_rules(difficulty, game_version)
+    settings = get_flat_settings(game_version)
+
+    def _autocorrect_rules(difficulty, master, rule_type, expected_value):
+        if rule_type in rules:
+            for slave in rules[rule_type]:
+                value = is_parameter_set(difficulty, slave, game_version)
+                if value != expected_value:
+                    difficulty = toggle_parameter_raw(difficulty,
+                                                      slave,
+                                                      expected_value,
+                                                      settings)
+                    affected_parameters[slave] = master
+
+        return difficulty
+
+    for master, rules in actual_rules.items():
+        difficulty = _autocorrect_rules(difficulty,
+                                        master,
+                                        RULE_TYPES.TURNS_ON,
+                                        True)
+        difficulty = _autocorrect_rules(difficulty,
+                                        master,
+                                        RULE_TYPES.TURNS_OFF,
+                                        False)
+
+    return difficulty, affected_parameters
 
 
 def is_position_set(difficulty, position):
