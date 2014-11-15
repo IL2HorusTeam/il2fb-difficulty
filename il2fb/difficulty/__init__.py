@@ -15,6 +15,58 @@ from .validators import (
 )
 
 
+def get_settings(game_version=None):
+    """
+    Get all settings for game version groupped by tabs.
+    """
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+    return SETTINGS[game_version]
+
+
+def get_flat_settings(game_version=None):
+    """
+    Get all settings for game version without groupping.
+    """
+    return flatten_dict(get_settings(game_version))
+
+
+def get_presets(game_version=None):
+    """
+    Get all presets for game version.
+    """
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+    return PRESETS[game_version]
+
+
+def get_preset_value(preset, game_version=None):
+    """
+    Get preset value for particular game version.
+    """
+    return get_presets(game_version).get(preset)
+
+
+def get_rules(game_version=None):
+    """
+    Get all rules for game version.
+    """
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+    return RULES[game_version]
+
+
+def get_actual_rules(difficulty, game_version=None):
+    all_rules = get_rules(game_version)
+    result = {}
+
+    for parameter, rules in all_rules.items():
+        value = is_parameter_set(difficulty, parameter)
+        result[parameter] = rules[value]
+
+    return result
+
+
 def decompose(difficulty, game_version=None):
     """
     Convert an integer value into dictionary of difficulty settings.
@@ -68,71 +120,17 @@ def compose_from_tabs(settings, game_version=None):
 
 
 def _compose(flat_settings, game_version):
-    # TODO: check rules
     parameters = get_flat_settings(game_version)
     return sum([1 << parameters[k] for k, v in flat_settings.items() if v])
 
 
-def get_settings(game_version=None):
+def is_position_set(difficulty, position):
     """
-    Get all settings for game version groupped by tabs.
+    Check if difficulty parameter is present in difficulty integer value.
+
+    Difficulty value = 2^position, e.g. 1024 = 2^10.
     """
-    game_version = game_version or GameVersions.get_default()
-    validate_game_version(game_version)
-    return SETTINGS[game_version]
-
-
-def get_flat_settings(game_version=None):
-    """
-    Get all settings for game version without groupping.
-    """
-    return flatten_dict(get_settings(game_version))
-
-
-def get_presets(game_version=None):
-    """
-    Get all presets for game version.
-    """
-    game_version = game_version or GameVersions.get_default()
-    validate_game_version(game_version)
-    return PRESETS[game_version]
-
-
-def get_preset_value(preset, game_version=None):
-    """
-    Get preset value for particular game version.
-    """
-    return get_presets(game_version).get(preset)
-
-
-def get_parameter_lockers(difficulty, parameter, game_version=None):
-    actual_rules = get_actual_rules(difficulty, game_version)
-
-    return [
-        locker
-        for locker, rules in actual_rules.items()
-        if RULE_TYPES.LOCKS in rules and parameter in rules[RULE_TYPES.LOCKS]
-    ]
-
-
-def get_rules(game_version=None):
-    """
-    Get all rules for game version.
-    """
-    game_version = game_version or GameVersions.get_default()
-    validate_game_version(game_version)
-    return RULES[game_version]
-
-
-def get_actual_rules(difficulty, game_version=None):
-    all_rules = get_rules(game_version)
-    result = {}
-
-    for parameter, rules in all_rules.items():
-        value = is_parameter_set(difficulty, parameter)
-        result[parameter] = rules[value]
-
-    return result
+    return ((1 << position) & difficulty) > 0
 
 
 def is_parameter_set(difficulty, parameter, game_version=None):
@@ -144,13 +142,14 @@ def get_parameter_position(parameter, game_version=None):
     return get_flat_settings(game_version)[parameter]
 
 
-def is_position_set(difficulty, position):
-    """
-    Check if difficulty parameter is present in difficulty integer value.
+def get_parameter_lockers(difficulty, parameter, game_version=None):
+    actual_rules = get_actual_rules(difficulty, game_version)
 
-    Difficulty value = 2^position, e.g. 1024 = 2^10.
-    """
-    return ((1 << position) & difficulty) > 0
+    return [
+        locker
+        for locker, rules in actual_rules.items()
+        if RULE_TYPES.LOCKS in rules and parameter in rules[RULE_TYPES.LOCKS]
+    ]
 
 
 def toggle_parameter_raw(difficulty, parameter, value, flat_settings):
