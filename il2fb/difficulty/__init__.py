@@ -40,15 +40,6 @@ def decompose_to_tabs(difficulty, game_version=None):
     ])
 
 
-def is_position_set(difficulty, position):
-    """
-    Check if difficulty parameter is present in difficulty integer value.
-
-    Difficulty value = 2^position, e.g. 1024 = 2^10.
-    """
-    return ((1 << position) & difficulty) > 0
-
-
 def compose(settings, game_version=None):
     """
     Convert a dictionary of flat difficulty settings into an integer value.
@@ -126,5 +117,19 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
     return difficulty
 
 
+def is_parameter_set(difficulty, parameter, game_version=None):
+    position = get_parameter_position(parameter, game_version)
+    return is_position_set(difficulty, position)
+
+
 def get_parameter_position(parameter, game_version=None):
     return get_flat_settings(game_version)[parameter]
+
+
+def is_position_set(difficulty, position):
+    """
+    Check if difficulty parameter is present in difficulty integer value.
+
+    Difficulty value = 2^position, e.g. 1024 = 2^10.
+    """
+    return ((1 << position) & difficulty) > 0

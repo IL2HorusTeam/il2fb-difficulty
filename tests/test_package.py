@@ -7,7 +7,7 @@ from il2fb.commons import GameVersions
 from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
-    toggle_parameter, get_parameter_position,
+    toggle_parameter, get_parameter_position, is_parameter_set,
 )
 from il2fb.difficulty.constants import TABS, PARAMETERS, PRESETS as ALL_PRESETS
 from il2fb.difficulty.settings import SETTINGS, PRESETS
@@ -279,3 +279,7 @@ class PackageTestCase(unittest.TestCase):
         position = get_parameter_position(PARAMETERS.WIND_TURBULENCE,
                                           GameVersions.v4_12)
         self.assertEqual(position, 0)
+
+    def test_is_parameter_set(self):
+        self.assertFalse(is_parameter_set(0, PARAMETERS.WIND_TURBULENCE))
+        self.assertTrue(is_parameter_set(1, PARAMETERS.WIND_TURBULENCE))
