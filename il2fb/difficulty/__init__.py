@@ -109,10 +109,9 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
     game_version = game_version or GameVersions.get_default()
     validate_game_version(game_version)
 
-    if get_parameter_lockers(difficulty, parameter, game_version):
-        raise LockedParameterException(
-            "Parameter '{0}' is locked by rules of game version {1}."
-            .format(parameter.value, game_version.value))
+    lockers = get_parameter_lockers(difficulty, parameter, game_version)
+    if lockers:
+        raise LockedParameterException(parameter, lockers, game_version)
 
     settings = get_flat_settings(game_version)
     position = settings[parameter]

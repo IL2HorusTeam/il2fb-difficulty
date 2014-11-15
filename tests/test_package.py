@@ -397,13 +397,15 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
 
         difficulty = toggle_parameter(
             difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, True, game_version)
+
+        # TODO: check returned rules
+
         self.assertRaisesWithMessage(
             LockedParameterException,
-            "Parameter 'NoOwnPlayerViews' is locked by rules of game version "
-            "4.12.",
+            "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' "
+            "accordingly to the rules of game version 4.12.",
             toggle_parameter,
             difficulty,
             PARAMETERS.NO_OWN_PLAYER_VIEWS,
             True,
-            game_version,
-        )
+            game_version)
