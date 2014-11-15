@@ -7,6 +7,7 @@ from collections import OrderedDict
 from il2fb.commons import GameVersions
 
 from .constants import RULE_TYPES
+from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
 from .utils import flatten_dict
 from .validators import (
@@ -105,7 +106,14 @@ def get_preset_value(preset, game_version=None):
 
 
 def toggle_parameter(difficulty, parameter, value, game_version=None):
-    # TODO: check rules
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+
+    if is_parameter_locked(difficulty, parameter, game_version):
+        raise LockedParameterException(
+            "Parameter '{0}' is locked by rules of game version {1}."
+            .format(parameter.value, game_version.value))
+
     settings = get_flat_settings(game_version)
     position = settings[parameter]
     mask = 1 << position

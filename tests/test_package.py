@@ -7,12 +7,13 @@ from il2fb.commons import GameVersions
 from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
-    toggle_parameter, get_parameter_position, is_parameter_set,
-    get_rules, get_actual_rules, is_parameter_locked,
+    get_parameter_position, is_parameter_set, get_rules, get_actual_rules,
+    is_parameter_locked, toggle_parameter,
 )
 from il2fb.difficulty.constants import (
     TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
 )
+from il2fb.difficulty.exceptions import LockedParameterException
 from il2fb.difficulty.settings import SETTINGS, RULES, PRESETS
 
 
@@ -29,7 +30,19 @@ get_all_enabled_settings = lambda: get_all_settings(True)
 get_all_disabled_settings = lambda: get_all_settings(False)
 
 
-class PackageTestCase(unittest.TestCase):
+class TestCaseMixin(object):
+
+    def assertRaisesWithMessage(self, exception_type, message, func, *args, **kwargs):
+        try:
+            func(*args, **kwargs)
+        except exception_type as e:
+            self.assertEqual(e.args[0], message)
+        else:
+            self.fail('"{:}" was expected to throw "{:}" exception'
+                      .format(func.__name__, exception_type.__name__))
+
+
+class PackageTestCase(TestCaseMixin, unittest.TestCase):
 
     def test_is_position_set(self):
         # Check 0 does not contain 1
@@ -264,17 +277,6 @@ class PackageTestCase(unittest.TestCase):
         value = get_preset_value(ALL_PRESETS.EASY, GameVersions.v4_12)
         self.assertEqual(value, 1090682880)
 
-    def test_toggle_parameter(self):
-        difficulty = 0
-        parameter = PARAMETERS.WIND_TURBULENCE
-        game_version = GameVersions.v4_12
-
-        difficulty = toggle_parameter(difficulty, parameter, True, game_version)
-        self.assertEqual(difficulty, 1)
-
-        difficulty = toggle_parameter(difficulty, parameter, False, game_version)
-        self.assertEqual(difficulty, 0)
-
     def test_get_parameter_position(self):
         position = get_parameter_position(PARAMETERS.WIND_TURBULENCE,
                                           GameVersions.v4_12)
@@ -376,3 +378,28 @@ class PackageTestCase(unittest.TestCase):
                                       game_version)
         locked = is_parameter_locked(difficulty, parameter, game_version)
         self.assertTrue(locked)
+
+    def test_toggle_parameter(self):
+        difficulty = 0
+        game_version = GameVersions.v4_12
+
+        difficulty = toggle_parameter(
+            difficulty, PARAMETERS.WIND_TURBULENCE, True, game_version)
+        self.assertEqual(difficulty, 1)
+
+        difficulty = toggle_parameter(
+            difficulty, PARAMETERS.WIND_TURBULENCE, False, game_version)
+        self.assertEqual(difficulty, 0)
+
+        difficulty = toggle_parameter(
+            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, True, game_version)
+        self.assertRaisesWithMessage(
+            LockedParameterException,
+            "Parameter 'NoOwnPlayerViews' is locked by rules of game version "
+            "4.12.",
+            toggle_parameter,
+            difficulty,
+            PARAMETERS.NO_OWN_PLAYER_VIEWS,
+            True,
+            game_version,
+        )
