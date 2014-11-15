@@ -30,7 +30,9 @@ get_all_enabled_settings = lambda: get_all_settings(True)
 get_all_disabled_settings = lambda: get_all_settings(False)
 
 
-class TestCaseMixin(object):
+class BaseTestCase(unittest.TestCase):
+
+    game_version = GameVersions.v4_12
 
     def assertRaisesWithMessage(self, exception_type, message, func, *args, **kwargs):
         try:
@@ -42,7 +44,7 @@ class TestCaseMixin(object):
                       .format(func.__name__, exception_type.__name__))
 
 
-class PackageTestCase(TestCaseMixin, unittest.TestCase):
+class PackageTestCase(BaseTestCase):
 
     def test_is_position_set(self):
         # Check 0 does not contain 1
@@ -175,6 +177,7 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             },
             TABS.VIEW: {
                 PARAMETERS.NO_OUTSIDE_VIEWS: False,
+                PARAMETERS.NO_OWN_PLAYER_VIEWS: False,
                 PARAMETERS.NO_FOE_VIEW: False,
                 PARAMETERS.NO_FRIENDLY_VIEW: False,
                 PARAMETERS.NO_AIRCRAFT_VIEWS: False,
@@ -186,7 +189,6 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
 
                 PARAMETERS.NO_PADLOCK: False,
                 PARAMETERS.NO_GROUND_PADLOCK: False,
-                PARAMETERS.NO_OWN_PLAYER_VIEWS: False,
             },
             TABS.ICONS_N_MAP: {
                 PARAMETERS.NO_MAP_ICONS: False,
@@ -287,15 +289,16 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
         self.assertTrue(is_parameter_set(1, PARAMETERS.WIND_TURBULENCE))
 
     def test_get_rules(self):
-        game_version = GameVersions.v4_12
-        self.assertEqual(get_rules(game_version), RULES[game_version])
+        self.assertEqual(
+            get_rules(self.game_version),
+            RULES[self.game_version]
+        )
 
     def test_get_actual_rules(self):
         difficulty = 0
-        game_version = GameVersions.v4_12
 
         self.assertEqual(
-            get_actual_rules(difficulty, game_version),
+            get_actual_rules(difficulty, self.game_version),
             {
                 PARAMETERS.NO_OUTSIDE_VIEWS: {
                     RULE_TYPES.UNLOCKS: [
@@ -330,10 +333,13 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             PARAMETERS.SHARED_KILLS,
         ]
         for parameter in parameters:
-            difficulty, __ = toggle_parameter(difficulty, parameter, True, game_version)
+            difficulty, __ = toggle_parameter(difficulty,
+                                              parameter,
+                                              True,
+                                              self.game_version)
 
         self.assertEqual(
-            get_actual_rules(difficulty, game_version),
+            get_actual_rules(difficulty, self.game_version),
             {
                 PARAMETERS.NO_OUTSIDE_VIEWS: {
                     RULE_TYPES.TURNS_ON: [
@@ -366,27 +372,29 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
 
     def test_get_parameter_lockers(self):
         difficulty = 0
-        game_version = GameVersions.v4_12
 
         locker = PARAMETERS.NO_OUTSIDE_VIEWS
         parameter = PARAMETERS.NO_OWN_PLAYER_VIEWS
 
         self.assertSequenceEqual(
-            get_parameter_lockers(difficulty, parameter, game_version),
+            get_parameter_lockers(difficulty, parameter, self.game_version),
             []
         )
 
-        difficulty, __ = toggle_parameter(difficulty, locker, True, game_version)
+        difficulty, __ = toggle_parameter(difficulty,
+                                          locker,
+                                          True,
+                                          self.game_version)
 
         self.assertSequenceEqual(
-            get_parameter_lockers(difficulty, parameter, game_version),
+            get_parameter_lockers(difficulty,
+                                  parameter,
+                                  self.game_version),
             [locker, ]
         )
 
 
-class ParameterTogglerTestCase(TestCaseMixin, unittest.TestCase):
-
-    game_version = GameVersions.v4_12
+class ParameterTogglerTestCase(BaseTestCase):
 
     def test_toggle_on(self):
         difficulty, __ = toggle_parameter(0,
