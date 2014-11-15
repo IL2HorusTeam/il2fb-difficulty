@@ -3,7 +3,7 @@
 from collections import OrderedDict
 
 from il2fb.difficulty.constants import (
-    PARAMETERS, TABS, PRESETS as ALL_PRESETS,
+    PARAMETERS, TABS, PRESETS as ALL_PRESETS, RULE_TYPES,
 )
 
 
@@ -64,14 +64,14 @@ SETTINGS = OrderedDict([
 RULES = {
     PARAMETERS.NO_OUTSIDE_VIEWS: {
         True: {
-            'turns_on': [
+            RULE_TYPES.TURNS_ON: [
                 PARAMETERS.NO_OWN_PLAYER_VIEWS,
                 PARAMETERS.NO_FOE_VIEW,
                 PARAMETERS.NO_FRIENDLY_VIEW,
                 PARAMETERS.NO_AIRCRAFT_VIEWS,
                 PARAMETERS.NO_SEA_UNIT_VIEWS,
             ],
-            'locks': [
+            RULE_TYPES.LOCKS: [
                 PARAMETERS.NO_OWN_PLAYER_VIEWS,
                 PARAMETERS.NO_FOE_VIEW,
                 PARAMETERS.NO_FRIENDLY_VIEW,
@@ -80,7 +80,7 @@ RULES = {
             ],
         },
         False: {
-            'unlocks': [
+            RULE_TYPES.UNLOCKS: [
                 PARAMETERS.NO_OWN_PLAYER_VIEWS,
                 PARAMETERS.NO_FOE_VIEW,
                 PARAMETERS.NO_FRIENDLY_VIEW,
@@ -91,30 +91,30 @@ RULES = {
     },
     PARAMETERS.NO_MAP_ICONS: {
         True: {
-            'unlocks': [
+            RULE_TYPES.UNLOCKS: [
                 PARAMETERS.NO_FOG_OF_WAR_ICONS,
             ],
         },
         False: {
-            'turns_on': [
+            RULE_TYPES.TURNS_ON: [
                 PARAMETERS.NO_FOG_OF_WAR_ICONS,
             ],
-            'locks': [
+            RULE_TYPES.LOCKS: [
                 PARAMETERS.NO_FOG_OF_WAR_ICONS,
             ],
         }
     },
     PARAMETERS.SHARED_KILLS: {
         True: {
-            'unlocks': [
+            RULE_TYPES.UNLOCKS: [
                 PARAMETERS.SHARED_KILLS_HISTORICAL,
             ],
         },
         False: {
-            'turns_off': [
+            RULE_TYPES.TURNS_OFF: [
                 PARAMETERS.SHARED_KILLS_HISTORICAL,
             ],
-            'locks': [
+            RULE_TYPES.LOCKS: [
                 PARAMETERS.SHARED_KILLS_HISTORICAL,
             ],
         }

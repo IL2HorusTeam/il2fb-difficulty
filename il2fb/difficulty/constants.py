@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from candv import Constants, Values, VerboseConstant, VerboseValueConstant
+from candv import (
+    Constants, Values, VerboseConstant, VerboseValueConstant,
+    SimpleConstant,
+)
 
 from .utils import translations
 
@@ -228,3 +231,10 @@ class PRESETS(Constants):
     EASY = VerboseConstant(_("Easy"))
     NORMAL = VerboseConstant(_("Normal"))
     FULL_REAL = VerboseConstant(_("Full real"))
+
+
+class RULE_TYPES(Constants):
+    LOCKS = SimpleConstant()
+    UNLOCKS = SimpleConstant()
+    TURNS_ON = SimpleConstant()
+    TURNS_OFF = SimpleConstant()

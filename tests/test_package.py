@@ -8,9 +8,11 @@ from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     toggle_parameter, get_parameter_position, is_parameter_set,
-    get_rules, get_actual_rules,
+    get_rules, get_actual_rules, is_parameter_locked,
 )
-from il2fb.difficulty.constants import TABS, PARAMETERS, PRESETS as ALL_PRESETS
+from il2fb.difficulty.constants import (
+    TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
+)
 from il2fb.difficulty.settings import SETTINGS, RULES, PRESETS
 
 
@@ -294,7 +296,7 @@ class PackageTestCase(unittest.TestCase):
             get_actual_rules(difficulty, game_version),
             {
                 PARAMETERS.NO_OUTSIDE_VIEWS: {
-                    'unlocks': [
+                    RULE_TYPES.UNLOCKS: [
                         PARAMETERS.NO_OWN_PLAYER_VIEWS,
                         PARAMETERS.NO_FOE_VIEW,
                         PARAMETERS.NO_FRIENDLY_VIEW,
@@ -303,18 +305,18 @@ class PackageTestCase(unittest.TestCase):
                     ],
                 },
                 PARAMETERS.NO_MAP_ICONS: {
-                    'turns_on': [
+                    RULE_TYPES.TURNS_ON: [
                         PARAMETERS.NO_FOG_OF_WAR_ICONS,
                     ],
-                    'locks': [
+                    RULE_TYPES.LOCKS: [
                         PARAMETERS.NO_FOG_OF_WAR_ICONS,
                     ],
                 },
                 PARAMETERS.SHARED_KILLS: {
-                    'turns_off': [
+                    RULE_TYPES.TURNS_OFF: [
                         PARAMETERS.SHARED_KILLS_HISTORICAL,
                     ],
-                    'locks': [
+                    RULE_TYPES.LOCKS: [
                         PARAMETERS.SHARED_KILLS_HISTORICAL,
                     ],
                 },
@@ -332,14 +334,14 @@ class PackageTestCase(unittest.TestCase):
             get_actual_rules(difficulty, game_version),
             {
                 PARAMETERS.NO_OUTSIDE_VIEWS: {
-                    'turns_on': [
+                    RULE_TYPES.TURNS_ON: [
                         PARAMETERS.NO_OWN_PLAYER_VIEWS,
                         PARAMETERS.NO_FOE_VIEW,
                         PARAMETERS.NO_FRIENDLY_VIEW,
                         PARAMETERS.NO_AIRCRAFT_VIEWS,
                         PARAMETERS.NO_SEA_UNIT_VIEWS,
                     ],
-                    'locks': [
+                    RULE_TYPES.LOCKS: [
                         PARAMETERS.NO_OWN_PLAYER_VIEWS,
                         PARAMETERS.NO_FOE_VIEW,
                         PARAMETERS.NO_FRIENDLY_VIEW,
@@ -348,14 +350,29 @@ class PackageTestCase(unittest.TestCase):
                     ],
                 },
                 PARAMETERS.NO_MAP_ICONS: {
-                    'unlocks': [
+                    RULE_TYPES.UNLOCKS: [
                         PARAMETERS.NO_FOG_OF_WAR_ICONS,
                     ],
                 },
                 PARAMETERS.SHARED_KILLS: {
-                    'unlocks': [
+                    RULE_TYPES.UNLOCKS: [
                         PARAMETERS.SHARED_KILLS_HISTORICAL,
                     ],
                 },
             }
         )
+
+    def test_is_parameter_locked(self):
+        difficulty = 0
+        game_version = GameVersions.v4_12
+        parameter = PARAMETERS.NO_OWN_PLAYER_VIEWS
+
+        locked = is_parameter_locked(difficulty, parameter, game_version)
+        self.assertFalse(locked)
+
+        difficulty = toggle_parameter(difficulty,
+                                      PARAMETERS.NO_OUTSIDE_VIEWS,
+                                      True,
+                                      game_version)
+        locked = is_parameter_locked(difficulty, parameter, game_version)
+        self.assertTrue(locked)

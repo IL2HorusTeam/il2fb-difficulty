@@ -6,6 +6,7 @@ Convert integer value of game difficulty into dictionary and vice versa.
 from collections import OrderedDict
 from il2fb.commons import GameVersions
 
+from .constants import RULE_TYPES
 from .settings import SETTINGS, RULES, PRESETS
 from .utils import flatten_dict
 from .validators import (
@@ -115,6 +116,16 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
         difficulty &= ~mask
 
     return difficulty
+
+
+def is_parameter_locked(difficulty, parameter, game_version=None):
+    actual_rules = get_actual_rules(difficulty, game_version)
+
+    for master, rules in actual_rules.items():
+        if RULE_TYPES.LOCKS in rules and parameter in rules[RULE_TYPES.LOCKS]:
+            return True
+
+    return False
 
 
 def get_rules(game_version=None):
