@@ -8,9 +8,10 @@ from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     toggle_parameter, get_parameter_position, is_parameter_set,
+    get_rules, get_actual_rules,
 )
 from il2fb.difficulty.constants import TABS, PARAMETERS, PRESETS as ALL_PRESETS
-from il2fb.difficulty.settings import SETTINGS, PRESETS
+from il2fb.difficulty.settings import SETTINGS, RULES, PRESETS
 
 
 def get_all_settings(value):
@@ -263,16 +264,13 @@ class PackageTestCase(unittest.TestCase):
 
     def test_toggle_parameter(self):
         difficulty = 0
-        difficulty = toggle_parameter(difficulty,
-                                      parameter=PARAMETERS.WIND_TURBULENCE,
-                                      value=True,
-                                      game_version=GameVersions.v4_12)
+        parameter = PARAMETERS.WIND_TURBULENCE
+        game_version = GameVersions.v4_12
+
+        difficulty = toggle_parameter(difficulty, parameter, True, game_version)
         self.assertEqual(difficulty, 1)
 
-        difficulty = toggle_parameter(difficulty,
-                                      parameter=PARAMETERS.WIND_TURBULENCE,
-                                      value=False,
-                                      game_version=GameVersions.v4_12)
+        difficulty = toggle_parameter(difficulty, parameter, False, game_version)
         self.assertEqual(difficulty, 0)
 
     def test_get_parameter_position(self):
@@ -283,3 +281,81 @@ class PackageTestCase(unittest.TestCase):
     def test_is_parameter_set(self):
         self.assertFalse(is_parameter_set(0, PARAMETERS.WIND_TURBULENCE))
         self.assertTrue(is_parameter_set(1, PARAMETERS.WIND_TURBULENCE))
+
+    def test_get_rules(self):
+        game_version = GameVersions.v4_12
+        self.assertEqual(get_rules(game_version), RULES[game_version])
+
+    def test_get_actual_rules(self):
+        difficulty = 0
+        game_version = GameVersions.v4_12
+
+        self.assertEqual(
+            get_actual_rules(difficulty, game_version),
+            {
+                PARAMETERS.NO_OUTSIDE_VIEWS: {
+                    'unlocks': [
+                        PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                        PARAMETERS.NO_FOE_VIEW,
+                        PARAMETERS.NO_FRIENDLY_VIEW,
+                        PARAMETERS.NO_AIRCRAFT_VIEWS,
+                        PARAMETERS.NO_SEA_UNIT_VIEWS,
+                    ],
+                },
+                PARAMETERS.NO_MAP_ICONS: {
+                    'turns_on': [
+                        PARAMETERS.NO_FOG_OF_WAR_ICONS,
+                    ],
+                    'locks': [
+                        PARAMETERS.NO_FOG_OF_WAR_ICONS,
+                    ],
+                },
+                PARAMETERS.SHARED_KILLS: {
+                    'turns_off': [
+                        PARAMETERS.SHARED_KILLS_HISTORICAL,
+                    ],
+                    'locks': [
+                        PARAMETERS.SHARED_KILLS_HISTORICAL,
+                    ],
+                },
+            }
+        )
+
+        parameters = [
+            PARAMETERS.NO_OUTSIDE_VIEWS, PARAMETERS.NO_MAP_ICONS,
+            PARAMETERS.SHARED_KILLS,
+        ]
+        for parameter in parameters:
+            difficulty = toggle_parameter(difficulty, parameter, True, game_version)
+
+        self.assertEqual(
+            get_actual_rules(difficulty, game_version),
+            {
+                PARAMETERS.NO_OUTSIDE_VIEWS: {
+                    'turns_on': [
+                        PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                        PARAMETERS.NO_FOE_VIEW,
+                        PARAMETERS.NO_FRIENDLY_VIEW,
+                        PARAMETERS.NO_AIRCRAFT_VIEWS,
+                        PARAMETERS.NO_SEA_UNIT_VIEWS,
+                    ],
+                    'locks': [
+                        PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                        PARAMETERS.NO_FOE_VIEW,
+                        PARAMETERS.NO_FRIENDLY_VIEW,
+                        PARAMETERS.NO_AIRCRAFT_VIEWS,
+                        PARAMETERS.NO_SEA_UNIT_VIEWS,
+                    ],
+                },
+                PARAMETERS.NO_MAP_ICONS: {
+                    'unlocks': [
+                        PARAMETERS.NO_FOG_OF_WAR_ICONS,
+                    ],
+                },
+                PARAMETERS.SHARED_KILLS: {
+                    'unlocks': [
+                        PARAMETERS.SHARED_KILLS_HISTORICAL,
+                    ],
+                },
+            }
+        )

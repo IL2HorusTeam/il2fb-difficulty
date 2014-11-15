@@ -117,6 +117,26 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
     return difficulty
 
 
+def get_rules(game_version=None):
+    """
+    Get all rules for game version.
+    """
+    game_version = game_version or GameVersions.get_default()
+    validate_game_version(game_version)
+    return RULES[game_version]
+
+
+def get_actual_rules(difficulty, game_version=None):
+    all_rules = get_rules(game_version)
+    result = {}
+
+    for parameter, rules in all_rules.items():
+        value = is_parameter_set(difficulty, parameter)
+        result[parameter] = rules[value]
+
+    return result
+
+
 def is_parameter_set(difficulty, parameter, game_version=None):
     position = get_parameter_position(parameter, game_version)
     return is_position_set(difficulty, position)
