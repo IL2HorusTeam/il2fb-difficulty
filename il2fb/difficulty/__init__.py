@@ -107,6 +107,8 @@ def get_preset_value(preset, game_version=None):
 
 class ParameterToggler(object):
 
+    __name__ = 'toggle_parameter'
+
     def __call__(self, difficulty, parameter, value, game_version=None):
         self.game_version = game_version or GameVersions.get_default()
         validate_game_version(self.game_version)
@@ -151,8 +153,8 @@ class ParameterToggler(object):
 
         return difficulty
 
-
 toggle_parameter = ParameterToggler()
+del ParameterToggler
 
 
 def get_parameter_lockers(difficulty, parameter, game_version=None):

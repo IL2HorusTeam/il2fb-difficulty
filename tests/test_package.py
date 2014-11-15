@@ -290,98 +290,6 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
         game_version = GameVersions.v4_12
         self.assertEqual(get_rules(game_version), RULES[game_version])
 
-    def test_toggle_parameter(self):
-        difficulty = 0
-        game_version = GameVersions.v4_12
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.WIND_TURBULENCE, True, game_version)
-        self.assertEqual(difficulty, 1)
-        self.assertFalse(side_effects)
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.WIND_TURBULENCE, False, game_version)
-        self.assertEqual(difficulty, 0)
-        self.assertFalse(side_effects)
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, True, game_version)
-
-        self.assertEqual(
-            difficulty,
-            sum([1 << 9, 1 << 37, 1 << 33, 1 << 34, 1 << 36, 1 << 35, ]),
-        )
-        self.assertEqual(
-            side_effects,
-            {
-                RULE_TYPES.TURNS_ON: [
-                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
-                    PARAMETERS.NO_FOE_VIEW,
-                    PARAMETERS.NO_FRIENDLY_VIEW,
-                    PARAMETERS.NO_AIRCRAFT_VIEWS,
-                    PARAMETERS.NO_SEA_UNIT_VIEWS,
-                ],
-                RULE_TYPES.LOCKS: [
-                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
-                    PARAMETERS.NO_FOE_VIEW,
-                    PARAMETERS.NO_FRIENDLY_VIEW,
-                    PARAMETERS.NO_AIRCRAFT_VIEWS,
-                    PARAMETERS.NO_SEA_UNIT_VIEWS,
-                ],
-            }
-        )
-
-        self.assertRaisesWithMessage(
-            LockedParameterException,
-            "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' "
-            "accordingly to the rules of game version 4.12.",
-            toggle_parameter,
-            difficulty,
-            PARAMETERS.NO_OWN_PLAYER_VIEWS,
-            True,
-            game_version)
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.NO_OUTSIDE_VIEWS, False, game_version)
-        self.assertEqual(
-            difficulty,
-            sum([1 << 37, 1 << 33, 1 << 34, 1 << 36, 1 << 35, ]),
-        )
-        self.assertEqual(
-            side_effects,
-            {
-                RULE_TYPES.UNLOCKS: [
-                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
-                    PARAMETERS.NO_FOE_VIEW,
-                    PARAMETERS.NO_FRIENDLY_VIEW,
-                    PARAMETERS.NO_AIRCRAFT_VIEWS,
-                    PARAMETERS.NO_SEA_UNIT_VIEWS,
-                ],
-            }
-        )
-
-        difficulty = 0
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.SHARED_KILLS, True, game_version)
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.SHARED_KILLS_HISTORICAL, True, game_version)
-
-        difficulty, side_effects = toggle_parameter(
-            difficulty, PARAMETERS.SHARED_KILLS, False, game_version)
-        self.assertEqual(difficulty, 0)
-        self.assertEqual(
-            side_effects,
-            {
-                RULE_TYPES.TURNS_OFF: [
-                    PARAMETERS.SHARED_KILLS_HISTORICAL,
-                ],
-                RULE_TYPES.LOCKS: [
-                    PARAMETERS.SHARED_KILLS_HISTORICAL,
-                ],
-            }
-        )
-
     def test_get_actual_rules(self):
         difficulty = 0
         game_version = GameVersions.v4_12
@@ -474,3 +382,159 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             get_parameter_lockers(difficulty, parameter, game_version),
             [locker, ]
         )
+
+
+class ParameterTogglerTestCase(TestCaseMixin, unittest.TestCase):
+
+    game_version = GameVersions.v4_12
+
+    def test_toggle_on(self):
+        difficulty, __ = toggle_parameter(0,
+                                          PARAMETERS.WIND_TURBULENCE,
+                                          True,
+                                          self.game_version)
+        self.assertEqual(difficulty, 1)
+
+    def test_toggle_off(self):
+        difficulty, __ = toggle_parameter(1,
+                                          PARAMETERS.WIND_TURBULENCE,
+                                          False,
+                                          self.game_version)
+        self.assertEqual(difficulty, 0)
+
+    def test_no_side_effects_for_toggle_on(self):
+        __, side_effects = toggle_parameter(0,
+                                            PARAMETERS.WIND_TURBULENCE,
+                                            True,
+                                            self.game_version)
+        self.assertFalse(side_effects)
+
+    def test_no_side_effects_for_toggle_off(self):
+        __, side_effects = toggle_parameter(1,
+                                            PARAMETERS.WIND_TURBULENCE,
+                                            False,
+                                            self.game_version)
+        self.assertFalse(side_effects)
+
+    def test_positive_side_effects_for_toggle_on(self):
+        difficulty, side_effects = toggle_parameter(0,
+                                                    PARAMETERS.NO_OUTSIDE_VIEWS,
+                                                    True,
+                                                    self.game_version)
+        self.assertEqual(
+            difficulty,
+            sum([1 << get_parameter_position(x, self.game_version)
+                for x in [
+                    PARAMETERS.NO_OUTSIDE_VIEWS,
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ]
+            ])
+        )
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.TURNS_ON: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+                RULE_TYPES.LOCKS: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+            }
+        )
+
+    def test_negative_side_effects_for_toggle_on(self):
+        difficulty, side_effects = toggle_parameter(0,
+                                                    PARAMETERS.SHARED_KILLS,
+                                                    True,
+                                                    self.game_version)
+        difficulty, side_effects = toggle_parameter(difficulty,
+                                                    PARAMETERS.SHARED_KILLS_HISTORICAL,
+                                                    True,
+                                                    self.game_version)
+        difficulty, side_effects = toggle_parameter(difficulty,
+                                                    PARAMETERS.SHARED_KILLS,
+                                                    False,
+                                                    self.game_version)
+
+        self.assertEqual(difficulty, 0)
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.TURNS_OFF: [
+                    PARAMETERS.SHARED_KILLS_HISTORICAL,
+                ],
+                RULE_TYPES.LOCKS: [
+                    PARAMETERS.SHARED_KILLS_HISTORICAL,
+                ],
+            }
+        )
+
+    def test_side_effects_for_toggle_off(self):
+        difficulty = sum([
+            1 << get_parameter_position(x, self.game_version)
+            for x in [
+                PARAMETERS.NO_OUTSIDE_VIEWS,
+                PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                PARAMETERS.NO_FOE_VIEW,
+                PARAMETERS.NO_FRIENDLY_VIEW,
+                PARAMETERS.NO_AIRCRAFT_VIEWS,
+                PARAMETERS.NO_SEA_UNIT_VIEWS,
+            ]
+        ])
+        difficulty, side_effects = toggle_parameter(difficulty,
+                                                    PARAMETERS.NO_OUTSIDE_VIEWS,
+                                                    False,
+                                                    self.game_version)
+
+        self.assertEqual(
+            difficulty,
+            sum([1 << get_parameter_position(x, self.game_version)
+                for x in [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ]
+            ])
+        )
+        self.assertEqual(
+            side_effects,
+            {
+                RULE_TYPES.UNLOCKS: [
+                    PARAMETERS.NO_OWN_PLAYER_VIEWS,
+                    PARAMETERS.NO_FOE_VIEW,
+                    PARAMETERS.NO_FRIENDLY_VIEW,
+                    PARAMETERS.NO_AIRCRAFT_VIEWS,
+                    PARAMETERS.NO_SEA_UNIT_VIEWS,
+                ],
+            }
+        )
+
+    def test_toogle_locked_parameter(self):
+        difficulty, __ = toggle_parameter(0,
+                                          PARAMETERS.NO_OUTSIDE_VIEWS,
+                                          True,
+                                          self.game_version)
+
+        self.assertRaisesWithMessage(
+            LockedParameterException,
+            "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' "
+            "accordingly to the rules of game version 4.12.",
+            toggle_parameter,
+            difficulty,
+            PARAMETERS.NO_OWN_PLAYER_VIEWS,
+            True,
+            self.game_version)
