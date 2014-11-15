@@ -7,6 +7,7 @@ from il2fb.commons import GameVersions
 from il2fb.difficulty import (
     is_parameter_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
+    toggle_parameter,
 )
 from il2fb.difficulty.constants import TABS, PARAMETERS, PRESETS as ALL_PRESETS
 from il2fb.difficulty.settings import SETTINGS, PRESETS
@@ -259,3 +260,17 @@ class PackageTestCase(unittest.TestCase):
     def test_get_preset_value(self):
         value = get_preset_value(ALL_PRESETS.EASY, GameVersions.v4_12)
         self.assertEqual(value, 1090682880)
+
+    def test_toggle_parameter(self):
+        difficulty = 0
+        difficulty = toggle_parameter(difficulty,
+                                      parameter=PARAMETERS.WIND_TURBULENCE,
+                                      value=True,
+                                      game_version=GameVersions.v4_12)
+        self.assertEqual(difficulty, 1)
+
+        difficulty = toggle_parameter(difficulty,
+                                      parameter=PARAMETERS.WIND_TURBULENCE,
+                                      value=False,
+                                      game_version=GameVersions.v4_12)
+        self.assertEqual(difficulty, 0)

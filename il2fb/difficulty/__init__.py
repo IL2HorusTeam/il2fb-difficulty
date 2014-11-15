@@ -6,7 +6,7 @@ Convert integer value of game difficulty into dictionary and vice versa.
 from collections import OrderedDict
 from il2fb.commons import GameVersions
 
-from .settings import SETTINGS, PRESETS
+from .settings import SETTINGS, RULES, PRESETS
 from .utils import flatten_dict
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
@@ -109,3 +109,16 @@ def get_preset_value(preset, game_version=None):
     Get preset value for particular game version.
     """
     return get_presets(game_version).get(preset)
+
+
+def toggle_parameter(difficulty, parameter, value, game_version=None):
+    settings = get_flat_settings(game_version)
+    position = settings[parameter]
+    mask = 1 << position
+
+    if value:
+        difficulty |= mask
+    else:
+        difficulty &= ~mask
+
+    return difficulty
