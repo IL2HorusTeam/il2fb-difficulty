@@ -5,7 +5,7 @@ from collections import OrderedDict
 from il2fb.commons import GameVersions
 
 from il2fb.difficulty import (
-    is_parameter_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
+    is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     toggle_parameter,
 )
@@ -28,19 +28,19 @@ get_all_disabled_settings = lambda: get_all_settings(False)
 
 class PackageTestCase(unittest.TestCase):
 
-    def test_is_parameter_set(self):
+    def test_is_position_set(self):
         # Check 0 does not contain 1
-        self.assertFalse(is_parameter_set(0, 0))
+        self.assertFalse(is_position_set(0, 0))
 
         # Check 1 contains 1
-        self.assertTrue(is_parameter_set(1, 0))
+        self.assertTrue(is_position_set(1, 0))
 
         # Check 5 contains 1
-        self.assertTrue(is_parameter_set(5, 0))
+        self.assertTrue(is_position_set(5, 0))
         # Check 5 does not contain 2
-        self.assertFalse(is_parameter_set(5, 1))
+        self.assertFalse(is_position_set(5, 1))
         # Check 5 contains 4
-        self.assertTrue(is_parameter_set(5, 2))
+        self.assertTrue(is_position_set(5, 2))
 
     def test_decompose(self):
         settings = get_all_disabled_settings()

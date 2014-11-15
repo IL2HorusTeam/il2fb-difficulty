@@ -20,7 +20,7 @@ def decompose(difficulty, game_version=None):
     validate_difficulty(difficulty)
     settings = get_flat_settings(game_version)
     return {
-        code_name: is_parameter_set(difficulty, number)
+        code_name: is_position_set(difficulty, number)
         for code_name, number in settings.items()
     }
 
@@ -33,14 +33,14 @@ def decompose_to_tabs(difficulty, game_version=None):
     settings = get_settings(game_version)
     return OrderedDict([
         (tab, OrderedDict([
-            (parameter, is_parameter_set(difficulty, position))
+            (parameter, is_position_set(difficulty, position))
             for parameter, position in parameters.items()
         ]))
         for tab, parameters in settings.items()
     ])
 
 
-def is_parameter_set(difficulty, position):
+def is_position_set(difficulty, position):
     """
     Check if difficulty parameter is present in difficulty integer value.
 
