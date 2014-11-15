@@ -109,7 +109,7 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
     game_version = game_version or GameVersions.get_default()
     validate_game_version(game_version)
 
-    if is_parameter_locked(difficulty, parameter, game_version):
+    if get_parameter_lockers(difficulty, parameter, game_version):
         raise LockedParameterException(
             "Parameter '{0}' is locked by rules of game version {1}."
             .format(parameter.value, game_version.value))
@@ -126,14 +126,14 @@ def toggle_parameter(difficulty, parameter, value, game_version=None):
     return difficulty
 
 
-def is_parameter_locked(difficulty, parameter, game_version=None):
+def get_parameter_lockers(difficulty, parameter, game_version=None):
     actual_rules = get_actual_rules(difficulty, game_version)
 
-    for master, rules in actual_rules.items():
-        if RULE_TYPES.LOCKS in rules and parameter in rules[RULE_TYPES.LOCKS]:
-            return True
-
-    return False
+    return [
+        locker
+        for locker, rules in actual_rules.items()
+        if RULE_TYPES.LOCKS in rules and parameter in rules[RULE_TYPES.LOCKS]
+    ]
 
 
 def get_rules(game_version=None):

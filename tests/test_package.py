@@ -8,7 +8,7 @@ from il2fb.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     get_parameter_position, is_parameter_set, get_rules, get_actual_rules,
-    is_parameter_locked, toggle_parameter,
+    get_parameter_lockers, toggle_parameter,
 )
 from il2fb.difficulty.constants import (
     TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
@@ -364,20 +364,24 @@ class PackageTestCase(TestCaseMixin, unittest.TestCase):
             }
         )
 
-    def test_is_parameter_locked(self):
+    def test_get_parameter_lockers(self):
         difficulty = 0
         game_version = GameVersions.v4_12
+
+        locker = PARAMETERS.NO_OUTSIDE_VIEWS
         parameter = PARAMETERS.NO_OWN_PLAYER_VIEWS
 
-        locked = is_parameter_locked(difficulty, parameter, game_version)
-        self.assertFalse(locked)
+        self.assertSequenceEqual(
+            get_parameter_lockers(difficulty, parameter, game_version),
+            []
+        )
 
-        difficulty = toggle_parameter(difficulty,
-                                      PARAMETERS.NO_OUTSIDE_VIEWS,
-                                      True,
-                                      game_version)
-        locked = is_parameter_locked(difficulty, parameter, game_version)
-        self.assertTrue(locked)
+        difficulty = toggle_parameter(difficulty, locker, True, game_version)
+
+        self.assertSequenceEqual(
+            get_parameter_lockers(difficulty, parameter, game_version),
+            [locker, ]
+        )
 
     def test_toggle_parameter(self):
         difficulty = 0
