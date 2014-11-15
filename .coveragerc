@@ -1,5 +1,5 @@
 [run]
-source = il2fb/difficulty
+source = il2fb/config/difficulty
 omit = */tests/*
 
 [report]

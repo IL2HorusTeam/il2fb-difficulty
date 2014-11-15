@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 
 from collections import OrderedDict
 
-from il2fb.difficulty.constants import (
+from ..constants import (
     PARAMETERS, TABS, PRESETS as ALL_PRESETS, RULE_TYPES,
 )
 

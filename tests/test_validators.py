@@ -5,7 +5,7 @@ import unittest
 from candv import ValueConstant
 from il2fb.commons import GameVersions
 
-from il2fb.difficulty.validators import (
+from il2fb.config.difficulty.validators import (
     validate_difficulty, validate_settings, validate_game_version,
 )
 

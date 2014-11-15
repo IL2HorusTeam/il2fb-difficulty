@@ -26,12 +26,13 @@ setup(
     url='https://github.com/IL2HorusTeam/il2fb-difficulty/',
     author='Alexander Oblovatniy, Alexander Kamyhin',
     author_email='oblovatniy@gmail.com, kamyhin@gmail.com',
-    packages=[
-        'il2fb.difficulty',
-        'il2fb.difficulty.settings',
-    ],
     namespace_packages=[
         'il2fb',
+        'il2fb.config',
+    ],
+    packages=[
+        'il2fb.config.difficulty',
+        'il2fb.config.difficulty.settings',
     ],
     include_package_data=True,
     install_requires=REQUIREMENTS,

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from il2fb.difficulty.utils import inverse_dict, flatten_dict
+from il2fb.config.difficulty.utils import inverse_dict, flatten_dict
 
 
 class UtilsTestCase(unittest.TestCase):

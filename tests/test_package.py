@@ -4,18 +4,18 @@ import unittest
 from collections import OrderedDict
 from il2fb.commons import GameVersions
 
-from il2fb.difficulty import (
+from il2fb.config.difficulty import (
     is_position_set, decompose, decompose_to_tabs, compose, compose_from_tabs,
     get_settings, get_flat_settings, get_presets, get_preset_value,
     get_parameter_position, is_parameter_set, get_rules, get_actual_rules,
     get_parameter_lockers, toggle_parameter, toggle_parameter_raw,
     autocorrect_difficulty,
 )
-from il2fb.difficulty.constants import (
+from il2fb.config.difficulty.constants import (
     TABS, PARAMETERS, PRESETS as ALL_PRESETS, RULE_TYPES,
 )
-from il2fb.difficulty.exceptions import LockedParameterException
-from il2fb.difficulty.settings import SETTINGS, RULES, PRESETS
+from il2fb.config.difficulty.exceptions import LockedParameterException
+from il2fb.config.difficulty.settings import SETTINGS, RULES, PRESETS
 
 
 def get_all_settings(value):
