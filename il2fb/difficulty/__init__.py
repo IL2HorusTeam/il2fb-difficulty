@@ -109,8 +109,8 @@ def compose(settings, game_version=None):
 
 def compose_from_tabs(settings, game_version=None):
     """
-    Convert a dictionary of difficulty settings groupped by tabs into an integer
-    value.
+    Convert a dictionary of difficulty settings groupped by tabs into an
+    integer value.
     """
     validate_settings(settings)
 
@@ -207,6 +207,8 @@ class ParameterToggler(object):
     __name__ = 'toggle_parameter'
 
     def __call__(self, difficulty, parameter, value, game_version=None):
+        validate_difficulty(difficulty)
+
         self.game_version = game_version or GameVersions.get_default()
         validate_game_version(self.game_version)
 
