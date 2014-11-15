@@ -105,41 +105,54 @@ def get_preset_value(preset, game_version=None):
     return get_presets(game_version).get(preset)
 
 
-def toggle_parameter(difficulty, parameter, value, game_version=None):
-    game_version = game_version or GameVersions.get_default()
-    validate_game_version(game_version)
+class ParameterToggler(object):
 
-    lockers = get_parameter_lockers(difficulty, parameter, game_version)
-    if lockers:
-        raise LockedParameterException(parameter, lockers, game_version)
+    def __call__(self, difficulty, parameter, value, game_version=None):
+        self.game_version = game_version or GameVersions.get_default()
+        validate_game_version(self.game_version)
 
-    settings = get_flat_settings(game_version)
-    difficulty = _toggle_parameter(difficulty, parameter, value, settings)
+        self._check_can_be_toggled(difficulty, parameter)
+        self.settings = get_flat_settings(self.game_version)
 
-    rules = get_rules(game_version)
-    side_effects = rules[parameter][value] if parameter in rules else {}
+        difficulty = self._toggle_parameter(difficulty, parameter, value)
+        side_effects = self._get_side_effects(parameter, value)
+        difficulty = self._process_side_effects(difficulty, side_effects)
 
-    if RULE_TYPES.TURNS_ON in side_effects:
-        for target in side_effects[RULE_TYPES.TURNS_ON]:
-            difficulty = _toggle_parameter(difficulty, target, True, settings)
+        return difficulty, side_effects
 
-    if RULE_TYPES.TURNS_OFF in side_effects:
-        for target in side_effects[RULE_TYPES.TURNS_OFF]:
-            difficulty = _toggle_parameter(difficulty, target, False, settings)
+    def _check_can_be_toggled(self, difficulty, parameter):
+        lockers = get_parameter_lockers(difficulty, parameter, self.game_version)
+        if lockers:
+            raise LockedParameterException(parameter, lockers, self.game_version)
 
-    return difficulty, side_effects
+    def _get_side_effects(self, parameter, value):
+        rules = get_rules(self.game_version)
+        return rules[parameter][value] if parameter in rules else {}
+
+    def _process_side_effects(self, difficulty, side_effects):
+        if RULE_TYPES.TURNS_ON in side_effects:
+            for parameter in side_effects[RULE_TYPES.TURNS_ON]:
+                difficulty = self._toggle_parameter(difficulty, parameter, True)
+
+        if RULE_TYPES.TURNS_OFF in side_effects:
+            for parameter in side_effects[RULE_TYPES.TURNS_OFF]:
+                difficulty = self._toggle_parameter(difficulty, parameter, False)
+
+        return difficulty
+
+    def _toggle_parameter(self, difficulty, parameter, value):
+        position = self.settings[parameter]
+        mask = 1 << position
+
+        if value:
+            difficulty |= mask
+        else:
+            difficulty &= ~mask
+
+        return difficulty
 
 
-def _toggle_parameter(difficulty, parameter, value, settings):
-    position = settings[parameter]
-    mask = 1 << position
-
-    if value:
-        difficulty |= mask
-    else:
-        difficulty &= ~mask
-
-    return difficulty
+toggle_parameter = ParameterToggler()
 
 
 def get_parameter_lockers(difficulty, parameter, game_version=None):
