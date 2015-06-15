@@ -13,9 +13,14 @@ REQUIREMENTS = [
     for x in open(os.path.join(__here__, 'requirements.txt')).readlines()
 ]
 
+# Get VERSION
+version_file = os.path.join('il2fb', 'config', 'difficulty', 'version.py')
+# Use exec for compabibility with Python 3
+exec(open(version_file).read())
+
 setup(
     name='il2fb-difficulty',
-    version='1.2.0',
+    version=str(VERSION),
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     keywords=[
