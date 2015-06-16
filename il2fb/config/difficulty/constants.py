@@ -218,7 +218,7 @@ class PARAMETERS(Values):
                     "takeoff")
     )
     #: Introduced in v4.13
-    REALISTIC_BOMBING = VerboseValueConstant(
+    REALISTIC_BOMBSIGHTS = VerboseValueConstant(
         value='RealisticBombSights',
         verbose_name=_("Realistic bombing"),
         help_text=_("All aspects of the bombsight working at maximum according"
