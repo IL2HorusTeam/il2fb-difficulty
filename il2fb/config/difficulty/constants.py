@@ -217,6 +217,13 @@ class PARAMETERS(Values):
         help_text=_("You can look at your own plane from outside only before "
                     "takeoff")
     )
+    #: Introduced in v4.13
+    REALISTIC_BOMBING = VerboseValueConstant(
+        value='RealisticBombSights',
+        verbose_name=_("Realistic bombing"),
+        help_text=_("All aspects of the bombsight working at maximum according"
+                    " to the actual technical documentation")
+    )
 
 
 class TABS(Constants):
