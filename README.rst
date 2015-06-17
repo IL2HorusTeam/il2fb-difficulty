@@ -1,7 +1,9 @@
 IL-2 FB Difficulty
 ==================
 
-|Build Status| |Coverage Status| |PyPi package| |PyPi downloads| |License|
+|pypi_package| |pypi_downloads| |python_versions| |license|
+
+|unix_build| |coverage_status| |codacy| |quality| |health| |requirements|
 
 Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
 
@@ -9,13 +11,40 @@ You can `use difficulty editor <https://di-2.herokuapp.com>`_ which is
 built using this library.
 
 
-.. |Build Status| image:: http://img.shields.io/travis/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
+.. |unix_build| image:: http://img.shields.io/travis/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
    :target: https://travis-ci.org/IL2HorusTeam/il2fb-difficulty
-.. |Coverage Status| image:: http://img.shields.io/coveralls/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
+
+.. |coverage_status| image:: http://img.shields.io/coveralls/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
    :target: https://coveralls.io/r/IL2HorusTeam/il2fb-difficulty?branch=master
-.. |PyPi package| image:: http://img.shields.io/pypi/v/il2fb-difficulty.svg?style=flat
+   :alt: Test coverage
+
+.. |codacy| image:: https://www.codacy.com/project/badge/bba471fc551e437f9f92c078eb03a60b
+   :target: https://www.codacy.com/app/oblovatniy_3001/il2fb-difficulty
+   :alt: Codacy Code Review
+
+.. |quality| image:: https://scrutinizer-ci.com/g/IL2HorusTeam/il2fb-difficulty/badges/quality-score.png?b=master&style=flat
+   :target: https://scrutinizer-ci.com/g/IL2HorusTeam/il2fb-difficulty/?branch=master
+   :alt: Code quality provided by Scrutinizer
+
+.. |health| image:: https://landscape.io/github/IL2HorusTeam/il2fb-difficulty/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/IL2HorusTeam/il2fb-difficulty/master
+   :alt: Code Health
+
+.. |requirements| image:: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements.svg?branch=master
+    :target: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements/?branch=master
+    :alt: Requirements Status
+
+.. |pypi_package| image:: http://img.shields.io/pypi/v/il2fb-difficulty.svg?style=flat
    :target: http://badge.fury.io/py/il2fb-difficulty/
-.. |PyPi downloads| image::  http://img.shields.io/pypi/dm/il2fb-difficulty.svg?style=flat
+   :alt: Version of PyPI package
+
+.. |pypi_downloads| image::  http://img.shields.io/pypi/dm/il2fb-difficulty.svg?style=flat
    :target: https://crate.io/packages/il2fb-difficulty/
-.. |License| image:: https://img.shields.io/badge/license-LGPLv3-brightgreen.svg?style=flat
-   :target: http://badge.fury.io/py/il2fb-difficulty/
+   :alt: Number of downloads of PyPI package
+
+.. |python_versions| image:: https://img.shields.io/badge/Python-2.7,3.2,3.3,3.4-brightgreen.svg?style=flat
+   :alt: Supported versions of Python
+
+.. |license| image:: https://img.shields.io/badge/license-LGPLv3-blue.svg?style=flat
+   :target: https://github.com/IL2HorusTeam/il2fb-difficulty/blob/master/LICENSE
+   :alt: Package license
