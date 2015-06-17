@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from version import Version
+from distutils.version import LooseVersion as V
 
 
-VERSION = Version('1.3.0-dev')
+VERSION = V('1.3.0-dev')
