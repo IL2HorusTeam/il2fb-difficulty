@@ -13,9 +13,11 @@ def split_requirements(lines):
 
     for line in lines:
         if line.startswith('-e'):
-            dependencies.append(line.split(' ', 1)[1])
-        else:
-            requirements.append(line)
+            line = line.split(' ', 1)[1]
+            dependencies.append(line)
+            line = line.split('#egg=', 1)[1]
+
+        requirements.append(line)
 
     return requirements, dependencies
 
