@@ -8,28 +8,23 @@ from setuptools import setup
 __here__ = os.path.abspath(os.path.dirname(__file__))
 
 
-def parse_requiements(stream):
-    pass
+def split_requirements(lines):
+    requirements, dependencies = [], []
 
+    for line in lines:
+        if line.startswith('-e'):
+            dependencies.append(line.split(' ', 1)[1])
+        else:
+            requirements.append(line)
+
+    return requirements, dependencies
+
+with open(os.path.join(__here__, 'requirements', 'dist.txt')) as f:
+    REQUIREMENTS = map(lambda x: x.strip(), f)
+    REQUIREMENTS = filter(lambda x: x and not x.startswith('#'), REQUIREMENTS)
+    REQUIREMENTS, DEPENDENCIES = split_requirements(REQUIREMENTS)
 
 README = open(os.path.join(__here__, 'README.rst')).read()
-
-# Comment parsing of requirements temporally for development
-# REQUIREMENTS = [
-#     i.strip()
-#     for i in
-#     open(os.path.join(__here__, 'requirements', 'dist.txt')).readlines()
-# ]
-REQUIREMENTS = [
-    'candv>=1.3,<1.4',
-    'six>=1.6.1',
-    'verboselib>=0.2,<0.3',
-    'stringlike>=0.3.3',
-    'il2fb-commons==0.11.0dev0',
-]
-DEPENDENCIES = [
-    'git+https://github.com/IL2HorusTeam/il2fb-commons.git#egg=il2fb-commons-0.11.0dev0',
-]
 
 # Get VERSION
 version_file = os.path.join('il2fb', 'config', 'difficulty', 'version.py')
