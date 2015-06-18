@@ -7,10 +7,28 @@ from setuptools import setup
 
 __here__ = os.path.abspath(os.path.dirname(__file__))
 
+
+def parse_requiements(stream):
+    pass
+
+
 README = open(os.path.join(__here__, 'README.rst')).read()
+
+# Comment parsing of requirements temporally for development
+# REQUIREMENTS = [
+#     i.strip()
+#     for i in
+#     open(os.path.join(__here__, 'requirements', 'dist.txt')).readlines()
+# ]
 REQUIREMENTS = [
-    x.strip()
-    for x in open(os.path.join(__here__, 'requirements.txt')).readlines()
+    'candv>=1.3,<1.4',
+    'six>=1.6.1',
+    'verboselib>=0.2,<0.3',
+    'stringlike>=0.3.3',
+    'il2fb-commons>=0.11.0dev0',
+]
+DEPENDENCIES = [
+    'git+https://github.com/IL2HorusTeam/il2fb-commons.git#egg=il2fb-commons-0.11.0dev0',
 ]
 
 # Get VERSION
@@ -41,6 +59,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=REQUIREMENTS,
+    dependency_links=DEPENDENCIES,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -48,8 +67,6 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Topic :: Software Development :: Libraries',
     ],

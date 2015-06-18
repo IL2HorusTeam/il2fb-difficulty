@@ -3,7 +3,7 @@ IL-2 FB Difficulty
 
 |pypi_package| |pypi_downloads| |python_versions| |license|
 
-|unix_build| |coverage_status|
+|unix_build| |windows_build| |coverage_status|
 
 |codeclimate| |codacy| |quality| |health| |requirements|
 
@@ -15,6 +15,10 @@ built using this library.
 
 .. |unix_build| image:: http://img.shields.io/travis/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
    :target: https://travis-ci.org/IL2HorusTeam/il2fb-difficulty
+
+.. |windows_build| image:: https://ci.appveyor.com/api/projects/status/4al6am94oqxx053r/branch/master?svg=true
+    :target: https://ci.appveyor.com/project/oblalex/il2fb-difficulty
+    :alt: Build status of the master branch on Windows
 
 .. |coverage_status| image:: http://img.shields.io/coveralls/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
    :target: https://coveralls.io/r/IL2HorusTeam/il2fb-difficulty?branch=master
@@ -48,7 +52,7 @@ built using this library.
    :target: https://crate.io/packages/il2fb-difficulty/
    :alt: Number of downloads of PyPI package
 
-.. |python_versions| image:: https://img.shields.io/badge/Python-2.7,3.2,3.3,3.4-brightgreen.svg?style=flat
+.. |python_versions| image:: https://img.shields.io/badge/Python-2.7,3.4-brightgreen.svg?style=flat
    :alt: Supported versions of Python
 
 .. |license| image:: https://img.shields.io/badge/license-LGPLv3-blue.svg?style=flat
