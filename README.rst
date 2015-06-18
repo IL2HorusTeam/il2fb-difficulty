@@ -19,7 +19,7 @@ built using this library.
    :alt: Test coverage
 
 .. |codacy| image:: https://www.codacy.com/project/badge/bba471fc551e437f9f92c078eb03a60b
-   :target: https://www.codacy.com/app/oblovatniy_3001/il2fb-difficulty
+   :target: https://www.codacy.com/app/oblalex/il2fb-difficulty
    :alt: Codacy Code Review
 
 .. |quality| image:: https://scrutinizer-ci.com/g/IL2HorusTeam/il2fb-difficulty/badges/quality-score.png?b=master&style=flat
