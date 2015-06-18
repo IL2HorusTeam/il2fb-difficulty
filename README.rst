@@ -3,7 +3,9 @@ IL-2 FB Difficulty
 
 |pypi_package| |pypi_downloads| |python_versions| |license|
 
-|unix_build| |coverage_status| |codacy| |quality| |health| |requirements|
+|unix_build| |coverage_status|
+
+|codeclimate| |codacy| |quality| |health| |requirements|
 
 Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
 
@@ -17,6 +19,10 @@ built using this library.
 .. |coverage_status| image:: http://img.shields.io/coveralls/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
    :target: https://coveralls.io/r/IL2HorusTeam/il2fb-difficulty?branch=master
    :alt: Test coverage
+
+.. |codeclimate| image:: https://codeclimate.com/github/IL2HorusTeam/il2fb-difficulty/badges/gpa.svg
+   :target: https://codeclimate.com/github/IL2HorusTeam/il2fb-difficulty
+   :alt: Code Climate
 
 .. |codacy| image:: https://www.codacy.com/project/badge/bba471fc551e437f9f92c078eb03a60b
    :target: https://www.codacy.com/app/oblalex/il2fb-difficulty
