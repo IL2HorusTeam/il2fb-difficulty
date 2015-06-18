@@ -25,7 +25,7 @@ REQUIREMENTS = [
     'six>=1.6.1',
     'verboselib>=0.2,<0.3',
     'stringlike>=0.3.3',
-    'il2fb-commons>=0.11.0dev0',
+    'il2fb-commons==0.11.0dev0',
 ]
 DEPENDENCIES = [
     'git+https://github.com/IL2HorusTeam/il2fb-commons.git#egg=il2fb-commons-0.11.0dev0',
