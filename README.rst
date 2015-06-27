@@ -20,8 +20,8 @@ built using this library.
     :target: https://ci.appveyor.com/project/oblalex/il2fb-difficulty
     :alt: Build status of the master branch on Windows
 
-.. |coverage_status| image:: http://img.shields.io/coveralls/IL2HorusTeam/il2fb-difficulty.svg?style=flat&branch=master
-   :target: https://coveralls.io/r/IL2HorusTeam/il2fb-difficulty?branch=master
+.. |coverage_status| image:: http://codecov.io/github/IL2HorusTeam/il2fb-difficulty/coverage.svg?branch=master
+   :target: http://codecov.io/github/IL2HorusTeam/il2fb-difficulty?branch=master
    :alt: Test coverage
 
 .. |codeclimate| image:: https://codeclimate.com/github/IL2HorusTeam/il2fb-difficulty/badges/gpa.svg
