@@ -7,8 +7,9 @@ python:
   - '3.4'
 install:
   - pip install -r ./requirements/ci.txt
+  - pip install -e .
 script:
-  - py.test --doctest-modules --verbose ./il2fb/config/difficulty ./tests --cov ./il2fb/config/difficulty ./tests
+  - py.test
 after_success:
   - codecov
   - ocular --data-file ".coverage" --config-file ".coveragerc"
