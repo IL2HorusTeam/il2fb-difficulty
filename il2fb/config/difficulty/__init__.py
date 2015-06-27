@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 from .constants import RULE_TYPES
 from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
-from .utils import flatten_dict
+from .transforms import flatten_settings
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
 )
@@ -28,7 +28,7 @@ def get_flat_settings(game_version=None):
     """
     Get all settings for game version without groupping.
     """
-    return flatten_dict(get_settings(game_version))
+    return flatten_settings(get_settings(game_version))
 
 
 def get_presets(game_version=None):
@@ -117,7 +117,7 @@ def compose_from_tabs(settings, game_version=None):
     game_version = game_version or GameVersions.get_default()
     validate_game_version(game_version)
 
-    return _compose(flatten_dict(settings), game_version)
+    return _compose(flatten_settings(settings), game_version)
 
 
 def _compose(flat_settings, game_version):
@@ -141,23 +141,20 @@ def autocorrect_difficulty(difficulty, game_version=None):
             for slave in rules[rule_type]:
                 value = is_parameter_set(difficulty, slave, game_version)
                 if value != expected_value:
-                    difficulty = toggle_parameter_raw(difficulty,
-                                                      slave,
-                                                      expected_value,
-                                                      settings)
+                    difficulty = toggle_parameter_raw(
+                        difficulty, slave, expected_value, settings,
+                    )
                     affected_parameters[slave] = master
 
         return difficulty
 
     for master, rules in actual_rules.items():
-        difficulty = _autocorrect_rules(difficulty,
-                                        master,
-                                        RULE_TYPES.TURNS_ON,
-                                        True)
-        difficulty = _autocorrect_rules(difficulty,
-                                        master,
-                                        RULE_TYPES.TURNS_OFF,
-                                        False)
+        difficulty = _autocorrect_rules(
+            difficulty, master, RULE_TYPES.TURNS_ON, True,
+        )
+        difficulty = _autocorrect_rules(
+            difficulty, master, RULE_TYPES.TURNS_OFF, False,
+        )
 
     return difficulty, affected_parameters
 
@@ -215,19 +212,22 @@ class ParameterToggler(object):
         self._check_can_be_toggled(difficulty, parameter)
         self.settings = get_flat_settings(self.game_version)
 
-        difficulty = toggle_parameter_raw(difficulty,
-                                          parameter,
-                                          value,
-                                          self.settings)
+        difficulty = toggle_parameter_raw(
+            difficulty, parameter, value, self.settings
+        )
         side_effects = self._get_side_effects(parameter, value)
         difficulty = self._process_side_effects(difficulty, side_effects)
 
         return difficulty, side_effects
 
     def _check_can_be_toggled(self, difficulty, parameter):
-        lockers = get_parameter_lockers(difficulty, parameter, self.game_version)
+        lockers = get_parameter_lockers(
+            difficulty, parameter, self.game_version
+        )
         if lockers:
-            raise LockedParameterException(parameter, lockers, self.game_version)
+            raise LockedParameterException(
+                parameter, lockers, self.game_version
+            )
 
     def _get_side_effects(self, parameter, value):
         rules = get_rules(self.game_version)
@@ -236,20 +236,17 @@ class ParameterToggler(object):
     def _process_side_effects(self, difficulty, side_effects):
         if RULE_TYPES.TURNS_ON in side_effects:
             for parameter in side_effects[RULE_TYPES.TURNS_ON]:
-                difficulty = toggle_parameter_raw(difficulty,
-                                                  parameter,
-                                                  True,
-                                                  self.settings)
+                difficulty = toggle_parameter_raw(
+                    difficulty, parameter, True, self.settings,
+                )
 
         if RULE_TYPES.TURNS_OFF in side_effects:
             for parameter in side_effects[RULE_TYPES.TURNS_OFF]:
-                difficulty = toggle_parameter_raw(difficulty,
-                                                  parameter,
-                                                  False,
-                                                  self.settings)
+                difficulty = toggle_parameter_raw(
+                    difficulty, parameter, False, self.settings,
+                )
 
         return difficulty
 
 
 toggle_parameter = ParameterToggler()
-del ParameterToggler
