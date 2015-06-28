@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 13:08+0300\n"
-"PO-Revision-Date: 2015-06-28 13:10+0300\n"
+"POT-Creation-Date: 2015-06-28 13:20+0300\n"
+"PO-Revision-Date: 2015-06-28 13:21+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -267,13 +267,13 @@ msgstr "Нормально"
 msgid "Full real"
 msgstr "Как в жизни"
 
-#: exceptions.py:23
+#: exceptions.py:25
 #, python-brace-format
 msgid ""
-"Parameter '{parameter}' is locked by '{lockers}' accordingly to the rules of "
+"Parameter '{parameter}' is locked by {lockers} accordingly to the rules of "
 "game version '{version}'."
 msgstr ""
-"Параметр '{parameter}' заблокирован '{lockers}' в соответствии с правилами "
+"Параметр '{parameter}' заблокирован {lockers} в соответствии с правилами "
 "игры версии '{version}'."
 
 #: validators.py:16

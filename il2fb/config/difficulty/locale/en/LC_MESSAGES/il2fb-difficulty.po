@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 13:08+0300\n"
+"POT-Creation-Date: 2015-06-28 13:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,10 +265,10 @@ msgstr ""
 msgid "Full real"
 msgstr ""
 
-#: exceptions.py:23
+#: exceptions.py:25
 #, python-brace-format
 msgid ""
-"Parameter '{parameter}' is locked by '{lockers}' accordingly to the rules of "
+"Parameter '{parameter}' is locked by {lockers} accordingly to the rules of "
 "game version '{version}'."
 msgstr ""
 
