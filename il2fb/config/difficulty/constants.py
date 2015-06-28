@@ -12,19 +12,19 @@ _ = translations.ugettext_lazy
 
 
 class PARAMETERS(Values):
-    WIND_TURBULENCE = VerboseValueConstant(
+    WIND_N_TURBULENCE = VerboseValueConstant(
         value='WindTurbulence',
         verbose_name=_("Wind and turbulence"),
     )
     FLUTTER_EFFECT = VerboseValueConstant(
         value='FlutterEffect',
-        verbose_name=_("Flutter"),
+        verbose_name=_("Flutter effect"),
     )
-    STALL_SPINS = VerboseValueConstant(
-        value='StallSpins',
-        verbose_name=_("Stall spins"),
+    STALLS_N_SPINS = VerboseValueConstant(
+        value='StallsSpins',
+        verbose_name=_("Stalls and spins"),
     )
-    BLACKOUTS_REDOUTS = VerboseValueConstant(
+    BLACKOUTS_N_REDOUTS = VerboseValueConstant(
         value='BlackoutsRedouts',
         verbose_name=_("Blackouts and redouts"),
     )
@@ -32,15 +32,15 @@ class PARAMETERS(Values):
         value='EngineOverheat',
         verbose_name=_("Engine overheat"),
     )
-    TORQUE_GYRO_EFFECTS = VerboseValueConstant(
+    TORQUE_N_GYRO_EFFECTS = VerboseValueConstant(
         value='TorqueGyroEffects',
-        verbose_name=_("Gyroscopic moment"),
+        verbose_name=_("Torque and gyro effects"),
     )
     REALISTIC_LANDING = VerboseValueConstant(
         value='RealisticLanding',
-        verbose_name=_("Realistic landing"),
+        verbose_name=_("Realistic landings"),
     )
-    TAKEOFF_LANDING = VerboseValueConstant(
+    TAKEOFF_N_LANDING = VerboseValueConstant(
         value='TakeoffLanding',
         verbose_name=_("Take-off and landing"),
     )
@@ -50,7 +50,7 @@ class PARAMETERS(Values):
     )
     NO_OUTSIDE_VIEWS = VerboseValueConstant(
         value='NoOutSideViews',
-        verbose_name=_("No outside views"),
+        verbose_name=_("No external views"),
     )
     HEAD_SHAKE = VerboseValueConstant(
         value='HeadShake',
@@ -58,8 +58,8 @@ class PARAMETERS(Values):
     )
     NO_ICONS = VerboseValueConstant(
         value='NoIcons',
-        verbose_name=_("No icons"),
-        help_text=_("Do not display player icons on map"),
+        verbose_name=_("No player map icons"),
+        help_text=_("Do not display player icon on map"),
     )
     REALISTIC_GUNNERY = VerboseValueConstant(
         value='RealisticGunnery',
@@ -67,7 +67,7 @@ class PARAMETERS(Values):
     )
     LIMITED_AMMO = VerboseValueConstant(
         value='LimitedAmmo',
-        verbose_name=_("Limited ammunition"),
+        verbose_name=_("Limited ammo"),
     )
     LIMITED_FUEL = VerboseValueConstant(
         value='LimitedFuel',
@@ -115,7 +115,7 @@ class PARAMETERS(Values):
     )
     OVERLOAD_LIMITS = VerboseValueConstant(
         value='GLimits',
-        verbose_name=_("Overload limits"),
+        verbose_name=_("G-force limits"),
     )
     REALISTIC_PILOT_VULNERABILITY = VerboseValueConstant(
         value='RealisticPilotVulnerability',
@@ -123,7 +123,7 @@ class PARAMETERS(Values):
     )
     REALISTIC_NAVIGATION_INSTRUMENTS = VerboseValueConstant(
         value='RealisticNavigationInstruments',
-        verbose_name=_("Realistic navigation instruments"),
+        verbose_name=_("Realistic navigation"),
     )
     NO_PLAYER_ICON = VerboseValueConstant(
         value='NoPlayerIcon',
@@ -143,34 +143,34 @@ class PARAMETERS(Values):
         value='RealisticTorpedoing',
         verbose_name=_("Realistic torpedoing"),
     )
-    #: Deprecated approximately since v4.11
+    #: Deprecated since v4.12 in favour of 'REALISTIC_ROCKETS_SPREAD'
     REALISTIC_MISSILES_VARIATION = VerboseValueConstant(
         value='RealisticMissilesVariation',
         verbose_name=_("Realistic spread of missiles"),
     )
     NO_SELF_VIEW = VerboseValueConstant(
         value='NoSelfView',
-        verbose_name=_("No self view"),
+        verbose_name=_("No player's own view"),
     )
-    NO_FOE_VIEW = VerboseValueConstant(
+    NO_ENEMY_VIEWS = VerboseValueConstant(
         value='NoFoeView',
-        verbose_name=_("No foe view"),
-        help_text=_("Without view of enemies")
+        verbose_name=_("No enemy views"),
+        help_text=_("Without view of enemies"),
     )
-    NO_FRIENDLY_VIEW = VerboseValueConstant(
+    NO_FRIENDLY_VIEWS = VerboseValueConstant(
         value='NoFriendlyView',
-        verbose_name=_("No friendly view"),
+        verbose_name=_("No friendly views"),
         help_text=_("Without view of friends"),
     )
-    #: Deprecated approximately since v4.11
+    #: Deprecated approximately since v4.11 in favour of 'NO_AIRCRAFT_VIEWS'
     NO_PLANES_VIEW = VerboseValueConstant(
         value='NoPlanesView',
         verbose_name=_("No planes view"),
     )
-    #: Deprecated approximately since v4.11
-    NO_AIRCRAFT_CARRIER_VIEW = VerboseValueConstant(
+    #: Deprecated approximately since v4.11 in favour of 'NO_SEA_UNIT_VIEWS'
+    NO_AIRCRAFT_CARRIER_VIEWS = VerboseValueConstant(
         value='NoACarrierView',
-        verbose_name=_("No aircraft carrier view"),
+        verbose_name=_("No aircraft carrier views"),
         help_text=_("Without view of aircraft carriers"),
     )
     #: Introduced in v4.12
@@ -181,12 +181,12 @@ class PARAMETERS(Values):
     #: Introduced in v4.12
     SHARED_KILLS = VerboseValueConstant(
         value='SharedKills',
-        verbose_name=_("Group win"),
+        verbose_name=_("Shared kills"),
     )
     #: Introduced in v4.12
     SHARED_KILLS_HISTORICAL = VerboseValueConstant(
         value='SharedKillsHistorical',
-        verbose_name=_("Historical limitation for group win"),
+        verbose_name=_("Historically restricted shared kills"),
     )
     #: Introduced in v4.12
     REALISTIC_ROCKETS_SPREAD = VerboseValueConstant(
@@ -196,33 +196,33 @@ class PARAMETERS(Values):
     #: Introduced approximately in v4.11
     NO_SEA_UNIT_VIEWS = VerboseValueConstant(
         value='NoSeaUnitViews',
-        verbose_name=_("No aircraft carrier view"),
+        verbose_name=_("No aircraft carrier views"),
         help_text=_("Without view of aircraft carriers"),
     )
     #: Introduced approximately in v4.11
     NO_AIRCRAFT_VIEWS = VerboseValueConstant(
         value='NoAircraftViews',
-        verbose_name=_("No planes view"),
-        help_text=_("Without view of aircraft"),
+        verbose_name=_("No aircraft views"),
+        help_text=_("Without views of aircrafts"),
     )
     #: Introduced approximately in v4.11
-    FRAGILE_TORPS = VerboseValueConstant(
+    FRAGILE_TORPEDOES = VerboseValueConstant(
         value='FragileTorps',
-        verbose_name=_("Realistic torpedoing"),
+        verbose_name=_("Fragile torpedoes"),
     )
     #: Available only for server
     NO_OWN_PLAYER_VIEWS = VerboseValueConstant(
         value='NoOwnPlayerViews',
         verbose_name=_("No self view after takeoff"),
-        help_text=_("You can look at your own plane from outside only before "
-                    "takeoff")
+        help_text=_(
+            "You can look at your own plane from outside only before takeoff"
+        ),
     )
     #: Introduced in v4.13
     REALISTIC_BOMBSIGHTS = VerboseValueConstant(
         value='RealisticBombSights',
         verbose_name=_("Realistic bombing"),
-        help_text=_("All aspects of the bombsight working at maximum according"
-                    " to the actual technical documentation")
+        help_text=_("Use realistic bombsight inputs"),
     )
 
 
