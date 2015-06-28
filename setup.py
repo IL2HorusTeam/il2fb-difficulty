@@ -28,14 +28,9 @@ with open(os.path.join(__here__, 'requirements', 'dist.txt')) as f:
 
 README = open(os.path.join(__here__, 'README.rst')).read()
 
-# Get VERSION
-version_file = os.path.join('il2fb', 'config', 'difficulty', 'version.py')
-# Use exec for compabibility with Python 3
-exec(open(version_file).read())
-
 setup(
     name='il2fb-difficulty',
-    version=str(VERSION),
+    version='1.3.0.dev0',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     keywords=[
