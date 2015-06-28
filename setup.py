@@ -22,8 +22,8 @@ def split_requirements(lines):
     return requirements, dependencies
 
 with open(os.path.join(__here__, 'requirements', 'dist.txt')) as f:
-    REQUIREMENTS = map(lambda x: x.strip(), f)
-    REQUIREMENTS = filter(lambda x: x and not x.startswith('#'), REQUIREMENTS)
+    REQUIREMENTS = [x.strip() for x in f]
+    REQUIREMENTS = [x for x in REQUIREMENTS if x and not x.startswith('#')]
     REQUIREMENTS, DEPENDENCIES = split_requirements(REQUIREMENTS)
 
 README = open(os.path.join(__here__, 'README.rst')).read()
