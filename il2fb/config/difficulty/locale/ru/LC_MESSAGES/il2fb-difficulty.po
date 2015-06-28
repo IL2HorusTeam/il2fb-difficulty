@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 12:31+0300\n"
-"PO-Revision-Date: 2015-06-28 12:33+0300\n"
+"POT-Creation-Date: 2015-06-28 13:08+0300\n"
+"PO-Revision-Date: 2015-06-28 13:10+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -267,22 +267,35 @@ msgstr "Нормально"
 msgid "Full real"
 msgstr "Как в жизни"
 
-#: validators.py:15
-msgid "Difficulty is not an integer"
-msgstr "Сложность не является целым числом"
+#: exceptions.py:23
+#, python-brace-format
+msgid ""
+"Parameter '{parameter}' is locked by '{lockers}' accordingly to the rules of "
+"game version '{version}'."
+msgstr ""
+"Параметр '{parameter}' заблокирован '{lockers}' в соответствии с правилами "
+"игры версии '{version}'."
 
-#: validators.py:17
-msgid "Difficulty must be a positive integer"
-msgstr "Сложность должна быть положительным целым числом"
+#: validators.py:16
+msgid "Difficulty is not an integer."
+msgstr "Сложность не является целым числом."
 
-#: validators.py:22
-msgid "Settings must be a dictionary"
-msgstr "Настройки должны быть словарем"
+#: validators.py:19
+msgid "Difficulty must be a positive integer."
+msgstr "Сложность должна быть положительным целым числом."
 
-#: validators.py:28
-msgid "Type \"{:}\" is invalid for game version. \"{:}\" was expected."
-msgstr "\"{:}\" — неверный тип версии игры. Ожидаемый тип: \"{:}\"."
+#: validators.py:25
+#, python-brace-format
+msgid "Settings must be an instance of '{type}' or its subclass."
+msgstr "Настройки должны быть экземпляром '{type}' или его подкласса."
 
-#: validators.py:34
-msgid "Unknown game version \"{:}\". Supported versions: {:}."
-msgstr "Неизвестная версия игры \"{:}\". Поддерживаемые версии: {:}."
+#: validators.py:32
+#, python-brace-format
+msgid "Type '{actual}' is invalid for game version. '{expected}' was expected."
+msgstr "'{actual}' — неверный тип версии игры. Ожидаемый тип: '{expected}'."
+
+#: validators.py:41
+#, python-brace-format
+msgid "Unknown game version '{actual}'. Supported versions: {supported}."
+msgstr ""
+"Неизвестная версия игры '{actual}'. Поддерживаемые версии: {supported}."

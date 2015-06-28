@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from .utils import translations
+
+
+_ = translations.ugettext
+
 
 class LockedParameterException(Exception):
     """
@@ -12,9 +17,11 @@ class LockedParameterException(Exception):
         self.lockers = lockers
         self.game_version = game_version
 
-        lockers = ', '.join(["'%s'" % x.value for x in lockers])
+        lockers = ', '.join(["'{0}'".format(x.value) for x in lockers])
 
         super(LockedParameterException, self).__init__(
-            "Parameter '{:}' is locked by {:} accordingly to the rules of "
-            "game version {:}."
-            .format(parameter.value, lockers, game_version.value))
+            _("Parameter '{parameter}' is locked by '{lockers}' accordingly "
+              "to the rules of game version '{version}'.")
+            .format(parameter=parameter.value,
+                    lockers=lockers,
+                    version=game_version.value))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 12:31+0300\n"
+"POT-Creation-Date: 2015-06-28 13:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,22 +265,32 @@ msgstr ""
 msgid "Full real"
 msgstr ""
 
-#: validators.py:15
-msgid "Difficulty is not an integer"
+#: exceptions.py:23
+#, python-brace-format
+msgid ""
+"Parameter '{parameter}' is locked by '{lockers}' accordingly to the rules of "
+"game version '{version}'."
 msgstr ""
 
-#: validators.py:17
-msgid "Difficulty must be a positive integer"
+#: validators.py:16
+msgid "Difficulty is not an integer."
 msgstr ""
 
-#: validators.py:22
-msgid "Settings must be a dictionary"
+#: validators.py:19
+msgid "Difficulty must be a positive integer."
 msgstr ""
 
-#: validators.py:28
-msgid "Type \"{:}\" is invalid for game version. \"{:}\" was expected."
+#: validators.py:25
+#, python-brace-format
+msgid "Settings must be an instance of '{type}' or its subclass."
 msgstr ""
 
-#: validators.py:34
-msgid "Unknown game version \"{:}\". Supported versions: {:}."
+#: validators.py:32
+#, python-brace-format
+msgid "Type '{actual}' is invalid for game version. '{expected}' was expected."
+msgstr ""
+
+#: validators.py:41
+#, python-brace-format
+msgid "Unknown game version '{actual}'. Supported versions: {supported}."
 msgstr ""
