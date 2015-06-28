@@ -11,15 +11,16 @@ class LockedParameterException(Exception):
     Raise this exception when someone wants to toggle some parameter while it's
     locked by some another parameter accordingly to the rules.
 
-    >>> from verboselib import use_language
     >>> from il2fb.commons import GameVersions
     >>> from il2fb.config.difficulty.constants import PARAMETERS
+    >>>
     >>> e = LockedParameterException(PARAMETERS.NO_OWN_PLAYER_VIEWS,
     ...                              [PARAMETERS.NO_OUTSIDE_VIEWS, ],
     ...                              GameVersions.v4_12)
-    >>> use_language('en')
-    >>> str(e)
-    "Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' accordingly to the rules of game version '4.12'."
+    >>> raise e # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    LockedParameterException: Parameter 'NoOwnPlayerViews' is locked by 'NoOutSideViews' accordingly to the rules of game version '4.12'.
     """
 
     def __init__(self, parameter, lockers, game_version):
