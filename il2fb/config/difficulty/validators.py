@@ -38,10 +38,17 @@ def validate_difficulty(value):
 
 
 def validate_settings(value):
+    """
+    >>> validate_settings({})
+    >>> validate_settings([])
+    Traceback (most recent call last):
+        ...
+    TypeError: Settings must be an instance of 'dict' or its subclass.
+    """
     if not isinstance(value, dict):
         raise TypeError(
-            _("Settings must be an instance of '{type}' or its subclass.")
-            .format(type=dict))
+            _("Settings must be an instance of '{expected}' or its subclass.")
+            .format(expected=dict.__name__))
 
 
 def validate_game_version(value):
