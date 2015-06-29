@@ -9,6 +9,7 @@ from il2fb.commons import GameVersions
 from .constants import RULE_TYPES
 from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
+from .utils.bitwise import is_bit_set
 from .utils.transforms import flatten_dict
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
@@ -84,7 +85,7 @@ def decompose(difficulty, game_version=None):
     validate_difficulty(difficulty)
     settings = get_flat_settings(game_version)
     return {
-        code_name: is_position_set(difficulty, number)
+        code_name: is_bit_set(difficulty, number)
         for code_name, number in settings.items()
     }
 
@@ -97,7 +98,7 @@ def decompose_to_tabs(difficulty, game_version=None):
     settings = get_settings(game_version)
     return OrderedDict([
         (tab, OrderedDict([
-            (parameter, is_position_set(difficulty, position))
+            (parameter, is_bit_set(difficulty, position))
             for parameter, position in parameters.items()
         ]))
         for tab, parameters in settings.items()
@@ -171,18 +172,9 @@ def autocorrect_difficulty(difficulty, game_version=None):
     return difficulty, affected_parameters
 
 
-def is_position_set(difficulty, position):
-    """
-    Check if difficulty parameter is present in difficulty integer value.
-
-    Difficulty value = 2^position, e.g. 1024 = 2^10.
-    """
-    return ((1 << position) & difficulty) > 0
-
-
 def is_parameter_set(difficulty, parameter, game_version=None):
     position = get_parameter_position(parameter, game_version)
-    return is_position_set(difficulty, position)
+    return is_bit_set(difficulty, position)
 
 
 def get_parameter_position(parameter, game_version=None):
