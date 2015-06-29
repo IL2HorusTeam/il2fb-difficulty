@@ -134,7 +134,7 @@ def compose_from_tabs(settings, game_version=None):
 
 def _compose(flat_settings, game_version):
     parameters = get_flat_settings(game_version)
-    return sum([1 << parameters[k] for k, v in flat_settings.items() if v])
+    return sum(1 << parameters[k] for k, v in flat_settings.items() if v)
 
 
 def autocorrect_difficulty(difficulty, game_version=None):
