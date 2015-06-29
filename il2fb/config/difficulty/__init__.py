@@ -19,7 +19,9 @@ def get_settings(game_version=None):
     """
     Get all settings for game version groupped by tabs.
     """
-    game_version = game_version or GameVersions.get_default()
+    if not game_version:
+        game_version = GameVersions.get_default()
+
     validate_game_version(game_version)
     return SETTINGS[game_version]
 
@@ -35,7 +37,9 @@ def get_presets(game_version=None):
     """
     Get all presets for game version.
     """
-    game_version = game_version or GameVersions.get_default()
+    if not game_version:
+        game_version = GameVersions.get_default()
+
     validate_game_version(game_version)
     return PRESETS[game_version]
 
@@ -51,7 +55,9 @@ def get_rules(game_version=None):
     """
     Get all rules for game version.
     """
-    game_version = game_version or GameVersions.get_default()
+    if not game_version:
+        game_version = GameVersions.get_default()
+
     validate_game_version(game_version)
     return RULES[game_version]
 
@@ -99,9 +105,10 @@ def compose(settings, game_version=None):
     """
     Convert a dictionary of flat difficulty settings into an integer value.
     """
-    validate_settings(settings)
+    if not game_version:
+        game_version = GameVersions.get_default()
 
-    game_version = game_version or GameVersions.get_default()
+    validate_settings(settings)
     validate_game_version(game_version)
 
     return _compose(settings, game_version)
@@ -112,9 +119,10 @@ def compose_from_tabs(settings, game_version=None):
     Convert a dictionary of difficulty settings groupped by tabs into an
     integer value.
     """
-    validate_settings(settings)
+    if not game_version:
+        game_version = GameVersions.get_default()
 
-    game_version = game_version or GameVersions.get_default()
+    validate_settings(settings)
     validate_game_version(game_version)
 
     return _compose(flatten_settings(settings), game_version)
@@ -126,9 +134,10 @@ def _compose(flat_settings, game_version):
 
 
 def autocorrect_difficulty(difficulty, game_version=None):
-    validate_difficulty(difficulty)
+    if not game_version:
+        game_version = GameVersions.get_default()
 
-    game_version = game_version or GameVersions.get_default()
+    validate_difficulty(difficulty)
     validate_game_version(game_version)
 
     affected_parameters = {}
@@ -204,10 +213,11 @@ class ParameterToggler(object):
     __name__ = 'toggle_parameter'
 
     def __call__(self, difficulty, parameter, value, game_version=None):
-        validate_difficulty(difficulty)
+        if not game_version:
+            game_version = GameVersions.get_default()
 
-        self.game_version = game_version or GameVersions.get_default()
-        validate_game_version(self.game_version)
+        validate_difficulty(difficulty)
+        validate_game_version(game_version)
 
         self._check_can_be_toggled(difficulty, parameter)
         self.settings = get_flat_settings(self.game_version)

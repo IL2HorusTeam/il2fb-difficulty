@@ -35,7 +35,7 @@ setup(
     long_description=README,
     keywords=[
         'il2', 'il-2', 'fb', 'forgotten battles', 'difficulty', 'parser',
-        'emitter',
+        'emitter', 'config', 'difficulty',
     ],
     license='LGPLv3',
     url='https://github.com/IL2HorusTeam/il2fb-difficulty/',

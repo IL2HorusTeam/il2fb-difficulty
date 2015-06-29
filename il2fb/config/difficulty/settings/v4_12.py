@@ -3,9 +3,7 @@ from __future__ import absolute_import
 
 from collections import OrderedDict
 
-from ..constants import (
-    PARAMETERS, TABS, PRESETS as ALL_PRESETS, RULE_TYPES,
-)
+from ..constants import PARAMETERS, TABS, PRESET_TYPES, RULE_TYPES
 
 
 SETTINGS = OrderedDict([
@@ -123,7 +121,7 @@ RULES = {
 }
 
 PRESETS = OrderedDict([
-    (ALL_PRESETS.EASY, 1090682880),
-    (ALL_PRESETS.NORMAL, 6704004351),
-    (ALL_PRESETS.FULL_REAL, 4398046511103),
+    (PRESET_TYPES.EASY, 1090682880),
+    (PRESET_TYPES.NORMAL, 6704004351),
+    (PRESET_TYPES.FULL_REAL, 4398046511103),
 ])

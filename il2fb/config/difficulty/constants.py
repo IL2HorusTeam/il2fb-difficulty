@@ -234,7 +234,7 @@ class TABS(Constants):
     MISC = VerboseConstant(_("Miscellaneous"))
 
 
-class PRESETS(Constants):
+class PRESET_TYPES(Constants):
     EASY = VerboseConstant(_("Easy"))
     NORMAL = VerboseConstant(_("Normal"))
     FULL_REAL = VerboseConstant(_("Full real"))
