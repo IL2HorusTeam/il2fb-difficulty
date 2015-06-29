@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 from .constants import RULE_TYPES
 from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
-from .transforms import flatten_dict
+from .utils.transforms import flatten_dict
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
 )
