@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 from .constants import RULE_TYPES
 from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
-from .utils.bitwise import is_bit_set
+from .utils.bitwise import is_bit_set, toggle_bit
 from .utils.transforms import flatten_dict
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
@@ -193,14 +193,7 @@ def get_parameter_lockers(difficulty, parameter, game_version=None):
 
 def toggle_parameter_raw(difficulty, parameter, value, flat_settings):
     position = flat_settings[parameter]
-    mask = 1 << position
-
-    if value:
-        difficulty |= mask
-    else:
-        difficulty &= ~mask
-
-    return difficulty
+    return toggle_bit(difficulty, position, value)
 
 
 class ParameterToggler(object):
