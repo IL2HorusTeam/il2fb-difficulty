@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 from .constants import RULE_TYPES
 from .exceptions import LockedParameterException
 from .settings import SETTINGS, RULES, PRESETS
-from .transforms import flatten_settings
+from .transforms import flatten_dict
 from .validators import (
     validate_difficulty, validate_settings, validate_game_version,
 )
@@ -30,7 +30,7 @@ def get_flat_settings(game_version=None):
     """
     Get all settings for game version without groupping.
     """
-    return flatten_settings(get_settings(game_version))
+    return flatten_dict(get_settings(game_version))
 
 
 def get_presets(game_version=None):
@@ -44,11 +44,11 @@ def get_presets(game_version=None):
     return PRESETS[game_version]
 
 
-def get_preset_value(preset, game_version=None):
+def get_preset_value(preset_type, game_version=None):
     """
     Get preset value for particular game version.
     """
-    return get_presets(game_version).get(preset)
+    return get_presets(game_version).get(preset_type)
 
 
 def get_rules(game_version=None):
@@ -63,6 +63,9 @@ def get_rules(game_version=None):
 
 
 def get_actual_rules(difficulty, game_version=None):
+    """
+    Return subset of rules which are active for a given difficulty value.
+    """
     validate_difficulty(difficulty)
     all_rules = get_rules(game_version)
     result = {}
@@ -125,7 +128,7 @@ def compose_from_tabs(settings, game_version=None):
     validate_settings(settings)
     validate_game_version(game_version)
 
-    return _compose(flatten_settings(settings), game_version)
+    return _compose(flatten_dict(settings), game_version)
 
 
 def _compose(flat_settings, game_version):

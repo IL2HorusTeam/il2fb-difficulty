@@ -48,6 +48,7 @@ setup(
     packages=[
         'il2fb.config.difficulty',
         'il2fb.config.difficulty.settings',
+        'il2fb.config.difficulty.tests',
     ],
     include_package_data=True,
     install_requires=REQUIREMENTS,

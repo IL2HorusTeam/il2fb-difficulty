@@ -13,7 +13,7 @@ def inverse_dict(source):
     return {v: k for k, v in source.items()}
 
 
-def flatten_settings(settings):
+def flatten_dict(settings):
     """
     Combine all subdictionaries into a single one.
 
@@ -29,7 +29,7 @@ def flatten_settings(settings):
     ...         'four': 4,
     ...     },
     ... }
-    >>> flatten = flatten_settings(settings)
+    >>> flatten = flatten_dict(settings)
     >>> flatten == {'one': 1, 'two': 2, 'three': 3, 'four': 4}
     True
     """
