@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 
 from .. import (
     get_settings, get_flat_settings, get_presets, get_preset_value, get_rules,
-    get_actual_rules,
+    get_actual_rules, decompose, decompose_to_tabs,
 )
 from ..constants import PRESET_TYPES, PARAMETERS
 
@@ -53,12 +53,12 @@ class GetFlatSettingsTestCase(BaseTestCase):
     MOCK_SETTINGS = OrderedDict([
         (GameVersions.get_default(), OrderedDict([
             ('tab1', OrderedDict([
-                ('param1', 1),
-                ('param2', 2),
+                ('param1', 0),
+                ('param2', 1),
             ])),
             ('tab2', OrderedDict([
-                ('param3', 3),
-                ('param4', 4),
+                ('param3', 2),
+                ('param4', 3),
             ])),
         ])),
     ])
@@ -66,10 +66,10 @@ class GetFlatSettingsTestCase(BaseTestCase):
     def test_get_flat_settings(self):
         settings = get_flat_settings()
         self.assertEqual(settings, OrderedDict([
-            ('param1', 1),
-            ('param2', 2),
-            ('param3', 3),
-            ('param4', 4),
+            ('param1', 0),
+            ('param2', 1),
+            ('param3', 2),
+            ('param4', 3),
         ]))
 
 
@@ -175,3 +175,59 @@ class GetActualRulesTestCase(BaseTestCase):
             rules[PARAMETERS.NO_MAP_ICONS],
             "rules which are applied when NO_MAP_ICONS is on"
         )
+
+
+class DecompositionTestCase(BaseTestCase):
+
+    MOCK_SETTINGS = OrderedDict([
+        (GameVersions.get_default(), OrderedDict([
+            ('tab1', OrderedDict([
+                ('param1', 0),
+                ('param2', 1),
+            ])),
+            ('tab2', OrderedDict([
+                ('param3', 2),
+                ('param4', 3),
+            ])),
+        ])),
+    ])
+
+    def test_decompose(self):
+        result = decompose(0)
+        self.assertFalse(result['param1'])
+        self.assertFalse(result['param2'])
+        self.assertFalse(result['param3'])
+        self.assertFalse(result['param4'])
+
+        result = decompose(15)
+        self.assertTrue(result['param1'])
+        self.assertTrue(result['param2'])
+        self.assertTrue(result['param3'])
+        self.assertTrue(result['param4'])
+
+    def test_decompose_to_tabs(self):
+        result = decompose_to_tabs(0)
+
+        self.assertEqual(
+            list(result.keys()),
+            ['tab1', 'tab2', ]
+        )
+        self.assertEqual(
+            list(result['tab1'].keys()),
+            ['param1', 'param2', ]
+        )
+        self.assertEqual(
+            list(result['tab2'].keys()),
+            ['param3', 'param4', ]
+        )
+
+        self.assertFalse(result['tab1']['param1'])
+        self.assertFalse(result['tab1']['param2'])
+        self.assertFalse(result['tab2']['param3'])
+        self.assertFalse(result['tab2']['param4'])
+
+        result = decompose_to_tabs(15)
+        self.assertTrue(result['tab1']['param1'])
+        self.assertTrue(result['tab1']['param2'])
+        self.assertTrue(result['tab2']['param3'])
+        self.assertTrue(result['tab2']['param4'])
