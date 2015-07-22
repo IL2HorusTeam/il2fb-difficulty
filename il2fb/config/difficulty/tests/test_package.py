@@ -9,7 +9,7 @@ from il2fb.commons import GameVersions
 
 from .. import (
     get_settings, get_flat_settings, get_presets, get_preset_value, get_rules,
-    get_actual_rules, decompose, decompose_to_tabs,
+    get_actual_rules, decompose, decompose_to_tabs, compose, compose_from_tabs,
 )
 from ..constants import PRESET_TYPES, PARAMETERS
 
@@ -177,7 +177,7 @@ class GetActualRulesTestCase(BaseTestCase):
         )
 
 
-class DecompositionTestCase(BaseTestCase):
+class CompositionDecompositionTestCase(BaseTestCase):
 
     MOCK_SETTINGS = OrderedDict([
         (GameVersions.get_default(), OrderedDict([
@@ -231,3 +231,45 @@ class DecompositionTestCase(BaseTestCase):
         self.assertTrue(result['tab1']['param2'])
         self.assertTrue(result['tab2']['param3'])
         self.assertTrue(result['tab2']['param4'])
+
+    def test_compose(self):
+        result = compose({
+            'param1': False,
+            'param2': False,
+            'param3': False,
+            'param4': False,
+        })
+        self.assertEqual(result, 0)
+
+        result = compose({
+            'param1': True,
+            'param2': True,
+            'param3': True,
+            'param4': True,
+        })
+        self.assertEqual(result, 15)
+
+    def test_compose_from_tabs(self):
+        result = compose_from_tabs({
+            'tab1': {
+                'param1': False,
+                'param2': False,
+            },
+            'tab2': {
+                'param3': False,
+                'param4': False,
+            },
+        })
+        self.assertEqual(result, 0)
+
+        result = compose_from_tabs({
+            'tab1': {
+                'param1': True,
+                'param2': True,
+            },
+            'tab2': {
+                'param3': True,
+                'param4': True,
+            },
+        })
+        self.assertEqual(result, 15)
