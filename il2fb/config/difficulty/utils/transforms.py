@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-def inverse_dict(source):
+def flip_dict(source):
     """
     Swap keys and values in a dict.
 
-    >>> inverse_dict({})
+    >>> flip_dict({})
     {}
-    >>> inverse_dict({'one': 1, 'two': 2, })
+    >>> flip_dict({'one': 1, 'two': 2, })
     {1: 'one', 2: 'two'}
     """
     return {v: k for k, v in source.items()}

@@ -3,5 +3,5 @@ six>=1.6.1
 verboselib>=0.2,<0.3
 stringlike>=0.3.3
 
-# il2fb-commons>=0.11.0
+# il2fb-commons>=4.13-1.0.dev0
 -e git+https://github.com/IL2HorusTeam/il2fb-commons.git#egg=il2fb-commons

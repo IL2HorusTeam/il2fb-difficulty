@@ -2,7 +2,6 @@
 source = il2fb/config/difficulty
 omit =
     */tests/*
-    il2fb/config/difficulty/version.py
 
 [report]
 exclude_lines =

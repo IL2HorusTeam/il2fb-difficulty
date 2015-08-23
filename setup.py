@@ -30,7 +30,7 @@ README = open(os.path.join(__here__, 'README.rst')).read()
 
 setup(
     name='il2fb-difficulty',
-    version='1.3.0.dev0',
+    version='4.13-1.0.dev0',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     keywords=[
@@ -47,9 +47,7 @@ setup(
     ],
     packages=[
         'il2fb.config.difficulty',
-        'il2fb.config.difficulty.settings',
         'il2fb.config.difficulty.utils',
-        'il2fb.config.difficulty.tests',
     ],
     include_package_data=True,
     install_requires=REQUIREMENTS,
