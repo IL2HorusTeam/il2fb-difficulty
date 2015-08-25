@@ -12,13 +12,6 @@ from .utils.transforms import flatten_dict
 from .validators import validate_difficulty, validate_settings
 
 
-def get_preset_value(preset_type):
-    """
-    Get preset value for particular game version.
-    """
-    return PRESETS.get(preset_type)
-
-
 def get_actual_rules(difficulty):
     """
     Return subset of rules which are active for a given difficulty value.

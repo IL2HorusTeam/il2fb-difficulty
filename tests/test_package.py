@@ -7,8 +7,7 @@ import unittest
 from collections import OrderedDict
 
 from il2fb.config.difficulty import (
-    get_preset_value, get_actual_rules, decompose, decompose_to_tabs, compose,
-    compose_from_tabs,
+    get_actual_rules, decompose, decompose_to_tabs, compose, compose_from_tabs,
 )
 from il2fb.config.difficulty.constants import PRESET_TYPES, PARAMETERS
 from il2fb.config.difficulty.utils.transforms import flatten_dict
@@ -55,19 +54,6 @@ class BaseTestCase(unittest.TestCase):
                flatten_dict(self.MOCK_SETTINGS))
         _patch('il2fb.config.difficulty.constants.RULES', self.MOCK_RULES)
         _patch('il2fb.config.difficulty.constants.PRESETS', self.MOCK_PRESETS)
-
-
-class GetPresetValueTestCase(BaseTestCase):
-
-    MOCK_PRESETS = {
-        PRESET_TYPES.EASY: 123,
-    }
-
-    def test_get_preset_value(self):
-        self.assertEqual(get_preset_value(PRESET_TYPES.EASY), 123)
-
-    def test_get_preset_value_for_unknown_preset_type(self):
-        self.assertIsNone(get_preset_value(PRESET_TYPES.NORMAL))
 
 
 class GetActualRulesTestCase(BaseTestCase):
