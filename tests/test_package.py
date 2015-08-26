@@ -9,7 +9,7 @@ from collections import OrderedDict
 from il2fb.config.difficulty import (
     get_actual_rules, decompose, decompose_to_tabs, compose, compose_from_tabs,
 )
-from il2fb.config.difficulty.constants import PRESET_TYPES, PARAMETERS
+from il2fb.config.difficulty.constants import PARAMETERS
 from il2fb.config.difficulty.utils.transforms import flatten_dict
 
 
