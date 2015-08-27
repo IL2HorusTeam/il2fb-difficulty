@@ -134,13 +134,9 @@ class ParameterToggler(object):
         return difficulty, side_effects
 
     def _check_can_be_toggled(self, difficulty, parameter):
-        lockers = get_parameter_lockers(
-            difficulty, parameter, self.game_version
-        )
+        lockers = get_parameter_lockers(difficulty, parameter)
         if lockers:
-            raise LockedParameterException(
-                parameter, lockers, self.game_version
-            )
+            raise LockedParameterException(parameter, lockers)
 
     def _get_side_effects(self, parameter, value):
         return RULES[parameter][value] if parameter in RULES else {}
