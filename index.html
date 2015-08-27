@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IL-2 FB Difficulty Editor</title>
+
+  <!-- Compiled and minified Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css">
+
+  <link rel="stylesheet" href="./static/css/bootstrap.vertical-tabs.min.css">
+  <link rel="stylesheet" href="./static/css/bootstrap-switch.min.css">
+  <link rel="stylesheet" href="./static/css/jumbotron-narrow.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link href='./static/favicon.ico' rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <ul class="nav nav-pills pull-right" role="tablist">
+
+      <li role="presentation">
+        <div class="input-group" id="value_input_group">
+          <input type="text"
+                 id="value_input"
+                 class="form-control"
+                 maxlength="15"
+                 placeholder="Value..." disabled>
+          <div class="input-group-btn">
+            <button type="button"
+                    id="presets_selector"
+                    class="btn btn-default dropdown-toggle disabled"
+                    data-toggle="dropdown">Presets <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right"
+                id="presets_list"
+                role="menu">
+                {# Presets placeholder #}
+            </ul>
+          </div> <!-- /btn-group -->
+        </div> <!-- /input-group -->
+      </li>
+
+    </ul>
+    <h3 class="text-muted">IL-2 FB Difficulty Editor</h3>
+  </div>
+
+  <div class="jumbotron">
+    <h2>Doing magic...</h2>
+  </div>
+
+  <div id="main" class="row">
+
+    <div class="col-xs-3"> <!-- required for floating -->
+      <!-- Nav tabs -->
+      <ul id="tab_list" class="nav nav-tabs tabs-left">
+        <!-- Tab list placeholder -->
+      </ul>
+    </div>
+
+    <div class="col-xs-9">
+      <!-- Tab panes -->
+      <div id="tab_panes" class="tab-content">
+        <!-- Tab panes placeholder -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      Created by <a href='https://github.com/IL2HorusTeam/' target='_blank'>IL-2 Horus Team</a>
+      with usage of <a href='https://github.com/IL2HorusTeam/il2fb-difficulty' target='_blank'>il2fb-difficulty</a> Python package
+    </p>
+  </footer>
+
+</div> <!-- /container -->
+
+<a href="https://github.com/IL2HorusTeam/il2fb-difficulty" target="_blank"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/c6625ac1f3ee0a12250227cf83ce904423abf351/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png"></a>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+
+<script src="./static/js/bootstrap-switch.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="./static/js/ie10-viewport-bug-workaround.js"></script>
+
+<script type="text/javascript">
+  $(function(){
+    var $SCRIPT_ROOT = "https://il2fb-demo-services.herokuapp.com"
+    // var $SCRIPT_ROOT = "http://127.0.0.1:5000"
+    , presets_selector = $('#presets_selector')
+    , value_input = $('#value_input')
+    , presets_list = $('#presets_list')
+    , tab_list = $('#tab_list')
+    , tab_panes = $('#tab_panes')
+    , switch_options = {
+      size: 'small'
+      , onColor: 'success'
+      , offColor: 'danger'
+    }
+    , prevent_api_requests = false
+
+    value_input.keyup(function(){
+      var self = this
+      , new_value = self.value.replace(/[^\d]/,'').replace(/^0+/, '')
+
+      $(this).val(new_value)
+
+      if (self.timer !== undefined) {
+        clearInterval(self.timer)
+      }
+      self.timer = setInterval(function(){
+        clearInterval(self.timer)
+        delete self.timer
+
+        apply_current_value()
+      }, 300)
+    })
+
+    load_data()
+
+    /* Functions ----------------------------------------------------------- */
+
+    function get_url() {
+      var args = Array.prototype.slice.call(arguments)
+      return $SCRIPT_ROOT + '/' +["api", "v1", "difficulty", ].concat(args).join('/')
+    }
+
+    function load_data(){
+      value_input.prop('disabled', true)
+
+      presets_list.empty()
+      presets_selector.addClass('disabled')
+
+      tab_list.empty()
+      tab_panes.empty()
+
+      $('#main').hide()
+      $('.jumbotron').show()
+
+      $.getJSON(get_url("data"), function(result) {
+
+        presets_selector.removeClass('disabled')
+        value_input.prop('disabled', false)
+        $('.jumbotron').hide()
+        $('#main').show()
+
+        result.presets.map(function(item) {
+          presets_list
+          .append($('<li>')
+          .append($('<a>')
+                  .data('value', item.value)
+                  .text(item.title)
+                  .click(on_preset_selected)
+          ))
+        })
+
+        result.settings.map(function(item) {
+          var tab_id = 'tab_' + item.tab.code
+          , tab_link = $('<a>')
+                       .attr('href', '#'+tab_id)
+                       .attr('data-toggle', 'tab')
+                       .text(item.tab.title)
+          , tab_pane = $('<div>')
+                       .attr('id', tab_id)
+                       .addClass('tab-pane')
+
+          tab_list.append($('<li>').append(tab_link))
+          tab_panes.append(tab_pane)
+
+          // Show current tab, so bootstrap-switch can be rendered
+          tab_link.tab('show')
+
+          item.parameters.map(function(parameter) {
+            var input_id = 'param_' + parameter.code
+
+            input = $('<input>')
+                    .attr('type', 'checkbox')
+                    .attr('id', input_id)
+                    .attr('class', 'parameter')
+                    .data('code', parameter.code)
+                    .prop('checked', false)
+            tab_pane
+            .append($('<p>')
+            .append(input)
+            .append($('<label>')
+                    .attr('for', input_id)
+                    .attr('data-toggle', 'tooltip')
+                    .attr('title', parameter.help_text)
+                    .text(parameter.title)
+                    .tooltip()
+            ))
+
+            input
+            .bootstrapSwitch(switch_options)
+            .on('switchChange.bootstrapSwitch', on_parameter_changed)
+          })
+        })
+
+        tab_list.find('li:first a').tab('show')
+        apply_current_value()
+      })
+    }
+
+    function on_preset_selected(e){
+      e.preventDefault()
+      value_input.val($(this).data('value'))
+      value_input.keyup()
+    }
+
+    function apply_current_value(){
+      var difficulty = get_current_difficulty()
+      , inputs = $('.parameter')
+
+      inputs.off('switchChange.bootstrapSwitch')
+
+      $.post(
+        get_url("decompose")
+        , {
+          'difficulty': difficulty
+        }
+        , function(data) {
+
+          if (data.difficulty != difficulty) {
+            value_input.val(data.difficulty)
+          }
+
+          inputs.bootstrapSwitch('disabled', false)
+
+          for (var code in data.parameters) {
+            $('#param_' + code).bootstrapSwitch('state', data.parameters[code])
+          }
+
+          for (var i in data.locked) {
+            $('#param_' + data.locked[i]).bootstrapSwitch('disabled', true)
+          }
+
+          inputs.on('switchChange.bootstrapSwitch', on_parameter_changed)
+        }
+        , "json"
+      )
+    }
+
+    function on_parameter_changed(event, value){
+      if (prevent_api_requests) {
+        return
+      }
+
+      $.post(
+        get_url("toggle_parameter")
+        , {
+          'difficulty': get_current_difficulty()
+          , 'parameter': $(this).data('code')
+          , 'value': value
+        }
+        , function(data) {
+          value_input.val(data.difficulty)
+
+          prevent_api_requests = true
+
+          for (var i in data.side_effects.turns_on) {
+            $('#param_' + data.side_effects.turns_on[i]).bootstrapSwitch('state', true)
+          }
+
+          for (var i in data.side_effects.turns_off) {
+            $('#param_' + data.side_effects.turns_off[i]).bootstrapSwitch('state', false)
+          }
+
+          for (var i in data.side_effects.locks) {
+            $('#param_' + data.side_effects.locks[i]).bootstrapSwitch('disabled', true)
+          }
+
+          for (var i in data.side_effects.unlocks) {
+            $('#param_' + data.side_effects.unlocks[i]).bootstrapSwitch('disabled', false)
+          }
+
+          prevent_api_requests = false
+        }
+        , "json"
+      )
+    }
+
+    function get_current_difficulty(){
+      var result = parseInt(value_input.val().trim())
+      if (isNaN(result)) {
+        result = 0
+      }
+      return result
+    }
+  })
+</script>
+
+</body>
+</html>

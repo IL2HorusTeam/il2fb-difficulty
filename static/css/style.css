@@ -1,0 +1,20 @@
+#main {
+    display: none;
+}
+
+#value_input_group {
+    width: 300px;
+}
+
+#tab_panes p label {
+    font-weight: normal !important;
+    padding-left: 15px;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+}
+.footer :not(a) {
+    color: #AAA;
+}
