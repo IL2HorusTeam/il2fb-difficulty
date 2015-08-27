@@ -9,7 +9,7 @@ IL-2 FB Difficulty
 
 Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
 
-You can `use difficulty editor <https://di-2.herokuapp.com>`_ which is
+You can `use difficulty editor <http://il2horusteam.github.io/il2fb-difficulty/>`_ which is
 built using this library.
 
 
