@@ -80,7 +80,8 @@
   <footer class="footer">
     <p>
       Created by <a href='https://github.com/IL2HorusTeam/' target='_blank'>IL-2 Horus Team</a>
-      with usage of <a href='https://github.com/IL2HorusTeam/il2fb-difficulty' target='_blank'>il2fb-difficulty</a> Python package
+      with usage of <a href='https://github.com/IL2HorusTeam/il2fb-difficulty' target='_blank'>il2fb-difficulty</a>
+      Python package for <b>game version <span class="game-version"></span></b>
     </p>
   </footer>
 
@@ -104,6 +105,7 @@
   $(function(){
     var $SCRIPT_ROOT = "https://il2fb-demo-services.herokuapp.com"
     // var $SCRIPT_ROOT = "http://127.0.0.1:5000"
+    , game_version = '4.13'
     , presets_selector = $('#presets_selector')
     , value_input = $('#value_input')
     , presets_list = $('#presets_list')
@@ -115,6 +117,8 @@
       , offColor: 'danger'
     }
     , prevent_api_requests = false
+
+    $('.game-version').text(game_version)
 
     value_input.keyup(function(){
       var self = this
