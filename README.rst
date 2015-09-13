@@ -5,7 +5,7 @@ IL-2 FB Difficulty
 
 |unix_build| |windows_build| |coverage_status|
 
-|codeclimate| |codacy| |quality| |health| |requirements|
+|code_issues| |codeclimate| |codacy| |quality| |health| |requirements|
 
 Parser and emitter of difficulty settings for ``IL-2 Forgotten Battles``.
 
@@ -40,9 +40,13 @@ built using this library.
    :target: https://landscape.io/github/IL2HorusTeam/il2fb-difficulty/master
    :alt: Code Health
 
+.. |code_issues| image:: https://www.quantifiedcode.com/api/v1/project/876978f2d56f4ac88f50f8d271545083/badge.svg
+   :target: https://www.quantifiedcode.com/app/project/876978f2d56f4ac88f50f8d271545083
+   :alt: Code issues
+     
 .. |requirements| image:: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements.svg?branch=master
-    :target: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements/?branch=master
-    :alt: Requirements Status
+   :target: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements/?branch=master
+   :alt: Requirements Status
 
 .. |pypi_package| image:: http://img.shields.io/pypi/v/il2fb-difficulty.svg?style=flat
    :target: http://badge.fury.io/py/il2fb-difficulty/
