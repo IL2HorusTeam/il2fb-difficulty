@@ -43,7 +43,7 @@ built using this library.
 .. |code_issues| image:: https://www.quantifiedcode.com/api/v1/project/876978f2d56f4ac88f50f8d271545083/badge.svg
    :target: https://www.quantifiedcode.com/app/project/876978f2d56f4ac88f50f8d271545083
    :alt: Code issues
-     
+
 .. |requirements| image:: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements.svg?branch=master
    :target: https://requires.io/github/IL2HorusTeam/il2fb-difficulty/requirements/?branch=master
    :alt: Requirements Status
@@ -56,7 +56,7 @@ built using this library.
    :target: https://crate.io/packages/il2fb-difficulty/
    :alt: Number of downloads of PyPI package
 
-.. |python_versions| image:: https://img.shields.io/badge/Python-2.7,3.4-brightgreen.svg?style=flat
+.. |python_versions| image:: https://img.shields.io/badge/Python-2.7,3.4,3.5,3.6-brightgreen.svg?style=flat
    :alt: Supported versions of Python
 
 .. |license| image:: https://img.shields.io/badge/license-LGPLv3-blue.svg?style=flat
