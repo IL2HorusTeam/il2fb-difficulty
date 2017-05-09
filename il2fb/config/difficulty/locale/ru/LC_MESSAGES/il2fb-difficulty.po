@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 14:28+0300\n"
-"PO-Revision-Date: 2015-06-28 14:28+0300\n"
+"POT-Creation-Date: 2017-05-09 14:12+0300\n"
+"PO-Revision-Date: 2017-05-09 14:14+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -17,285 +17,297 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 2.0.1\n"
 
-#: constants.py:17
+#: constants.py:18
 msgid "Wind and turbulence"
 msgstr "Ветер и турбулентность"
 
-#: constants.py:21
+#: constants.py:22
 msgid "Flutter effect"
 msgstr "Флаттер"
 
-#: constants.py:25
+#: constants.py:26
 msgid "Stalls and spins"
 msgstr "Штопор"
 
-#: constants.py:29
+#: constants.py:30
 msgid "Blackouts and redouts"
 msgstr "Перегрузка"
 
-#: constants.py:33
+#: constants.py:34
 msgid "Engine overheat"
 msgstr "Перегрев двигателя"
 
-#: constants.py:37
+#: constants.py:38
 msgid "Torque and gyro effects"
 msgstr "Гироскопический момент"
 
-#: constants.py:41
+#: constants.py:42
 msgid "Realistic landings"
 msgstr "Реалистичная посадка"
 
-#: constants.py:45
+#: constants.py:46
 msgid "Take-off and landing"
 msgstr "Взлёт-посадка"
 
-#: constants.py:49
+#: constants.py:50
 msgid "Cockpit always on"
 msgstr "Вид только из кабины"
 
-#: constants.py:53
+#: constants.py:54
 msgid "No external views"
 msgstr "Отключить внешние виды"
 
-#: constants.py:57
+#: constants.py:58
 msgid "Head shake"
 msgstr "Перемещения головы"
 
-#: constants.py:61
+#: constants.py:62
 msgid "No player map icons"
 msgstr "Отключить маркер игрока на карте"
 
-#: constants.py:62
+#: constants.py:63
 msgid "Do not display player icon on map"
 msgstr "Отключить маркер игрока на карте"
 
-#: constants.py:66
+#: constants.py:67
 msgid "Realistic gunnery"
 msgstr "Реализм стрельбы"
 
-#: constants.py:70
+#: constants.py:71
 msgid "Limited ammo"
 msgstr "Ограниченный боезапас"
 
-#: constants.py:74
+#: constants.py:75
 msgid "Limited fuel"
 msgstr "Ограниченный запас топлива"
 
-#: constants.py:78
+#: constants.py:79
 msgid "Vulnerability"
 msgstr "Уязвимость"
 
-#: constants.py:82
+#: constants.py:83
 msgid "No look fixation on air targets"
 msgstr "Отключить фиксацию взгляда на воздушных целях"
 
-#: constants.py:86
+#: constants.py:87
 msgid "Clouds"
 msgstr "Облака"
 
-#: constants.py:90
+#: constants.py:91
 msgid "No map icons"
 msgstr "Отключить маркеры на карте"
 
-#: constants.py:94
+#: constants.py:95
 msgid "Separate start of engines"
 msgstr "Раздельный запуск двигателей"
 
-#: constants.py:98
+#: constants.py:99
 msgid "No instant success"
 msgstr "Выполнение задания"
 
-#: constants.py:102
+#: constants.py:103
 msgid "No minimap path"
 msgstr "Без маршрута на карте"
 
-#: constants.py:106
+#: constants.py:107
 msgid "No speed bar"
 msgstr "Без индикатора скорости"
 
-#: constants.py:110
+#: constants.py:111
 msgid "Complex engine management"
 msgstr "Полное управление двигателями"
 
-#: constants.py:114
+#: constants.py:115
 msgid "Reliability"
 msgstr "Реальная надёжность двигателей"
 
-#: constants.py:118
+#: constants.py:119
 msgid "G-force limits"
 msgstr "Динамическое ограничение перегрузки"
 
-#: constants.py:122
+#: constants.py:123
 msgid "Realistic pilot vulnerability"
 msgstr "Реалистичная уязвимость пилота"
 
-#: constants.py:126
+#: constants.py:127
 msgid "Realistic navigation"
 msgstr "Реалистичная навигация"
 
-#: constants.py:130
+#: constants.py:131
 msgid "No player icon"
 msgstr "Отключить маркер игрока на карте"
 
-#: constants.py:131
+#: constants.py:132
 msgid "Player icon is not shown on map"
 msgstr "Маркер, указывающий местоположение игрока не отображается на карте"
 
-#: constants.py:135
+#: constants.py:136
 msgid "No fog of war icons"
 msgstr "Отключить маркеры разведки на карте"
 
-#: constants.py:136
+#: constants.py:137
 msgid "Disable intelligence icons on map"
 msgstr "Маркеры, указывающие местоположение целей не отображаются на карте"
 
-#: constants.py:140
+#: constants.py:141
 msgid "Bomb fuses"
 msgstr "Бомбовые взрыватели"
 
-#: constants.py:144
+#: constants.py:145
 msgid "Realistic torpedoing"
 msgstr "Реалистичное торпедирование"
 
-#: constants.py:149 constants.py:194
+#: constants.py:150 constants.py:195
 msgid "Realistic spread of missiles"
 msgstr "Реалистичный разброс ракет"
 
-#: constants.py:153
+#: constants.py:154
 msgid "No player's own view"
 msgstr "Без собственного обзора"
 
-#: constants.py:157
+#: constants.py:158
 msgid "No enemy views"
 msgstr "Без обзора противников"
 
-#: constants.py:158
+#: constants.py:159
 msgid "Without view of enemies"
 msgstr "Отключение возможности переключения камеры на самолет противника"
 
-#: constants.py:162
+#: constants.py:163
 msgid "No friendly views"
 msgstr "Без обзора союзников"
 
-#: constants.py:163
+#: constants.py:164
 msgid "Without view of friends"
 msgstr "Отключение возможности переключения камеры на самолет союзника"
 
-#: constants.py:168
+#: constants.py:169
 msgid "No planes view"
 msgstr "Без обзора самолета"
 
-#: constants.py:173 constants.py:199
+#: constants.py:174 constants.py:200
 msgid "No aircraft carrier views"
 msgstr "Без обзора авианосцев"
 
-#: constants.py:174 constants.py:200
+#: constants.py:175 constants.py:201
 msgid "Without view of aircraft carriers"
 msgstr "Отключение возможности переключения камеры на любой авианосец или ВПП"
 
-#: constants.py:179
+#: constants.py:180
 msgid "No look fixation on ground targets"
 msgstr "Отключение фиксации взгляда на наземной цели"
 
-#: constants.py:184
+#: constants.py:185
 msgid "Shared kills"
 msgstr "Групповая победа"
 
-#: constants.py:189
+#: constants.py:190
 msgid "Historically restricted shared kills"
 msgstr "Историческое ограничение групповой победы"
 
-#: constants.py:205
+#: constants.py:206
 msgid "No aircraft views"
 msgstr "Без обзора самолетов"
 
-#: constants.py:206
+#: constants.py:207
 msgid "Without views of aircrafts"
 msgstr "Без обзора самолетов"
 
-#: constants.py:211
+#: constants.py:212
 msgid "Fragile torpedoes"
 msgstr "Реалистичное торпедирование"
 
-#: constants.py:216
+#: constants.py:217
 msgid "No self view after takeoff"
 msgstr "Без собственного обзора после взлёта"
 
-#: constants.py:218
+#: constants.py:219
 msgid "You can look at your own plane from outside only before takeoff"
 msgstr "Вы можете смотреть на свой самолет из внешнего вида только до взлёта"
 
-#: constants.py:224
+#: constants.py:225
 msgid "Realistic bombing"
 msgstr "Реалистичное бомбометание"
 
-#: constants.py:225
+#: constants.py:226
 msgid "Use realistic bombsight inputs"
 msgstr "Включить реализм бомбовых прицелов"
 
-#: constants.py:230
+#: constants.py:231
+msgid "Allow custom TrueColor (24-bit) skins"
+msgstr "Разрешить пользовательские TrueColor (24-бит) шкурки"
+
+#: constants.py:233
+msgid ""
+"Allow players to use custom TrueColor skins, which support 16'777'216 (24 "
+"bit) colors instead of 256 (8 bit). Not recommended for usage in online "
+"mode, as it can introduce performance issues and can cause game crashes."
+msgstr ""
+"Разрешить игрокам использовать собственные TrueColor “шкурки”, которые "
+"поддерживают 16’777’216 (24 бит) цветов вместо 256-ти (8 бит). Не "
+"рекоммендуется использовать в режиме сетевой игры из-за возможных проблем "
+"производительности вплоть до сбоев игры."
+
+#: constants.py:242
 msgid "Flight model"
 msgstr "Лётная модель"
 
-#: constants.py:231
+#: constants.py:243
 msgid "Weapons"
 msgstr "Вооружение"
 
-#: constants.py:232
+#: constants.py:244
 msgid "View"
 msgstr "Обзор"
 
-#: constants.py:233
+#: constants.py:245
 msgid "Icons and map"
 msgstr "Иконки и карта"
 
-#: constants.py:234
+#: constants.py:246
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: constants.py:238
+#: constants.py:378
 msgid "Easy"
 msgstr "Легко"
 
-#: constants.py:239
+#: constants.py:379
 msgid "Normal"
 msgstr "Нормально"
 
-#: constants.py:240
+#: constants.py:380
 msgid "Full real"
 msgstr "Как в жизни"
 
-#: exceptions.py:36
+#: exceptions.py:31
 #, python-brace-format
 msgid ""
 "Parameter '{parameter}' is locked by {lockers} accordingly to the rules of "
-"game version '{version}'."
+"game."
 msgstr ""
 "Параметр '{parameter}' заблокирован {lockers} в соответствии с правилами "
-"игры версии '{version}'."
+"игры."
 
-#: validators.py:29
+#: validators.py:31
 msgid "Difficulty value must be an integer."
 msgstr "Значение сложности должно быть целым числом."
 
-#: validators.py:32
+#: validators.py:34
 msgid "Difficulty value must be >= 0."
 msgstr "Значение сложности должно быть >= 0."
 
-#: validators.py:38
+#: validators.py:47
 #, python-brace-format
-msgid "Settings must be an instance of '{type}' or its subclass."
-msgstr "Настройки должны быть экземпляром '{type}' или его подкласса."
+msgid "Settings must be an instance of '{expected}' or its subclass."
+msgstr "Настройки должны быть экземпляром ‘{expected}' или его подкласса."
 
-#: validators.py:45
-#, python-brace-format
-msgid "Type '{actual}' is invalid for game version. '{expected}' was expected."
-msgstr "'{actual}' — неверный тип версии игры. Ожидаемый тип: '{expected}'."
+#~ msgid ""
+#~ "Type '{actual}' is invalid for game version. '{expected}' was expected."
+#~ msgstr "'{actual}' — неверный тип версии игры. Ожидаемый тип: '{expected}'."
 
-#: validators.py:54
-#, python-brace-format
-msgid "Unknown game version '{actual}'. Supported versions: {supported}."
-msgstr ""
-"Неизвестная версия игры '{actual}'. Поддерживаемые версии: {supported}."
+#~ msgid "Unknown game version '{actual}'. Supported versions: {supported}."
+#~ msgstr ""
+#~ "Неизвестная версия игры '{actual}'. Поддерживаемые версии: {supported}."

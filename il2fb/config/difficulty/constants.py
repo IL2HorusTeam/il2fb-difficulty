@@ -225,6 +225,17 @@ class PARAMETERS(Values):
         verbose_name=_("Realistic bombing"),
         help_text=_("Use realistic bombsight inputs"),
     )
+    #: Introduced in v4.13.4
+    USE_24BIT_SKINS = VerboseValueConstant(
+        value='Use24bitSkins',
+        verbose_name=_("Allow custom TrueColor (24-bit) skins"),
+        help_text=_(
+            "Allow players to use custom TrueColor skins, which support "
+            "16'777'216 (24 bit) colors instead of 256 (8 bit). "
+            "Not recommended for usage in online mode, as it can introduce "
+            "performance issues and can cause game crashes."
+        ),
+    )
 
 
 class TABS(Constants):
@@ -287,6 +298,7 @@ SETTINGS = OrderedDict([
         (PARAMETERS.HEAD_SHAKE, 10),
         (PARAMETERS.WIND_N_TURBULENCE, 0),
         (PARAMETERS.CLOUDS, 17),
+        (PARAMETERS.USE_24BIT_SKINS, 43),
     ])),
 ])
 

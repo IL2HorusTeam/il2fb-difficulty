@@ -21,16 +21,19 @@ def split_requirements(lines):
 
     return requirements, dependencies
 
+
 with open(os.path.join(__here__, 'requirements', 'dist.txt')) as f:
     REQUIREMENTS = [x.strip() for x in f]
     REQUIREMENTS = [x for x in REQUIREMENTS if x and not x.startswith('#')]
     REQUIREMENTS, DEPENDENCIES = split_requirements(REQUIREMENTS)
 
+
 README = open(os.path.join(__here__, 'README.rst')).read()
+
 
 setup(
     name='il2fb-difficulty',
-    version='1.3.0.dev0',
+    version='1.3.0',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     keywords=[
@@ -60,6 +63,8 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development :: Libraries',
     ],
     platforms=[

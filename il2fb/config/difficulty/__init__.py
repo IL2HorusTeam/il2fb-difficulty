@@ -5,7 +5,7 @@ Convert integer value of game difficulty into dictionary and vice versa.
 
 from collections import OrderedDict
 
-from .constants import SETTINGS, FLAT_SETTINGS, RULE_TYPES, RULES, PRESETS
+from .constants import SETTINGS, FLAT_SETTINGS, RULE_TYPES, RULES
 from .exceptions import LockedParameterException
 from .utils.bitwise import is_bit_set, toggle_bit
 from .utils.transforms import flatten_dict
