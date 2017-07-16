@@ -33,7 +33,7 @@ README = open(os.path.join(__here__, 'README.rst')).read()
 
 setup(
     name='il2fb-difficulty',
-    version='1.3.0',
+    version='1.3.1',
     description="Parser and emitter of difficulty settings for IL-2 FB",
     long_description=README,
     keywords=[
