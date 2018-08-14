@@ -103,9 +103,9 @@
 
 <script type="text/javascript">
   $(function(){
-    var $SCRIPT_ROOT = "https://oblalex.space:48080"
+    var $SCRIPT_ROOT = "https://europe-west1-il2-horus-demo-services.cloudfunctions.net"
     // var $SCRIPT_ROOT = "http://127.0.0.1:5000"
-    , game_version = '4.13.3'
+    , game_version = '4.13.4'
     , presets_selector = $('#presets_selector')
     , value_input = $('#value_input')
     , presets_list = $('#presets_list')
@@ -143,7 +143,7 @@
 
     function get_url() {
       var args = Array.prototype.slice.call(arguments)
-      return $SCRIPT_ROOT + '/' +["api", "difficulty", ].concat(args).join('/')
+      return $SCRIPT_ROOT + '/' + args.join('/')
     }
 
     function load_data(){
@@ -158,7 +158,7 @@
       $('#main').hide()
       $('.jumbotron').show()
 
-      $.getJSON(get_url("data"), function(result) {
+      $.getJSON(get_url("difficulty-get-data"), function(result) {
 
         presets_selector.removeClass('disabled')
         value_input.prop('disabled', false)
@@ -235,7 +235,7 @@
       inputs.off('switchChange.bootstrapSwitch')
 
       $.post(
-        get_url("decompose")
+        get_url("difficulty-decompose-value")
         , {
           'difficulty': difficulty
         }
@@ -267,7 +267,7 @@
       }
 
       $.post(
-        get_url("toggle_parameter")
+        get_url("difficulty-toggle-value")
         , {
           'difficulty': get_current_difficulty()
           , 'parameter': $(this).data('code')
