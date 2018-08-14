@@ -103,8 +103,8 @@
 
 <script type="text/javascript">
   $(function(){
-    var $SCRIPT_ROOT = "https://europe-west1-il2-horus-demo-services.cloudfunctions.net"
-    // var $SCRIPT_ROOT = "http://127.0.0.1:5000"
+    var $BASE_URL = "https://europe-west1-il2-horus-demo-services.cloudfunctions.net"
+    // var $BASE_URL = "http://127.0.0.1:5000"
     , game_version = '4.13.4'
     , presets_selector = $('#presets_selector')
     , value_input = $('#value_input')
@@ -112,7 +112,7 @@
     , tab_list = $('#tab_list')
     , tab_panes = $('#tab_panes')
     , switch_options = {
-      size: 'small'
+        size: 'small'
       , onColor: 'success'
       , offColor: 'danger'
     }
@@ -143,7 +143,7 @@
 
     function get_url() {
       var args = Array.prototype.slice.call(arguments)
-      return $SCRIPT_ROOT + '/' + args.join('/')
+      return $BASE_URL + '/' + args.join('/')
     }
 
     function load_data(){
@@ -234,12 +234,15 @@
 
       inputs.off('switchChange.bootstrapSwitch')
 
-      $.post(
-        get_url("difficulty-decompose-value")
-        , {
+      $.ajax({
+        url: get_url("difficulty-decompose-value"),
+        type: "POST",
+        data: JSON.stringify({
           'difficulty': difficulty
-        }
-        , function(data) {
+        }),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function(data) {
 
           if (data.difficulty != difficulty) {
             value_input.val(data.difficulty)
@@ -257,8 +260,7 @@
 
           inputs.on('switchChange.bootstrapSwitch', on_parameter_changed)
         }
-        , "json"
-      )
+      })
     }
 
     function on_parameter_changed(event, value){
@@ -266,14 +268,17 @@
         return
       }
 
-      $.post(
-        get_url("difficulty-toggle-value")
-        , {
-          'difficulty': get_current_difficulty()
+      $.ajax({
+        url: get_url("difficulty-toggle-value"),
+        type: "POST",
+        data: JSON.stringify({
+            'difficulty': get_current_difficulty()
           , 'parameter': $(this).data('code')
           , 'value': value
-        }
-        , function(data) {
+        }),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function(data) {
           value_input.val(data.difficulty)
 
           prevent_api_requests = true
@@ -296,8 +301,7 @@
 
           prevent_api_requests = false
         }
-        , "json"
-      )
+      })
     }
 
     function get_current_difficulty(){
